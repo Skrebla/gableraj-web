@@ -2,12 +2,27 @@
     // Lightbox logic
     const lightbox = document.getElementById('gallery-lightbox');
     if (lightbox) {
+      const lightboxPicture = lightbox.querySelector('#lightbox-picture');
       const lightboxImg = lightbox.querySelector('img');
       const closeBtn = lightbox.querySelector('.lightbox-close');
   
       function openLightbox(src, alt) {
-        lightboxImg.src = src;
-        lightboxImg.alt = alt || 'Galerija';
+        // Check if the source is AVIF and set up proper fallback
+        if (src.includes('.avif')) {
+          // If AVIF, create sources with AVIF and WebP fallback
+          const webpSrc = src.replace('.avif', '.webp');
+          lightboxPicture.innerHTML = `
+            <source srcset="${src}" type="image/avif" />
+            <img src="${webpSrc}" alt="${alt || 'Galerija'}" />
+          `;
+        } else {
+          // For WebP or other formats, use directly
+          const img = lightboxPicture.querySelector('img');
+          if (img) {
+            img.src = src;
+            img.alt = alt || 'Galerija';
+          }
+        }
         lightbox.classList.add('is-open');
       }
   
@@ -17,11 +32,16 @@
       }
   
       document.addEventListener('click', function (e) {
-        const item = e.target.closest('.gallery-item, .gallery-main-item');
+        const item = e.target.closest('.gallery-item, .gallery-main-item, .gallery-page-item');
         if (!item) return;
-        const img = item.querySelector('img');
+        // Check if there's a picture element, otherwise use img directly
+        const picture = item.querySelector('picture');
+        const img = picture ? picture.querySelector('img') : item.querySelector('img');
         if (!img) return;
-        openLightbox(img.src, img.alt);
+        // Use currentSrc to get the actual image being displayed (AVIF or WebP)
+        // Fallback to src if currentSrc is not available
+        const imageSrc = img.currentSrc || img.src;
+        openLightbox(imageSrc, img.alt);
       });
   
       closeBtn.addEventListener('click', closeLightbox);
@@ -365,6 +385,145 @@
       window.addEventListener('scroll', requestTick, { passive: true });
       // Initial call
       updateFancyText();
+    }
+
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+    
+    if (contactForm) {
+      // Initialize EmailJS (you'll need to replace with your public key)
+      // Get your public key from https://dashboard.emailjs.com/admin/integration
+      emailjs.init("QPQWvCmqM0AYvPEUF"); // Replace with your EmailJS public key
+      
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = {
+          ime: document.getElementById('ime').value,
+          email: document.getElementById('email').value,
+          telefon: document.getElementById('telefon').value,
+          tip_eventa: document.getElementById('tip-eventa').value,
+          datum: document.getElementById('datum').value,
+          lokacija: document.getElementById('lokacija').value,
+          broj_gostiju: document.getElementById('broj-gostiju').value
+        };
+        
+        // Basic validation
+        if (!formData.ime || !formData.email || !formData.telefon) {
+          showMessage('Molimo ispunite sva obavezna polja.', 'error');
+          return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+          showMessage('Molimo unesite valjanu email adresu.', 'error');
+          return;
+        }
+        
+        // Disable submit button
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Šalje se...';
+        
+        // Send email using EmailJS
+        // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs from EmailJS dashboard
+        emailjs.send('service_y058qx8', 'template_lxqalxv', {
+          from_name: formData.ime,
+          from_email: formData.email,
+          phone: formData.telefon,
+          event_type: formData.tip_eventa,
+          event_date: formData.datum,
+          location: formData.lokacija,
+          guest_count: formData.broj_gostiju,
+          to_email: 'tonyskrebla@gmail.com' // Your email address
+        })
+        .then(function() {
+          showMessage('Hvala vam! Vaš upit je uspješno poslan. Javit ćemo vam se u najkraćem roku.', 'success');
+          contactForm.reset();
+        }, function(error) {
+          console.error('EmailJS Error:', error);
+          showMessage('Došlo je do greške pri slanju upita. Molimo pokušajte ponovno ili nas kontaktirajte direktno.', 'error');
+        })
+        .finally(function() {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        });
+      });
+      
+      function showMessage(text, type) {
+        formMessage.textContent = text;
+        formMessage.style.display = 'block';
+        formMessage.className = 'form-message ' + type;
+        
+        if (type === 'success') {
+          formMessage.style.backgroundColor = '#d4edda';
+          formMessage.style.color = '#155724';
+          formMessage.style.border = '1px solid #c3e6cb';
+        } else {
+          formMessage.style.backgroundColor = '#f8d7da';
+          formMessage.style.color = '#721c24';
+          formMessage.style.border = '1px solid #f5c6cb';
+        }
+        
+        // Scroll to message
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // Hide message after 5 seconds for errors
+        if (type === 'error') {
+          setTimeout(function() {
+            formMessage.style.display = 'none';
+          }, 5000);
+        }
+      }
+    }
+
+    // Typewriter Effect for Philosophy Section
+    const typewriterElement = document.querySelector('.typewriter-text');
+    if (typewriterElement) {
+      const words = ['strasti', 'tradiciji', 'izvrsnosti', 'kreativnosti', 'savršenstvu'];
+      let currentWordIndex = 0;
+      let currentCharIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+      
+      function typeWriter() {
+        const currentWord = words[currentWordIndex];
+        
+        if (isDeleting) {
+          if (currentCharIndex > 0) {
+            typewriterElement.textContent = currentWord.substring(0, currentCharIndex - 1) + (currentCharIndex > 1 ? '.' : '');
+          } else {
+            typewriterElement.textContent = '';
+          }
+          currentCharIndex--;
+          typingSpeed = 50; // Faster when deleting
+        } else {
+          const text = currentWord.substring(0, currentCharIndex + 1);
+          typewriterElement.textContent = text + (currentCharIndex + 1 === currentWord.length ? '.' : '');
+          currentCharIndex++;
+          typingSpeed = 100; // Normal speed when typing
+        }
+        
+        if (!isDeleting && currentCharIndex === currentWord.length) {
+          // Word is complete, wait before deleting
+          typingSpeed = 2000; // Pause at end of word
+          isDeleting = true;
+        } else if (isDeleting && currentCharIndex === 0) {
+          // Word is deleted, move to next word
+          isDeleting = false;
+          currentWordIndex = (currentWordIndex + 1) % words.length;
+          typingSpeed = 500; // Pause before next word
+        }
+        
+        setTimeout(typeWriter, typingSpeed);
+      }
+      
+      // Start typing after a short delay
+      setTimeout(typeWriter, 1000);
     }
   })();
   

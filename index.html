@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Playfair:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- External stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,13 +21,13 @@
   <!-- NAVBAR -->
   <header class="navbar" >
     <div class="nav-left">
-        <img class="logo" src="image/logo.jpg" alt="Catering Gableraj" />
+        <img class="logo" src="image/logo.png" alt="Catering Gableraj" />
     </div>
 
     <nav class="nav-center">
       <a href="#usluge" class="nav-link active">Usluge</a>
-      <a href="#galerija" class="nav-link">Galerija</a>
-      <a href="#onama" class="nav-link">O nama</a>
+      <a href="galerija.html" class="nav-link">Galerija</a>
+      <a href="about.html" class="nav-link">O nama</a>
     </nav>
 
     <div class="nav-right">
@@ -37,7 +40,10 @@
     <video id="hero-video" autoplay muted loop playsinline>
       <source src="image/Gableraj-vid2_slow _compressed.mp4" type="video/mp4" />
       <!-- Fallback image if video doesn't load -->
-      <img src="image/Gableraj-68.jpg" alt="Catering stol s raznovrsnom hranom" />
+      <picture>
+        <source srcset="image/Gableraj-68.avif" type="image/avif" />
+        <img src="image/Gableraj-68.webp" alt="Catering stol s raznovrsnom hranom" />
+      </picture>
     </video>
     <div class="hero-content">
       <div class="hero-heading">
@@ -70,7 +76,10 @@
 
       <div class="services-grid">
         <div class="service-main-card service-card">
-          <img src="image/svadba.jpg" alt="Vjenčanja" loading="lazy" />
+          <picture>
+            <source srcset="image/svadba.avif" type="image/avif" />
+            <img src="image/svadba.webp" alt="Vjenčanja" loading="lazy" />
+          </picture>
           <div class="service-pill">
             <div class="service-pill-icon">
               <img src="image/service-01.png" alt="Vjenčanja" loading="lazy" />
@@ -84,7 +93,10 @@
 
         <div class="service-side-cards">
           <div class="service-card" id="poslovni-eventi">
-            <img src="image/Gableraj-172.png" alt="Poslovni eventi" loading="lazy" />
+            <picture>
+              <source srcset="image/Gableraj-172.avif" type="image/avif" />
+              <img src="image/Gableraj-172.webp" alt="Poslovni eventi" loading="lazy" />
+            </picture>
             <div class="service-pill">
               <div class="service-pill-icon">
                 <img src="image/service-02.png" alt="Poslovni eventi" loading="lazy" />
@@ -97,7 +109,10 @@
           </div>
 
           <div class="service-card">
-            <img src="image/Gableraj-173.png" alt="Privatne zabave" loading="lazy" />
+            <picture>
+              <source srcset="image/Gableraj-173.avif" type="image/avif" />
+              <img src="image/Gableraj-173.webp" alt="Privatne zabave" loading="lazy" />
+            </picture>
             <div class="service-pill">
               <div class="service-pill-icon">
                 <img src="image/service-03.png" alt="Privatne zabave" loading="lazy" />
@@ -251,15 +266,24 @@
 
     <div class="gallery-grid">
       <div class="gallery-main-item">
-        <img src="image/Gableraj-54.avif" alt="Galerija 1" loading="lazy" />
+        <picture>
+          <source srcset="image/Gableraj-54.avif" type="image/avif" />
+          <img src="image/Gableraj-54.webp" alt="Galerija 1" loading="lazy" />
+        </picture>
       </div>
 
       <div class="gallery-side-items">
         <div class="gallery-item">
-          <img src="image/Gableraj-117.avif" alt="Galerija 2" loading="lazy" />
+          <picture>
+            <source srcset="image/Gableraj-117.avif" type="image/avif" />
+            <img src="image/Gableraj-117.webp" alt="Galerija 2" loading="lazy" />
+          </picture>
         </div>
         <div class="gallery-item">
-          <img src="image/Gableraj-114.avif" alt="Galerija 3" loading="lazy" />
+          <picture>
+            <source srcset="image/Gableraj-114.avif" type="image/avif" />
+            <img src="image/Gableraj-114.webp" alt="Galerija 3" loading="lazy" />
+          </picture>
         </div>
       </div>
     </div>
@@ -267,20 +291,29 @@
     <div class="gallery-grid gallery-grid--mirrored">
       <div class="gallery-side-items">
         <div class="gallery-item">
-          <img src="image/Gableraj-38.avif" alt="Galerija 4" loading="lazy" />
+          <picture>
+            <source srcset="image/Gableraj-38.avif" type="image/avif" />
+            <img src="image/Gableraj-38.webp" alt="Galerija 4" loading="lazy" />
+          </picture>
         </div>
         <div class="gallery-item">
-          <img src="image/Gableraj-113.avif" alt="Galerija 5" loading="lazy" />
+          <picture>
+            <source srcset="image/Gableraj-113.avif" type="image/avif" />
+            <img src="image/Gableraj-113.webp" alt="Galerija 5" loading="lazy" />
+          </picture>
         </div>
       </div>
 
       <div class="gallery-main-item">
-        <img src="image/Gableraj-137.avif" alt="Galerija 6" loading="lazy" />
+        <picture>
+          <source srcset="image/Gableraj-137.avif" type="image/avif" />
+          <img src="image/Gableraj-137.webp" alt="Galerija 6" loading="lazy" />
+        </picture>
       </div>
     </div>
 
     <div class="gallery-more">
-      <a href="#" class="gallery-more-link">POGLEDAJ JOŠ SLIKA ➜</a>
+      <a href="galerija.html" class="gallery-more-link">POGLEDAJ JOŠ SLIKA ➜</a>
     </div>
   </section>
 
@@ -295,10 +328,10 @@
           <div class="about-kicker">O NAMA</div>
           <h2 class="about-title">Dobrodošli u svijet Gableraja</h2>
           <p class="about-text">Naš cilj je uvijek stvarati profinjena jela koja na svakom tanjuru spajaju svježinu i inovaciju. Zato se oslanjamo isključivo na svježe i posebno kvalitetne sastojke. Svako jelo priprema se s pažnjom i strašću, kako bi razveselilo ne samo nepce, već i dušu.</p>
-          <button class="btn-primary about-button">
+          <a href="about.html"><button class="btn-primary about-button">
             Naša priča
             <span class="btn-icon">➜</span>
-          </button>
+          </button></a>
           
           <div class="about-stats">
             <div class="stat-item">
@@ -424,7 +457,9 @@
 
           <div class="contact-info">
             <div class="contact-info-item" style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-              <div style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; font-size:18px;">✉️</div>
+              <div style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; color:#6b6b6b;">
+                <i class="fas fa-envelope"></i>
+              </div>
               <div>
                 <div style="font-weight:600; font-size:14px;">E-mail</div>
                 <div style="font-size:13px; color:var(--muted);">info@gableraj.hr</div>
@@ -432,7 +467,9 @@
             </div>
 
             <div class="contact-info-item" style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-              <div style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; font-size:18px;">📞</div>
+              <div style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; color:#6b6b6b;">
+                <i class="fas fa-phone"></i>
+              </div>
               <div>
                 <div style="font-weight:600; font-size:14px;">Call us</div>
                 <div style="font-size:13px; color:var(--muted);">+385 91 270 3091</div>
@@ -440,7 +477,9 @@
             </div>
 
             <div class="contact-info-item" style="display:flex; align-items:center; gap:16px;">
-              <div style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; font-size:18px;">⏰</div>
+              <div style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; color:#6b6b6b;">
+                <i class="fas fa-clock"></i>
+              </div>
               <div>
                 <div style="font-weight:600; font-size:14px;">Opening hours</div>
                 <div style="font-size:13px; color:var(--muted);">24/7</div>
@@ -449,7 +488,7 @@
           </div>
         </div>
 
-        <form class="contact-form">
+        <form id="contact-form" class="contact-form">
           <div class="contact-field">
             <label for="ime">Ime i prezime</label>
             <input id="ime" type="text" name="ime" placeholder="Vaše ime" />
@@ -484,6 +523,7 @@
           </div>
           <div class="contact-field contact-submit">
             <button type="submit" class="btn-primary">Pošalji upit</button>
+            <div id="form-message" class="form-message" style="display:none; margin-top:12px; padding:12px; border-radius:8px; font-size:13px;"></div>
           </div>
         </form>
       </div>
@@ -512,7 +552,7 @@
         <div class="footer-column">
           <div class="footer-column-title">O nama</div>
           <ul class="footer-column-list">
-            <li><a href="#onama">Naša priča</a></li>
+            <li><a href="about.html">Naša priča</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Karijera</a></li>
           </ul>
@@ -549,10 +589,15 @@
   <div id="gallery-lightbox" class="lightbox">
     <div class="lightbox-inner">
       <button type="button" class="lightbox-close" aria-label="Zatvori">×</button>
-      <img src="" alt="Galerija" />
+      <picture id="lightbox-picture">
+        <img src="" alt="Galerija" />
+      </picture>
     </div>
   </div>
 
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
   <!-- External JS -->
   <script src="script.js"></script>
 </body>

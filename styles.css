@@ -113,7 +113,8 @@
   }
   
   .hero img,
-  .hero video {
+  .hero video,
+  .hero picture {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -121,6 +122,13 @@
     object-fit: cover;
     transform: scale(1.03);
     filter: brightness(0.85);
+  }
+  
+  .hero picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   
   .hero::before {
@@ -184,6 +192,97 @@
     }
   }
   
+  /* ABOUT PAGE HERO - Custom styles for about.html hero section */
+  /* Add your custom styles for .hero-about here without affecting index.html or galerija.html */
+  .hero-about {
+    height: 45vh; 
+  }
+  
+  .hero-about picture img {
+    object-position: center 10%; /* Position: top, center, bottom, or custom like "center 20%" */
+    object-fit: cover; /* Options: cover, contain, fill, scale-down, none */
+    transform: scale(1); /* Scale: 1 = 100%, 1.2 = 120% (zoom in), 0.8 = 80% (zoom out) */
+    /* Or use width/height for specific sizing: */
+    /* width: 120%; */
+    /* height: 120%; */
+  }
+  
+  .hero-about::before {
+    background: rgba(0, 0, 0, 0.5); /* Adjust opacity: 0.3 = 30% dark, 0.5 = 50%, etc. */
+  }
+  
+  /* PHILOSOPHY SECTION */
+  .philosophy-section {
+    background: #F8F5F2;
+    padding: 120px 0;
+    margin-top: 0;
+  }
+  
+  .philosophy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+  
+  .philosophy-kicker {
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #221f1e;
+    margin-bottom: 12px;
+    font-family: var(--font-marcellus);
+  }
+  
+  .philosophy-quote {
+    font-family: "Marcellus", serif;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.4;
+    color: #333333;
+    font-weight: 400;
+    max-width: 800px;
+  }
+  
+  .philosophy-quote p {
+    margin: 0;
+  }
+  
+  .typewriter-text {
+    display: inline-block;
+    min-width: 200px;
+    text-align: left;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+  
+  .philosophy-attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  
+  .philosophy-name {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #333333;
+  }
+  
+  .philosophy-role {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #333333;
+    text-transform: lowercase;
+  }
+   
+
   .btn-ghost,
   .btn-outline {
     border-radius: 999px;
@@ -325,6 +424,15 @@
     flex-direction: column;
   }
  
+  .service-card picture,
+  .service-main-card picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+  
   .service-card img {
     width: 100%;
     height: 100%;
@@ -781,7 +889,15 @@
     border-radius:0;
     overflow: hidden;
     position: relative;
-    background-image: url("image/Gableraj-83.webp");
+    background-image: url("image/Gableraj-83.webp"); /* Fallback for older browsers */
+    background-image: -webkit-image-set(
+      url("image/Gableraj-83.avif") type("image/avif"),
+      url("image/Gableraj-83.webp") type("image/webp")
+    );
+    background-image: image-set(
+      url("image/Gableraj-83.avif") type("image/avif"),
+      url("image/Gableraj-83.webp") type("image/webp")
+    );
     background-size: cover;
     background-position: center;
   }
@@ -904,7 +1020,15 @@
   }
   
   .about-placeholder {
-    background-image: url("image/Gableraj-01.jpg");
+    background-image: url("image/Gableraj-01.webp"); /* Fallback for older browsers */
+    background-image: -webkit-image-set(
+      url("image/Gableraj-01.avif") type("image/avif"),
+      url("image/Gableraj-01.webp") type("image/webp")
+    );
+    background-image: image-set(
+      url("image/Gableraj-01.avif") type("image/avif"),
+      url("image/Gableraj-01.webp") type("image/webp")
+    );
     background-size: cover;
     background-position: center top;
     width: 80%;
@@ -932,7 +1056,7 @@
     text-transform: uppercase;
     font-family: var(--font-marcellus);
     color: #221f1e;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   
   .about-title {
@@ -940,7 +1064,7 @@
     font-size: 38px;
     font-weight: 400;
     line-height: 1.1;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     color: #221f1e;
   }
   
@@ -948,11 +1072,10 @@
     font-size: 14px;
     line-height: 1.7;
     color: var(--muted);
-    margin-bottom: 22px;
+    margin-bottom: 30px;
   }
   
   .about-button {
-    margin-top: 8px;
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -1043,7 +1166,7 @@
     text-transform: uppercase;
     font-family: var(--font-marcellus);
     color: #221f1e;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   
   .faq-title {
@@ -1051,7 +1174,7 @@
     font-size: 38px;
     font-weight: 400;
     line-height: 1.1;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     color: #221f1e;
   }
   
@@ -1060,13 +1183,11 @@
     font-family: "Montserrat";
     line-height: 1.7;
     color: var(--muted);
-    margin-bottom: 22px;
+    margin-bottom: 39px;
     max-width: 360px;
   }
   
-  .faq-button {
-    margin-top: 8px;
-  }
+
   
   .faq-list {
     width: 50%;
@@ -1177,7 +1298,7 @@
     border: 1px solid #eee;
     background: #fff;
     box-shadow: 0 18px 45px rgba(0,0,0,0.08);
-    padding: 32px 40px 32px;
+    padding: 48px 56px;
     display: flex;
     gap: 64px;
   }
@@ -1213,6 +1334,14 @@
     max-width: 320px;
   }
   
+  .contact-info-item i.fas {
+    font-size: 18px;
+    display: block;
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+  }
+  
   .contact-form {
     flex: 1;
     display: grid;
@@ -1243,6 +1372,14 @@
     outline: none;
   }
   
+  .contact-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b6b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+  
   .contact-field textarea {
     border-radius: 16px;
     min-height: 80px;
@@ -1259,9 +1396,30 @@
     justify-self: flex-start;
   }
   
+  .form-message {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  .form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
   /* FOOTER */
   .footer {
-    background: #000;
+    background: #17191E;
     color: #f5f5f5;
     padding: 80px 0 40px;
   }
@@ -1414,6 +1572,53 @@
     gap: 16px;
   }
   
+  /* GALLERY PAGE */
+
+  .gallery-page-header {
+    margin-top: 60px;
+  }
+  
+  .gallery-page {
+    margin-bottom: 30px;
+  }
+  
+  .gallery-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .gallery-page-item {
+    position: relative;
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    background: #f3f3f3;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  
+  .gallery-page-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
+  
+  .gallery-page-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+  }
+  
+  .gallery-page-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* ABOUT PAGE */
+
+  
+
   /* RESPONSIVE (partial) */
   @media (max-width: 768px) {
     .navbar {
@@ -1440,6 +1645,18 @@
     .hero-cta-row {
       justify-content: flex-start;
       flex-wrap: wrap;
+    }
+    
+    .gallery-page-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .gallery-page-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
   }
   
