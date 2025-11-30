@@ -282,6 +282,34 @@
       }
     }
 
+    // About-us image reveal from right
+    const aboutUsMedia = document.querySelector('.about-us-media');
+    const aboutUsSection = document.querySelector('.about-us-section');
+    
+    if (aboutUsMedia) {
+      if (aboutUsSection && 'IntersectionObserver' in window) {
+        const aboutUsImageObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                aboutUsMedia.classList.add('is-visible');
+                aboutUsImageObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+            rootMargin: '100px 0px 0px 0px',
+          }
+        );
+
+        aboutUsImageObserver.observe(aboutUsSection);
+      } else {
+        // Fallback without IntersectionObserver - show immediately
+        aboutUsMedia.classList.add('is-visible');
+      }
+    }
+
     // Set footer year
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
@@ -524,6 +552,124 @@
       
       // Start typing after a short delay
       setTimeout(typeWriter, 1000);
+    }
+
+    // Why choose us sticky left side
+    const whyChooseLeft = document.querySelector('.why-choose-header-left');
+    const whyChooseSection = document.querySelector('.why-choose-section');
+    const whyChooseHeader = document.querySelector('.why-choose-header');
+    
+    if (whyChooseLeft && whyChooseSection && whyChooseHeader) {
+      let ticking = false;
+      let originalWidth = null;
+      let spacer = null;
+      
+      function updateStickyPosition() {
+        if (!whyChooseLeft || !whyChooseSection || !whyChooseHeader) return;
+        
+        const sectionRect = whyChooseSection.getBoundingClientRect();
+        const sectionTop = sectionRect.top;
+        const sectionBottom = sectionRect.bottom;
+        const stickyTop = 80; // Distance from top when sticky
+        const leftHeight = whyChooseLeft.offsetHeight;
+        
+        // Store original width on first run
+        if (originalWidth === null) {
+          originalWidth = whyChooseLeft.offsetWidth;
+        }
+        
+        // Check if we should make it sticky
+        if (sectionTop <= stickyTop && sectionBottom > stickyTop + leftHeight) {
+          // Calculate maximum top position to keep it within section bounds
+          const maxTop = sectionBottom - leftHeight;
+          const calculatedTop = Math.max(stickyTop, Math.min(stickyTop, maxTop));
+          
+          // Make it sticky - section is scrolled past the sticky point
+          whyChooseLeft.style.position = 'fixed';
+          whyChooseLeft.style.top = calculatedTop + 'px';
+          whyChooseLeft.style.width = originalWidth + 'px';
+          whyChooseLeft.style.zIndex = '10';
+          whyChooseLeft.style.bottom = 'auto';
+          
+          // Add spacer to maintain layout
+          if (!spacer) {
+            spacer = document.createElement('div');
+            spacer.className = 'why-choose-spacer';
+            spacer.style.width = originalWidth + 'px';
+            spacer.style.flexShrink = '0';
+            spacer.style.height = '1px';
+            whyChooseHeader.insertBefore(spacer, whyChooseLeft.nextSibling);
+          }
+        } else if (sectionTop <= stickyTop && sectionBottom <= stickyTop + leftHeight) {
+          // Section bottom reached - constrain to bottom using fixed positioning
+          const maxTop = sectionBottom - leftHeight;
+          
+          whyChooseLeft.style.position = 'fixed';
+          whyChooseLeft.style.top = maxTop + 'px';
+          whyChooseLeft.style.bottom = 'auto';
+          whyChooseLeft.style.width = originalWidth + 'px';
+          whyChooseLeft.style.zIndex = '10';
+          
+          // Keep spacer
+          if (!spacer) {
+            spacer = document.createElement('div');
+            spacer.className = 'why-choose-spacer';
+            spacer.style.width = originalWidth + 'px';
+            spacer.style.flexShrink = '0';
+            spacer.style.height = '1px';
+            whyChooseHeader.insertBefore(spacer, whyChooseLeft.nextSibling);
+          }
+        } else if (sectionTop > stickyTop) {
+          // Section hasn't reached sticky point yet - keep relative
+          whyChooseLeft.style.position = 'relative';
+          whyChooseLeft.style.top = 'auto';
+          whyChooseLeft.style.bottom = 'auto';
+          whyChooseLeft.style.width = 'auto';
+          whyChooseLeft.style.zIndex = 'auto';
+          
+          // Remove spacer
+          if (spacer && spacer.parentNode) {
+            spacer.parentNode.removeChild(spacer);
+            spacer = null;
+          }
+        } else {
+          // Section has scrolled completely past - reset to relative
+          whyChooseLeft.style.position = 'relative';
+          whyChooseLeft.style.top = 'auto';
+          whyChooseLeft.style.bottom = 'auto';
+          whyChooseLeft.style.width = 'auto';
+          whyChooseLeft.style.zIndex = 'auto';
+          
+          // Remove spacer
+          if (spacer && spacer.parentNode) {
+            spacer.parentNode.removeChild(spacer);
+            spacer = null;
+          }
+        }
+        
+        ticking = false;
+      }
+      
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(updateStickyPosition);
+          ticking = true;
+        }
+      }
+      
+      // Initial call to set up
+      updateStickyPosition();
+      
+      // Listen to scroll and resize events
+      window.addEventListener('scroll', requestTick, { passive: true });
+      window.addEventListener('resize', function() {
+        originalWidth = null; // Reset width on resize
+        if (spacer) {
+          spacer.parentNode.removeChild(spacer);
+          spacer = null;
+        }
+        requestTick();
+      }, { passive: true });
     }
   })();
   
