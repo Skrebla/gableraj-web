@@ -32,7 +32,7 @@
       }
   
       document.addEventListener('click', function (e) {
-        const item = e.target.closest('.gallery-item, .gallery-main-item, .gallery-page-item');
+        const item = e.target.closest('.gallery-item, .gallery-main-item, .gallery-page-item, .gallery-slider-item');
         if (!item) return;
         // Check if there's a picture element, otherwise use img directly
         const picture = item.querySelector('picture');
@@ -528,7 +528,7 @@
             typewriterElement.textContent = '';
           }
           currentCharIndex--;
-          typingSpeed = 50; // Faster when deleting
+          typingSpeed = 20; // Faster when deleting
         } else {
           const text = currentWord.substring(0, currentCharIndex + 1);
           typewriterElement.textContent = text + (currentCharIndex + 1 === currentWord.length ? '.' : '');
@@ -538,7 +538,7 @@
         
         if (!isDeleting && currentCharIndex === currentWord.length) {
           // Word is complete, wait before deleting
-          typingSpeed = 2000; // Pause at end of word
+          typingSpeed = 1000; // Pause at end of word
           isDeleting = true;
         } else if (isDeleting && currentCharIndex === 0) {
           // Word is deleted, move to next word
@@ -554,9 +554,41 @@
       setTimeout(typeWriter, 1000);
     }
 
+    // Why choose us items reveal from right, one by one
+    const whyChooseItems = document.querySelectorAll('.why-choose-item');
+    const whyChooseSection = document.querySelector('.why-choose-section');
+    
+    if (whyChooseItems.length && whyChooseSection && 'IntersectionObserver' in window) {
+      const whyChooseObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Reveal each item with staggered delays from right
+              whyChooseItems.forEach(function (item, index) {
+                setTimeout(function () {
+                  item.classList.add('is-visible');
+                }, index * 200); // 150ms delay between each item
+              });
+              whyChooseObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.3,
+          rootMargin: '0px 0px -10% 0px',
+        }
+      );
+
+      whyChooseObserver.observe(whyChooseSection);
+    } else if (whyChooseItems.length) {
+      // Fallback without IntersectionObserver
+      whyChooseItems.forEach(function (item) {
+        item.classList.add('is-visible');
+      });
+    }
+
     // Why choose us sticky left side
     const whyChooseLeft = document.querySelector('.why-choose-header-left');
-    const whyChooseSection = document.querySelector('.why-choose-section');
     const whyChooseHeader = document.querySelector('.why-choose-header');
     
     if (whyChooseLeft && whyChooseSection && whyChooseHeader) {
@@ -670,6 +702,184 @@
         }
         requestTick();
       }, { passive: true });
+    }
+
+    // Gallery Slider - Automatic scrolling with infinite loop
+    const gallerySliderContainer = document.querySelector('.gallery-slider-container');
+    const gallerySliderTrack = document.getElementById('gallery-slider-track');
+    
+    if (gallerySliderContainer && gallerySliderTrack) {
+      let currentX = 0;
+      let autoScrollSpeed = 0.5; // Pixels per frame (adjust for speed)
+      let animationFrameId = null;
+      
+      // Calculate loop width (width of first set of items)
+      const sliderItems = gallerySliderTrack.querySelectorAll('.gallery-slider-item');
+      const itemCount = sliderItems.length;
+      const loopCount = Math.floor(itemCount / 2); // First half is original, second half is duplicate
+      let loopWidth = 0;
+      
+      function calculateLoopWidth() {
+        const firstItem = sliderItems[0];
+        if (firstItem) {
+          const itemWidth = firstItem.offsetWidth;
+          const gap = 20; // Match CSS gap
+          loopWidth = (itemWidth + gap) * loopCount;
+        }
+      }
+      
+      // Calculate on load and resize
+      calculateLoopWidth();
+      window.addEventListener('resize', calculateLoopWidth);
+      
+      function checkLoop() {
+        if (loopWidth === 0) return;
+        
+        // If scrolled past the loop point, reset to beginning
+        if (currentX <= -loopWidth) {
+          currentX += loopWidth;
+          gallerySliderTrack.style.transition = 'none';
+          updateSliderPosition();
+          // Force reflow
+          gallerySliderTrack.offsetHeight;
+          gallerySliderTrack.style.transition = '';
+        }
+      }
+
+      function updateSliderPosition() {
+        gallerySliderTrack.style.transform = `translateX(${currentX}px)`;
+      }
+
+      function autoScroll() {
+        // Move slider to the left (negative direction)
+        currentX -= autoScrollSpeed;
+        
+        checkLoop();
+        updateSliderPosition();
+        
+        // Continue animation
+        animationFrameId = requestAnimationFrame(autoScroll);
+      }
+
+      // Start automatic scrolling
+      autoScroll();
+
+      // Prevent image drag (default browser behavior)
+      const sliderItemImages = gallerySliderTrack.querySelectorAll('.gallery-slider-item img');
+      sliderItemImages.forEach(function(img) {
+        img.addEventListener('dragstart', function(e) {
+          e.preventDefault();
+        });
+      });
+
+      // COMMENTED OUT: Drag functionality
+      /*
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      let velocity = 0;
+      let lastX = 0;
+      let lastTime = Date.now();
+      let isDragging = false;
+
+      // Mouse events
+      gallerySliderContainer.addEventListener('mousedown', function(e) {
+        isDown = true;
+        isDragging = true;
+        gallerySliderTrack.classList.add('is-dragging');
+        startX = e.pageX - gallerySliderContainer.offsetLeft;
+        scrollLeft = currentX;
+        lastX = e.pageX;
+        lastTime = Date.now();
+        velocity = 0;
+        
+        // Cancel any ongoing momentum animation
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+      });
+
+      gallerySliderContainer.addEventListener('mouseleave', function() {
+        if (isDown) {
+          isDown = false;
+          isDragging = false;
+          gallerySliderTrack.classList.remove('is-dragging');
+          applyMomentum();
+        }
+      });
+
+      gallerySliderContainer.addEventListener('mouseup', function() {
+        if (isDown) {
+          isDown = false;
+          isDragging = false;
+          gallerySliderTrack.classList.remove('is-dragging');
+          applyMomentum();
+        }
+      });
+
+      gallerySliderContainer.addEventListener('mousemove', function(e) {
+        if (!isDown) return;
+        e.preventDefault();
+        
+        const x = e.pageX - gallerySliderContainer.offsetLeft;
+        const walk = (x - startX) * 1.5; // Multiply for faster scrolling
+        currentX = scrollLeft + walk; // Drag left moves slider left
+        
+        // Calculate velocity for momentum
+        const now = Date.now();
+        const timeDelta = now - lastTime;
+        if (timeDelta > 0) {
+          const xDelta = e.pageX - lastX;
+          velocity = xDelta / timeDelta;
+        }
+        lastX = e.pageX;
+        lastTime = now;
+        
+        checkLoop();
+        updateSliderPosition();
+      });
+
+      function applyMomentum() {
+        if (Math.abs(velocity) < 0.1) {
+          velocity = 0;
+          return;
+        }
+
+        // Apply friction
+        velocity *= 0.95;
+        currentX += velocity * 10;
+
+        checkLoop();
+        updateSliderPosition();
+
+        // Continue momentum animation
+        animationFrameId = requestAnimationFrame(applyMomentum);
+      }
+
+      // Make slider items clickable for lightbox (using existing click handler)
+      // The existing document click handler will handle .gallery-slider-item clicks
+      // We just need to prevent clicks during drag
+      let clickAllowed = true;
+      
+      gallerySliderContainer.addEventListener('mousedown', function() {
+        clickAllowed = false;
+      });
+      
+      gallerySliderContainer.addEventListener('mouseup', function() {
+        // Allow clicks after a short delay to distinguish from drag
+        setTimeout(function() {
+          clickAllowed = true;
+        }, 150);
+      });
+      
+      gallerySliderTrack.addEventListener('click', function(e) {
+        if (!clickAllowed) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+      */
     }
   })();
   
