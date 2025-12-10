@@ -32,7 +32,7 @@
       }
   
       document.addEventListener('click', function (e) {
-        const item = e.target.closest('.gallery-item, .gallery-main-item, .gallery-page-item, .gallery-slider-item');
+        const item = e.target.closest('.gallery-item, .gallery-main-item, .gallery-page-item, .gallery-slider-item, .locations-image-main, .locations-image-overlay');
         if (!item) return;
         // Check if there's a picture element, otherwise use img directly
         const picture = item.querySelector('picture');
@@ -533,7 +533,7 @@
           const text = currentWord.substring(0, currentCharIndex + 1);
           typewriterElement.textContent = text + (currentCharIndex + 1 === currentWord.length ? '.' : '');
           currentCharIndex++;
-          typingSpeed = 100; // Normal speed when typing
+          typingSpeed = 50; // Normal speed when typing
         }
         
         if (!isDeleting && currentCharIndex === currentWord.length) {
@@ -881,5 +881,285 @@
       });
       */
     }
+  })();
+
+  // WEDDING SERVICES SLIDER
+  (function() {
+    const sliderContainer = document.getElementById('wedding-services-track');
+    const paginationContainer = document.getElementById('wedding-services-pagination');
+    const sliderWrapper = sliderContainer ? sliderContainer.parentElement : null;
+    
+    if (!sliderContainer || !paginationContainer || !sliderWrapper) return;
+
+    const cards = sliderContainer.querySelectorAll('.wedding-service-card');
+    const totalCards = cards.length;
+    const cardsPerView = 3; // Number of cards visible at once
+    const totalSlides = totalCards - cardsPerView + 1; // Total positions (one card at a time)
+    
+    let currentIndex = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startTranslateX = 0;
+    let translateX = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+
+    // Create pagination dots - one for each possible position
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'wedding-services-dot';
+      if (i === 0) dot.classList.add('active');
+      dot.setAttribute('data-index', i);
+      dot.addEventListener('click', () => goToSlide(i));
+      paginationContainer.appendChild(dot);
+    }
+
+    function updatePagination() {
+      const dots = paginationContainer.querySelectorAll('.wedding-services-dot');
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function getGap() {
+      // Get the actual gap from computed styles
+      const computedStyle = window.getComputedStyle(sliderContainer);
+      const gapValue = computedStyle.gap || computedStyle.columnGap || '24px';
+      // Parse gap value (e.g., "24px" -> 24)
+      const gap = parseFloat(gapValue);
+      return isNaN(gap) ? 24 : gap;
+    }
+
+    function getCardWidth() {
+      // Get the actual width of the first card from the DOM
+      // This accounts for CSS flex sizing and any padding/margins
+      if (cards.length > 0) {
+        const firstCard = cards[0];
+        // Use offsetWidth for layout width (more reliable than getBoundingClientRect)
+        return firstCard.offsetWidth;
+      }
+      // Fallback calculation if no cards found
+      const containerWidth = sliderWrapper.clientWidth;
+      const gap = getGap();
+      return (containerWidth - (gap * (cardsPerView - 1))) / cardsPerView;
+    }
+
+    function goToSlide(index) {
+      currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+      const cardWidth = getCardWidth();
+      const gap = getGap();
+      // Move by one card width + gap for each slide
+      translateX = -currentIndex * (cardWidth + gap);
+      updateSliderPosition();
+      updatePagination();
+    }
+
+    function updateSliderPosition() {
+      sliderContainer.style.transform = `translateX(${translateX}px)`;
+    }
+
+    function handleStart(e) {
+      isDragging = true;
+      sliderContainer.classList.add('is-dragging');
+      const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+      startX = clientX;
+      startTranslateX = translateX; // Store the initial translate position
+      lastX = clientX;
+      lastTime = Date.now();
+      velocity = 0;
+    }
+
+    function handleMove(e) {
+      if (!isDragging) return;
+      
+      e.preventDefault();
+      const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+      const deltaX = clientX - startX;
+      const now = Date.now();
+      const timeDelta = now - lastTime;
+      
+      // Calculate velocity for momentum
+      if (timeDelta > 0) {
+        velocity = (clientX - lastX) / timeDelta;
+      }
+      
+      lastX = clientX;
+      lastTime = now;
+      
+      const cardWidth = getCardWidth();
+      const gap = getGap();
+      const cardStep = cardWidth + gap;
+      const maxTranslate = 0;
+      const minTranslate = -cardStep * (totalSlides - 1);
+      
+      // Calculate new position based on initial position + mouse movement
+      const newTranslateX = startTranslateX + deltaX;
+      const clampedTranslate = Math.max(minTranslate, Math.min(maxTranslate, newTranslateX));
+      
+      // Add slight resistance at edges for better feel
+      if (clampedTranslate === maxTranslate || clampedTranslate === minTranslate) {
+        const edgeResistance = 0.3;
+        translateX = startTranslateX + (deltaX * edgeResistance);
+      } else {
+        translateX = clampedTranslate;
+      }
+      
+      updateSliderPosition();
+    }
+
+    function handleEnd() {
+      if (!isDragging) return;
+      
+      isDragging = false;
+      
+      // Calculate which slide to snap to based on current position (one card at a time)
+      const cardWidth = getCardWidth();
+      const gap = getGap();
+      const cardStep = cardWidth + gap;
+      const currentPosition = -translateX;
+      const slideIndex = Math.round(currentPosition / cardStep);
+      let newIndex = Math.max(0, Math.min(slideIndex, totalSlides - 1));
+      
+      // Apply momentum - if dragging fast, move to next/previous card
+      if (Math.abs(velocity) > 0.2) {
+        const direction = velocity > 0 ? -1 : 1;
+        const proposedIndex = newIndex + direction;
+        // Only apply momentum if it's within bounds
+        if (proposedIndex >= 0 && proposedIndex < totalSlides) {
+          newIndex = proposedIndex;
+        }
+      }
+      
+      // Remove dragging class first to re-enable transition
+      sliderContainer.classList.remove('is-dragging');
+      
+      // Use double requestAnimationFrame to ensure transition is fully applied
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          // Smoothly snap to the calculated slide
+          goToSlide(newIndex);
+        });
+      });
+    }
+
+    // Mouse events - attach to wrapper
+    sliderWrapper.addEventListener('mousedown', handleStart);
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleEnd);
+
+    // Touch events
+    sliderWrapper.addEventListener('touchstart', handleStart, { passive: false });
+    document.addEventListener('touchmove', handleMove, { passive: false });
+    document.addEventListener('touchend', handleEnd);
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        goToSlide(currentIndex);
+      }, 250);
+    });
+
+    // Initial setup
+    updateSliderPosition();
+  })();
+
+  // Wedding service cards reveal on viewport entry - left to right with staggered delays
+  (function() {
+    const weddingServiceCards = document.querySelectorAll('.wedding-service-card');
+    const weddingServicesSection = document.querySelector('.wedding-services-section');
+    
+    if (weddingServiceCards.length && weddingServicesSection && 'IntersectionObserver' in window) {
+      const weddingServicesObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Add is-visible to each card with staggered delays (left to right)
+              weddingServiceCards.forEach(function (card, index) {
+                setTimeout(function () {
+                  card.classList.add('is-visible');
+                }, index * 200); // 200ms delay between each card
+              });
+              weddingServicesObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.3,
+          rootMargin: '0px 0px -10% 0px',
+        }
+      );
+
+      weddingServicesObserver.observe(weddingServicesSection);
+    } else if (weddingServiceCards.length) {
+      // Fallback without IntersectionObserver
+      weddingServiceCards.forEach(function (card, index) {
+        setTimeout(function () {
+          card.classList.add('is-visible');
+        }, index * 200);
+      });
+    }
+  })();
+
+  // LOCATIONS SLIDER
+  (function() {
+    const slides = document.querySelectorAll('.locations-slide');
+    const prevBtn = document.querySelector('.locations-nav-prev');
+    const nextBtn = document.querySelector('.locations-nav-next');
+    
+    if (!slides.length || !prevBtn || !nextBtn) return;
+    
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    let isFirstClick = true;
+    
+    function showSlide(index) {
+      // Remove active class from all slides
+      slides.forEach(function(slide) {
+        slide.classList.remove('active');
+      });
+      
+      // Add active class to current slide
+      if (slides[index]) {
+        slides[index].classList.add('active');
+      }
+      
+      // Update button states
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === totalSlides - 1;
+      
+      // After first click, remove accent color from next button
+      if (isFirstClick && index > 0) {
+        nextBtn.classList.add('has-clicked');
+        isFirstClick = false;
+      }
+    }
+    
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    }
+    
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Initialize
+    showSlide(currentSlide);
   })();
   

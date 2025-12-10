@@ -72,11 +72,70 @@
     color: var(--text);
     position: relative;
     padding-bottom: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-link i {
+    font-size: 10px;
+    transition: transform 0.2s ease;
   }
   
   .nav-link.active {
     color: var(--accent);
     font-weight: 500;
+  }
+
+  /* NAV DROPDOWN */
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-dropdown:hover .nav-link i {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    transform: translateX(0%) translateY(-10px);
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    padding: 8px 0;
+    margin-top: 12px;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 100;
+  }
+
+  .nav-dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .nav-dropdown-item:hover {
+    background: #f5f5f5;
+    color: var(--accent);
+  }
+
+  .nav-dropdown-item.active {
+    color: var(--accent);
+    font-weight: 500;
+    background: rgba(245, 166, 35, 0.1);
   }
   
   .nav-right {
@@ -213,6 +272,21 @@
   }
   
   .hero-about::before {
+    background: rgba(0, 0, 0, 0.5); /* Adjust opacity: 0.3 = 30% dark, 0.5 = 50%, etc. */
+  }
+
+  /* WEDDINGS PAGE HERO - Custom styles for weddings.html hero section */
+  .hero-weddings {
+    height: 45vh; 
+  }
+  
+  .hero-weddings picture img {
+    object-position: center 10%; /* Position: top, center, bottom, or custom like "center 20%" */
+    object-fit: cover; /* Options: cover, contain, fill, scale-down, none */
+    transform: scale(1); /* Scale: 1 = 100%, 1.2 = 120% (zoom in), 0.8 = 80% (zoom out) */
+  }
+  
+  .hero-weddings::before {
     background: rgba(0, 0, 0, 0.5); /* Adjust opacity: 0.3 = 30% dark, 0.5 = 50%, etc. */
   }
 
@@ -387,6 +461,13 @@
   .services-subtitle {
     font-size: 14px;
     color: var(--muted);
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+
+  .services-subtitle:hover {
+    color: var(--accent);
   }
   
   .services-header-right {
@@ -887,21 +968,27 @@
   }
   
   .lightbox-close {
-    position: absolute;
-    top: -35px;
-    right: 0;
+    position: fixed;
+    top: 20px;
+    right: 20px;
     border: none;
     background: rgba(0,0,0,0.6);
     color: #fff;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 51;
+    transition: background 0.2s ease;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(0,0,0,0.8);
   }
   
   /* CATERING HIGHLIGHT SECTION */
@@ -1282,6 +1369,17 @@
     overflow: hidden;
     position: relative;
   }
+
+  /* Fancy text section for weddings page - no margin/padding */
+  .weddings-page .fancy-text-section {
+    margin-bottom:  0px;
+    padding-bottom:  0px;
+    padding-top: 0px;
+    margin-top: 0px;
+  }
+  .weddings-page .fancy-text-row {
+    color: #2b2b2b;
+  }
   
   .fancy-text-row {
     white-space: nowrap;
@@ -1449,6 +1547,200 @@
   /* Footer padding-top override for about page only */
   .about-page .footer {
     padding-top: 120px;
+  }
+
+  /* Footer padding-top override for weddings page */
+  .weddings-page .footer {
+    padding-top: 120px;
+  }
+
+  /* WEDDING SERVICES SLIDER SECTION */
+  .wedding-services-section {
+    padding: 120px 0;
+    background: #fafafa;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wedding-services-section::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, transparent 0%, rgba(245, 240, 235, 0.6) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wedding-services-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .wedding-services-kicker {
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #221f1e;
+    margin-bottom: 12px;
+    font-family: var(--font-marcellus);
+  }
+
+  .wedding-services-title {
+    font-family: var(--font-marcellus);
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #221f1e;
+    margin: 0;
+  }
+
+  .wedding-services-slider-container {
+    position: relative;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    z-index: 1;
+    padding: 0 12px;
+  }
+
+  .wedding-services-slider-container:active {
+    cursor: grabbing;
+  }
+
+  .wedding-services-slider-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .wedding-services-slider-track.is-dragging {
+    transition: none;
+    cursor: grabbing;
+  }
+
+  .wedding-service-card {
+    flex: 0 0 calc(33.333% - 16px);
+    min-width: 0;
+    flex-shrink: 0;
+    background: transparent;
+    border-radius: 18px;
+    padding: 16px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+    box-shadow: none;
+    transition: transform 0.2s ease;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes wedding-card-slide-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .wedding-service-card.is-visible {
+    animation: wedding-card-slide-in 0.8s ease-out forwards;
+  }
+
+  .wedding-service-card.is-visible:hover {
+    transform: translateY(-4px);
+  }
+
+  .wedding-service-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .wedding-service-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .wedding-service-icon i {
+    font-size: 32px;
+    color: #8b7355;
+  }
+
+  .wedding-service-title {
+    font-size: 22px;
+    font-weight: 400;
+    font-family: var(--font-marcellus);
+    color: #2c2c2c;
+    margin: 0;
+  }
+
+  .wedding-service-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6b6b6b;
+    margin: 0;
+    flex: 1;
+  }
+
+
+  .wedding-services-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .wedding-services-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f7e8ce;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    padding: 0;
+  }
+
+  .wedding-services-dot.active {
+    background: var(--accent);
+    transform: scale(1.2);
+  }
+
+  .wedding-services-dot:hover {
+    background: #b8a892;
+  }
+
+  /* DESCRIPTION SECTION */
+  .description-section {
+    padding: 120px 0;
+    background: var(--bg);
+  }
+
+  .description-section .services-header {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 12px;
   }
   
   .footer-inner {
@@ -1968,6 +2260,12 @@
       gap: 20px;
       flex-wrap: wrap;
     }
+
+    .nav-dropdown-menu {
+      left: 0;
+      transform: translateX(0) translateY(-10px);
+      min-width: 200px;
+    }
   
     .hero-content {
       padding: 32px 22px 24px;
@@ -2066,6 +2364,255 @@
     .contact-cta-button {
       padding: 14px 40px;
       font-size: 14px;
+    }
+
+    .wedding-service-card {
+      flex: 0 0 calc(100% - 16px);
+    }
+
+    .wedding-services-slider-container {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .wedding-service-card {
+      flex: 0 0 calc(50% - 12px);
+    }
+  }
+
+  /* LOCATIONS SECTION */
+  .locations-section {
+    padding: 120px 0;
+    background: #ffffff;
+    position: relative;
+  }
+
+  .locations-slider {
+    position: relative;
+    min-height: 600px;
+  }
+
+  .locations-slide {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .locations-slide.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .locations-slide .services-header {
+    margin-bottom: 70px;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 12px;
+  }
+
+  .locations-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .locations-kicker {
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #221f1e;
+    margin-bottom: 12px;
+    font-family: var(--font-marcellus);
+  }
+
+  .locations-title {
+    font-family: var(--font-marcellus);
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1.8px;
+    color: #221f1e;
+    margin: 0 0 10px 0;
+  }
+
+  .locations-description {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 auto 0;
+  }
+
+  .locations-description-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 40px 0 0 0;
+    text-align: left;
+  }
+
+  .locations-scroll-hint {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 60px;
+    font-weight: 500;
+  }
+
+  .locations-images {
+    position: relative;
+    height: 600px;
+  }
+
+  .locations-image-main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .locations-image-main:hover {
+    transform: scale(1.02);
+  }
+
+  .locations-image-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .locations-image-overlay {
+    position: absolute;
+    bottom: 40px;
+    right: -70px;
+    width: 40%;
+    height: 40%;
+    aspect-ratio: 3/4;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .locations-image-overlay:hover {
+    transform: scale(1.05);
+  }
+
+  .locations-image-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .locations-navigation {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .locations-nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
+    background: #ffffff;
+    color: #221f1e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 16px;
+  }
+
+  .locations-nav-next {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+  }
+
+  .locations-nav-next.has-clicked {
+    background: #ffffff;
+    color: #221f1e;
+    border-color: #e5e5e5;
+  }
+
+  .locations-nav-btn:hover:not(:disabled) {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+  }
+
+  .locations-nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  @media (max-width: 1024px) {
+    .locations-content {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+
+    .locations-images {
+      height: 500px;
+    }
+
+    .locations-image-overlay {
+      width: 250px;
+      height: 320px;
+      bottom: -30px;
+      right: -30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wedding-services-section {
+      padding: 80px 0;
+    }
+
+    .wedding-services-title {
+      font-size: 32px;
+    }
+
+    .wedding-service-card {
+      flex: 0 0 calc(100% - 16px);
+      padding: 32px 24px;
+    }
+
+    .locations-section {
+      padding: 80px 0;
+    }
+
+    .locations-title {
+      font-size: 32px;
+    }
+
+    .locations-description {
+      font-size: 20px;
+    }
+
+    .locations-images {
+      height: 400px;
+    }
+
+    .locations-image-overlay {
+      width: 200px;
+      height: 260px;
+      bottom: -20px;
+      right: -20px;
     }
   }
   

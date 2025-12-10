@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vjenčanja - Catering Gableraj</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Optional fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Playfair:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- External stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="weddings-page">
+
+  <!-- NAVBAR -->
+  <header class="navbar" >
+    <div class="nav-left">
+        <a href="index.html"><img class="logo" src="image/logo.png" alt="Catering Gableraj" /></a>
+    </div>
+
+    <nav class="nav-center">
+      <div class="nav-dropdown">
+        <a href="index.html#usluge" class="nav-link">Usluge <i class="fas fa-chevron-down"></i></a>
+        <div class="nav-dropdown-menu">
+          <a href="weddings.html" class="nav-dropdown-item active">Vjenčanja</a>
+          <a href="index.html#usluge" class="nav-dropdown-item">Poslovni eventi</a>
+          <a href="index.html#usluge" class="nav-dropdown-item">Privatne zabave</a>
+        </div>
+      </div>
+      <a href="galerija.html" class="nav-link">Galerija</a>
+      <a href="about.html" class="nav-link">O nama</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="index.html#kontakt"><button class="btn-primary">Ponuda</button></a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero-weddings">
+    <picture>
+      <source srcset="image/Gableraj-66.avif" type="image/avif" />
+      <img src="image/Gableraj-66.webp" alt="Catering za vjenčanja" />
+    </picture>
+    <div class="hero-content">
+      <div class="gallery-header-left">
+        <div class="gallery-kicker" style="color: #ffffff;">VJENČANJA</div>
+        <h1 class="gallery-title" style="color: #ffffff;">Ljubav na prvi zalogaj</h1>
+      </div>
+  </section>
+
+  <!-- WEDDING SERVICES SLIDER SECTION -->
+  <section class="wedding-services-section">
+    <div class="page">
+      <div class="wedding-services-header">
+        <div class="wedding-services-kicker">NAJBOLJE ZA VAS</div>
+        <h2 class="wedding-services-title">Usluge za vjenčanja</h2>
+      </div>
+
+      <div class="wedding-services-slider-container">
+        <div class="wedding-services-slider-track" id="wedding-services-track">
+          <div class="wedding-service-card">
+            <div class="wedding-service-icon">
+              <img src="image/service-08.png" alt="Odabir lokacije" loading="lazy" />
+            </div>
+            <div class="wedding-service-title">Odabir lokacije</div>
+            <div class="wedding-service-text">Idealna lokacija za vaše vjenčanje po vašem odabiru. U svečanoj hali, šatoru ili na otvorenom prostoru.</div>
+          </div>
+
+          <div class="wedding-service-card">
+            <div class="wedding-service-icon">
+              <img src="image/service-11.png" alt="Koncept vjenčanja" loading="lazy" />
+            </div>
+            <div class="wedding-service-title">Ispraćaj mladenaca</div>
+            <div class="wedding-service-text">Ispraćaj mladenaca na vašoj lokaciji. Kompletna adaptacija prostora prema vašim željama.</div>
+          </div>
+
+          <div class="wedding-service-card">
+            <div class="wedding-service-icon">
+              <img src="image/service-12.png" alt="Koncept vjenčanja" loading="lazy" />
+            </div>
+            <div class="wedding-service-title">Coktail hour</div>
+            <div class="wedding-service-text">Opušteno druženje uz coktail ili aperitiv bar, finger food, topla i hladna predjela prije ulaska u svečanu halu.</div>
+          </div>
+          
+
+          <div class="wedding-service-card">
+            <div class="wedding-service-icon">
+              <img src="image/service-09.png" alt="Koncept vjenčanja" loading="lazy" />
+            </div>
+            <div class="wedding-service-title">Najam opreme</div>
+            <div class="wedding-service-text">Nudimo najam stolova, stolica, šatora, rashladnih prikolicam, grijalica i ostale opreme.</div>
+          </div>
+          
+          
+          <div class="wedding-service-card">
+            <div class="wedding-service-icon">
+              <img src="image/service-07.png" alt="Torta za proslavu" loading="lazy" />
+            </div>
+            <div class="wedding-service-title">Torta i slatki stol</div>
+            <div class="wedding-service-text">Bogata ponudom finih deserata koji će oduševiti goste. Nama su izrade torte i kolača slatke brige. </div>
+          </div>
+
+          <div class="wedding-service-card">
+            <div class="wedding-service-icon">
+              <img src="image/service-14.png" alt="Gourmet meni" loading="lazy" />
+            </div>
+            <div class="wedding-service-title">Flexibilni meni</div>
+            <div class="wedding-service-text">Personalizirani jelovnici s vrhunskim jelima pripremljenim od svježih i lokalnih namirnica.</div>
+          </div>
+
+          <div class="wedding-service-card">
+            <div class="wedding-service-icon">
+              <img src="image/service-15.png" alt="Kompletna organizacija" loading="lazy" />
+            </div>
+            <div class="wedding-service-title">Kompletna organizacija</div>
+            <div class="wedding-service-text">Brinemo se o svakom detalju, od planiranja do izvedbe, kako biste vi mogli uživati u svom danu.</div>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="wedding-services-pagination" id="wedding-services-pagination">
+        <!-- Dots will be generated by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCRIPTION SECTION -->
+  <section class="description-section">
+    <div class="page">
+      <div class="services-header">
+        <div class="services-header-left">
+          <div class="services-kicker">VJENČANJA</div>
+          <h2 class="services-title">Vaš dan savršenstva</h2>
+          <p class="services-subtitle">Kreiramo nezaboravne trenutke.</p>
+        </div>
+        <div class="services-header-right">
+            Uronite u čaroliju dana koji slavi ljubav, gdje svaki detalj ima svoju priču. Vaše vjenčanje oblikujemo s istom strašću kao i naša jela, od odabira idealne lokacije, preko elegantno organiziranog ispraćaja mladenaca, do opuštenog cocktail houra koji goste uvodi u slavlje. Fleksibilni, personalizirani meniji stvaraju se od svježih i pomno biranih sastojaka, dok najam opreme i besprijekorna organizacija prostora omogućuju da svaki trenutak izgleda i osjeća se baš onako kako zamišljate.<br><br> Sve radimo s pažnjom, profinjenošću i istinskom željom da vaš poseban dan bude nezaboravan, od prvog dojma do posljednjeg slatkog zalogaja.
+        </div>
+      </div>
+
+
+      <div class="gallery-grid gallery-grid--mirrored">
+        <div class="gallery-side-items">
+          <div class="gallery-item">
+            <picture>
+              <source srcset="image/Gableraj-60.avif" type="image/avif" />
+              <img src="image/Gableraj-60.webp" alt="Galerija 4" loading="lazy" />
+            </picture>
+          </div>
+          <div class="gallery-item">
+            <picture>
+              <source srcset="image/Gableraj-175.avif" type="image/avif" />
+              <img src="image/Gableraj-175.webp" alt="Galerija 5" loading="lazy" />
+            </picture>
+          </div>
+        </div>
+
+        <div class="gallery-main-item">
+          <picture>
+            <source srcset="image/Gableraj-47.avif" type="image/avif" />
+            <img src="image/Gableraj-47.webp" alt="Galerija 6" loading="lazy" />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fancy-text-section">
+    <div class="fancy-text-row fancy-text-row--first">
+      <span class="fancy-text-content">Svadbeni catering • Ispraćaji mladenaca • Catering Gableraj • Gdje se stil susreće s okusom • Catering Gableraj • Gdje se stil susreće s okusom •</span>
+    </div>
+    <div class="fancy-text-row fancy-text-row--second">
+      <span class="fancy-text-content">Catering Gableraj • Coktail hour • Najam opreme • Profesionalna usluga • Svježe namirnice • Profesionalna usluga •</span>
+    </div>
+  </section>
+
+  <!-- LOCATIONS SECTION -->
+  <section class="locations-section">
+    <div class="page">
+      <div class="locations-slider">
+        <div class="locations-slide active" data-slide="0">
+          <div class="services-header">
+            <div class="services-header-left">
+              <div class="services-kicker">LOKACIJE</div>
+              <h2 class="services-title">Klub Šumica</h2>
+              <a href="https://www.klubsumica.com/" target="_blank" class="services-subtitle">Saznajte više</a>
+            </div>
+            <div class="services-header-right">
+              Klub Šumica nudi elegantan prostor za vaše vjenčanje, smješten u prekrasnom prirodnom okruženju. Idealna lokacija za svečane proslave s kapacitetom za veliki broj gostiju. Naš tim osigurava besprijekornu organizaciju i vrhunski catering za vaš poseban dan.
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-main-item">
+              <picture>
+                <source srcset="image/Gableraj-178.avif" type="image/avif" />
+                <img src="image/Gableraj-178.webp" alt="Wedding location" loading="lazy" />
+              </picture>
+            </div>
+            <div class="gallery-side-items">
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-180.avif" type="image/avif" />
+                  <img src="image/Gableraj-180.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-179.avif" type="image/avif" />
+                  <img src="image/Gableraj-179.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="locations-slide" data-slide="1">
+          <div class="services-header">
+            <div class="services-header-left">
+              <div class="services-kicker">LOKACIJE</div>
+              <h2 class="services-title">Scatolina</h2>
+              <a href="https://scatolina.hr/" target="_blank" class="services-subtitle">Saznajte više</a>
+            </div>
+            <div class="services-header-right">
+              Vila Velebita predstavlja luksuznu lokaciju za nezaboravna vjenčanja. Elegantni interijer i prekrasan vanjski prostor čine ovu vilu idealnim izborom za vaš poseban dan. Naš catering tim osigurava vrhunsku uslugu i besprijekornu organizaciju.
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-main-item">
+              <picture>
+                <source srcset="image/Gableraj-60.avif" type="image/avif" />
+                <img src="image/Gableraj-60.webp" alt="Wedding location" loading="lazy" />
+              </picture>
+            </div>
+            <div class="gallery-side-items">
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-47.avif" type="image/avif" />
+                  <img src="image/Gableraj-47.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-66.avif" type="image/avif" />
+                  <img src="image/Gableraj-66.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="locations-slide" data-slide="2">
+          <div class="services-header">
+            <div class="services-header-left">
+              <div class="services-kicker">LOKACIJE</div>
+              <h2 class="services-title">Medvedgrad</h2>
+              <a href="https://medvedgrad.hr/najam/" target="_blank" class="services-subtitle">Saznajte više</a>
+            </div>
+            <div class="services-header-right">
+              Hotel Bellevue nudi moderan i sofisticiran prostor za vaše vjenčanje. S prekrasnim pogledom i elegantnim salama, ova lokacija osigurava nezaboravan doživljaj. Naš tim pruža kompletnu catering uslugu prilagođenu vašim željama.
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-main-item">
+              <picture>
+                <source srcset="image/Gableraj-47.avif" type="image/avif" />
+                <img src="image/Gableraj-47.webp" alt="Wedding location" loading="lazy" />
+              </picture>
+            </div>
+            <div class="gallery-side-items">
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-175.avif" type="image/avif" />
+                  <img src="image/Gableraj-175.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-60.avif" type="image/avif" />
+                  <img src="image/Gableraj-60.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="locations-slide" data-slide="3">
+          <div class="services-header">
+            <div class="services-header-left">
+              <div class="services-kicker">LOKACIJE</div>
+              <h2 class="services-title">Klub Kornel</h2>
+              <a href="https://www.klubkornel.com/" target="_blank" class="services-subtitle">Saznajte više</a>
+            </div>
+            <div class="services-header-right">
+              Dvorac Trakošćan pruža povijesnu i romantičnu atmosferu za vaše vjenčanje. Ova jedinstvena lokacija kombinira ljepotu prošlosti s modernim catering uslugama. Naš tim osigurava besprijekornu organizaciju i vrhunsku kulinarsku ponudu.
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-main-item">
+              <picture>
+                <source srcset="image/Gableraj-175.avif" type="image/avif" />
+                <img src="image/Gableraj-175.webp" alt="Wedding location" loading="lazy" />
+              </picture>
+            </div>
+            <div class="gallery-side-items">
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-66.avif" type="image/avif" />
+                  <img src="image/Gableraj-66.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-47.avif" type="image/avif" />
+                  <img src="image/Gableraj-47.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="locations-slide" data-slide="4">
+          <div class="services-header">
+            <div class="services-header-left">
+              <div class="services-kicker">LOKACIJE</div>
+              <h2 class="services-title">Druge lokacije</h2>
+              <a href="#" class="services-subtitle">Lokacija po vašem odabiru</a>
+            </div>
+            <div class="services-header-right">
+              Zagrebačka Arena nudi prostrane i moderne prostore za velika vjenčanja. S kapacitetom za veliki broj gostiju, ova lokacija idealna je za spektakularne proslave. Naš catering tim osigurava vrhunsku uslugu za vaš poseban dan.
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-main-item">
+              <picture>
+                <source srcset="image/Gableraj-66.avif" type="image/avif" />
+                <img src="image/Gableraj-66.webp" alt="Wedding location" loading="lazy" />
+              </picture>
+            </div>
+            <div class="gallery-side-items">
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-60.avif" type="image/avif" />
+                  <img src="image/Gableraj-60.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+              <div class="gallery-item">
+                <picture>
+                  <source srcset="image/Gableraj-175.avif" type="image/avif" />
+                  <img src="image/Gableraj-175.webp" alt="Wedding location" loading="lazy" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="locations-navigation">
+        <button class="locations-nav-btn locations-nav-prev" aria-label="Previous location">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="locations-nav-btn locations-nav-next" aria-label="Next location">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="page footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-eyebrow">CATERING</div>
+        <div class="footer-brand-title">Gableraj</div>
+        <p class="footer-brand-text">Gdje se stil susreće s okusom. Gdje se stil susreće s okusom.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <div class="footer-column-title">Quick Links</div>
+          <ul class="footer-column-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#usluge">Vjenčanja</a></li>
+            <li><a href="index.html#usluge">Poslovni eventi</a></li>
+            <li><a href="index.html#usluge">Privatne zabave</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <div class="footer-column-title">O nama</div>
+          <ul class="footer-column-list">
+            <li><a href="about.html">Naša priča</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Karijera</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <div class="footer-column-title">Zapratite nas</div>
+          <div class="footer-social">
+            <div class="footer-social-icon">ig</div>
+            <div class="footer-social-icon">fb</div>
+            <div class="footer-social-icon">x</div>
+            <div class="footer-social-icon">yt</div>
+            <div class="footer-social-icon">tt</div>
+          </div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-column-title">Stay in the Loop</div>
+          <p class="footer-newsletter-text">Najnovije vijesti Gableraja!</p>
+          <form class="footer-newsletter">
+            <div class="footer-newsletter-field">
+              <input type="email" placeholder="Enter your email" />
+              <button type="submit" class="footer-newsletter-button">➜</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="page footer-bottom">
+      <span>© <span id="year"></span> Gableraj. Sva prava pridržana.</span>
+      <span>Izrada web stranice – Škreblin</span>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="gallery-lightbox" class="lightbox">
+    <div class="lightbox-inner">
+      <button type="button" class="lightbox-close" aria-label="Zatvori">×</button>
+      <picture id="lightbox-picture">
+        <img src="" alt="Galerija" />
+      </picture>
+    </div>
+  </div>
+
+  <!-- External JS -->
+  <script src="script.js"></script>
+</body>
+</html>
+
