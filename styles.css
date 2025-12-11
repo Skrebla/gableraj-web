@@ -17,6 +17,8 @@
   
   html {
     overflow-x: hidden;
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
   }
   
   body {
@@ -2386,6 +2388,21 @@
     padding: 120px 0;
     background: #ffffff;
     position: relative;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    scroll-margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .locations-section .page {
+    width: 100%;
+  }
+  
+  .contact-cta-section,
+  .gallery-slider-section {
+    scroll-snap-align: none;
   }
 
   .locations-slider {
@@ -2516,9 +2533,8 @@
 
   .locations-navigation {
     display: flex;
-    justify-content: flex-end;
     gap: 12px;
-    margin-top: 40px;
+    margin-top: 24px;
   }
 
   .locations-nav-btn {
@@ -2536,17 +2552,6 @@
     font-size: 16px;
   }
 
-  .locations-nav-next {
-    background: var(--accent);
-    color: #ffffff;
-    border-color: var(--accent);
-  }
-
-  .locations-nav-next.has-clicked {
-    background: #ffffff;
-    color: #221f1e;
-    border-color: #e5e5e5;
-  }
 
   .locations-nav-btn:hover:not(:disabled) {
     background: var(--accent);

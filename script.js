@@ -1110,14 +1110,20 @@
   // LOCATIONS SLIDER
   (function() {
     const slides = document.querySelectorAll('.locations-slide');
-    const prevBtn = document.querySelector('.locations-nav-prev');
-    const nextBtn = document.querySelector('.locations-nav-next');
     
-    if (!slides.length || !prevBtn || !nextBtn) return;
+    if (!slides.length) return;
     
     let currentSlide = 0;
     const totalSlides = slides.length;
-    let isFirstClick = true;
+    
+    function getButtons() {
+      const activeSlide = document.querySelector('.locations-slide.active');
+      if (!activeSlide) return { prevBtn: null, nextBtn: null };
+      return {
+        prevBtn: activeSlide.querySelector('.locations-nav-prev'),
+        nextBtn: activeSlide.querySelector('.locations-nav-next')
+      };
+    }
     
     function showSlide(index) {
       // Remove active class from all slides
@@ -1130,15 +1136,13 @@
         slides[index].classList.add('active');
       }
       
+      // Get buttons from active slide
+      const { prevBtn, nextBtn } = getButtons();
+      if (!prevBtn || !nextBtn) return;
+      
       // Update button states
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === totalSlides - 1;
-      
-      // After first click, remove accent color from next button
-      if (isFirstClick && index > 0) {
-        nextBtn.classList.add('has-clicked');
-        isFirstClick = false;
-      }
     }
     
     function nextSlide() {
@@ -1155,9 +1159,17 @@
       }
     }
     
-    // Event listeners
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
+    // Event listeners - use event delegation on the slider container
+    const sliderContainer = document.querySelector('.locations-slider');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('click', function(e) {
+        if (e.target.closest('.locations-nav-next')) {
+          nextSlide();
+        } else if (e.target.closest('.locations-nav-prev')) {
+          prevSlide();
+        }
+      });
+    }
     
     // Initialize
     showSlide(currentSlide);
