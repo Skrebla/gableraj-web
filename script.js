@@ -157,11 +157,16 @@
     const serviceCards = document.querySelectorAll('.service-main-card, .service-card');
     serviceCards.forEach(function (card) {
       card.addEventListener('click', function () {
-        // You can customize this action - scroll to contact, open modal, etc.
-        // For now, scrolling to contact section
-        const contactSection = document.getElementById('kontakt');
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: 'smooth' });
+        // Check if card has a data-link attribute for navigation
+        const link = card.getAttribute('data-link');
+        if (link) {
+          window.location.href = link;
+        } else {
+          // Fallback: scroll to contact section if no link specified
+          const contactSection = document.getElementById('kontakt');
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       });
     });
@@ -557,29 +562,53 @@
     // Why choose us items reveal from right, one by one
     const whyChooseItems = document.querySelectorAll('.why-choose-item');
     const whyChooseSection = document.querySelector('.why-choose-section');
+    const isMobile = window.innerWidth <= 767;
     
-    if (whyChooseItems.length && whyChooseSection && 'IntersectionObserver' in window) {
-      const whyChooseObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Reveal each item with staggered delays from right
-              whyChooseItems.forEach(function (item, index) {
-                setTimeout(function () {
-                  item.classList.add('is-visible');
-                }, index * 200); // 150ms delay between each item
+    if (whyChooseItems.length && 'IntersectionObserver' in window) {
+      if (isMobile) {
+        // On mobile: observe each item individually for scroll reveal
+        whyChooseItems.forEach(function (item) {
+          const itemObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  itemObserver.unobserve(entry.target);
+                }
               });
-              whyChooseObserver.unobserve(entry.target);
+            },
+            {
+              threshold: 0.2,
+              rootMargin: '0px 0px -50px 0px',
             }
-          });
-        },
-        {
-          threshold: 0.3,
-          rootMargin: '0px 0px -10% 0px',
+          );
+          itemObserver.observe(item);
+        });
+      } else {
+        // On desktop: reveal all items when section enters viewport with staggered delays
+        if (whyChooseSection) {
+          const whyChooseObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  // Reveal each item with staggered delays from right
+                  whyChooseItems.forEach(function (item, index) {
+                    setTimeout(function () {
+                      item.classList.add('is-visible');
+                    }, index * 200); // 200ms delay between each item
+                  });
+                  whyChooseObserver.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.3,
+              rootMargin: '0px 0px -10% 0px',
+            }
+          );
+          whyChooseObserver.observe(whyChooseSection);
         }
-      );
-
-      whyChooseObserver.observe(whyChooseSection);
+      }
     } else if (whyChooseItems.length) {
       // Fallback without IntersectionObserver
       whyChooseItems.forEach(function (item) {
@@ -598,6 +627,22 @@
       
       function updateStickyPosition() {
         if (!whyChooseLeft || !whyChooseSection || !whyChooseHeader) return;
+        
+        // Disable sticky behavior on mobile (767px and below)
+        if (window.innerWidth <= 767) {
+          whyChooseLeft.style.position = 'relative';
+          whyChooseLeft.style.top = 'auto';
+          whyChooseLeft.style.bottom = 'auto';
+          whyChooseLeft.style.width = 'auto';
+          whyChooseLeft.style.zIndex = 'auto';
+          
+          // Remove spacer if exists
+          const existingSpacer = whyChooseHeader.querySelector('.why-choose-spacer');
+          if (existingSpacer && existingSpacer.parentNode) {
+            existingSpacer.parentNode.removeChild(existingSpacer);
+          }
+          return;
+        }
         
         const sectionRect = whyChooseSection.getBoundingClientRect();
         const sectionTop = sectionRect.top;
@@ -1115,6 +1160,7 @@
     
     let currentSlide = 0;
     const totalSlides = slides.length;
+    let isFirstClick = true;
     
     function getButtons() {
       const activeSlide = document.querySelector('.locations-slide.active');
@@ -1143,6 +1189,12 @@
       // Update button states
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === totalSlides - 1;
+      
+      // After first click, remove accent color from next button
+      if (isFirstClick && index > 0) {
+        nextBtn.classList.add('has-clicked');
+        isFirstClick = false;
+      }
     }
     
     function nextSlide() {
@@ -1173,5 +1225,93 @@
     
     // Initialize
     showSlide(currentSlide);
+  })();
+
+  // Mobile Menu Toggle
+  (function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navCenter = document.querySelector('.nav-center');
+    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const body = document.body;
+
+    if (!mobileMenuToggle || !navCenter) return;
+
+    function openMobileMenu() {
+      navCenter.classList.add('is-open');
+      mobileMenuOverlay.classList.add('is-open');
+      body.style.overflow = 'hidden';
+      mobileMenuToggle.innerHTML = '<i class="fas fa-times"></i>';
+    }
+
+    function closeMobileMenu() {
+      navCenter.classList.remove('is-open');
+      mobileMenuOverlay.classList.remove('is-open');
+      body.style.overflow = '';
+      mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      // Close dropdown if open
+      if (navDropdown) {
+        navDropdown.classList.remove('is-open');
+      }
+    }
+
+    mobileMenuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (navCenter.classList.contains('is-open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+    // Handle dropdown in mobile menu
+    if (navDropdown) {
+      const dropdownLink = navDropdown.querySelector('.nav-link');
+      dropdownLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        navDropdown.classList.toggle('is-open');
+      });
+    }
+
+    // Close menu when clicking on a nav link (except dropdown)
+    const navLinks = navCenter.querySelectorAll('.nav-link:not(.nav-dropdown .nav-link)');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        closeMobileMenu();
+      });
+    });
+
+    // Close menu when clicking on dropdown items
+    const dropdownItems = navCenter.querySelectorAll('.nav-dropdown-item');
+    dropdownItems.forEach(item => {
+      item.addEventListener('click', function() {
+        closeMobileMenu();
+      });
+    });
+
+    // Close menu when clicking on mobile button
+    const mobileButton = navCenter.querySelector('.nav-mobile-button a, .nav-mobile-button button');
+    if (mobileButton) {
+      mobileButton.addEventListener('click', function() {
+        closeMobileMenu();
+      });
+    }
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navCenter.classList.contains('is-open')) {
+        closeMobileMenu();
+      }
+    });
+
+    // Close menu on window resize if it's open and we're above mobile breakpoint
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 767 && navCenter.classList.contains('is-open')) {
+        closeMobileMenu();
+      }
+    });
   })();
   

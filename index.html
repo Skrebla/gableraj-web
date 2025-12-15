@@ -26,11 +26,11 @@
 
     <nav class="nav-center">
       <div class="nav-dropdown">
-        <a href="#usluge" class="nav-link active">Usluge <i class="fas fa-chevron-down"></i></a>
+        <a href="#" class="nav-link" onclick="return false;">Usluge <i class="fas fa-chevron-down"></i></a>
         <div class="nav-dropdown-menu">
           <a href="weddings.html" class="nav-dropdown-item">Vjenčanja</a>
-          <a href="#usluge" class="nav-dropdown-item">Poslovni eventi</a>
-          <a href="#usluge" class="nav-dropdown-item">Privatne zabave</a>
+          <a href="business.html" class="nav-dropdown-item">Poslovni eventi</a>
+          <a href="party.html" class="nav-dropdown-item">Privatne zabave</a>
         </div>
       </div>
       <a href="galerija.html" class="nav-link">Galerija</a>
@@ -82,7 +82,7 @@
       </div>
 
       <div class="services-grid">
-        <div class="service-main-card service-card">
+        <div class="service-main-card service-card" data-link="weddings.html">
           <picture>
             <source srcset="image/svadba.avif" type="image/avif" />
             <img src="image/svadba.webp" alt="Vjenčanja" loading="lazy" />
@@ -93,13 +93,13 @@
             </div>
             <div class="service-pill-text">
               <span class="service-pill-title">Vjenčanja</span>
-              <span class="service-pill-subtitle">Uljepšavamo vaš veliki dan</span>
+              <span class="service-pill-subtitle">Ljubav na prvi zalogaj</span>
             </div>
           </div>
         </div>
 
         <div class="service-side-cards">
-          <div class="service-card" id="poslovni-eventi">
+          <div class="service-card" id="poslovni-eventi" data-link="business.html">
             <picture>
               <source srcset="image/Gableraj-172.avif" type="image/avif" />
               <img src="image/Gableraj-172.webp" alt="Poslovni eventi" loading="lazy" />
@@ -110,12 +110,12 @@
               </div>
               <div class="service-pill-text">
                 <span class="service-pill-title">Poslovni eventi</span>
-                <span class="service-pill-subtitle">Nadmašite očekivanja gostiju</span>
+                <span class="service-pill-subtitle">Nahranite svoj genij</span>
               </div>
             </div>
           </div>
 
-          <div class="service-card">
+          <div class="service-card" data-link="party.html">
             <picture>
               <source srcset="image/Gableraj-173.avif" type="image/avif" />
               <img src="image/Gableraj-173.webp" alt="Privatne zabave" loading="lazy" />
@@ -126,7 +126,7 @@
               </div>
               <div class="service-pill-text">
                 <span class="service-pill-title">Privatne zabave</span>
-                <span class="service-pill-subtitle">Jelo je ključ svake priče</span>
+                <span class="service-pill-subtitle">Jela o kojima se priča</span>
               </div>
             </div>
           </div>
@@ -380,7 +380,7 @@
           <div class="faq-item is-open">
             <button class="faq-question" type="button">
               <span>Možemo li prilagoditi meni prema vlastitim željama?</span>
-              <span class="faq-toggle-icon">˅</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
             </button>
             <div class="faq-answer">
               <p>Naravno, naš meni je potpuno fleksibilan. Možete birati između naših klasičnih jelovnika ili ga oblikovati prema vlastitim željama i potrebama.</p>
@@ -390,7 +390,7 @@
           <div class="faq-item">
             <button class="faq-question" type="button">
               <span>Radite li samo vjenčanja ili i druge vrste događaja?</span>
-              <span class="faq-toggle-icon">˅</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
             </button>
             <div class="faq-answer">
               <p>Organiziramo i posluživamo sve vrste događaja – od intimnih proslava do velikih poslovnih evenata.</p>
@@ -400,7 +400,7 @@
           <div class="faq-item">
             <button class="faq-question" type="button">
               <span>Imate li unaprijed definirane pakete ili se sve prilagođava?</span>
-              <span class="faq-toggle-icon">˅</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
             </button>
             <div class="faq-answer">
               <p>Nudimo nekoliko predloženih paketa, ali svaki se može dodatno prilagoditi vašem budžetu i željama.</p>
@@ -410,7 +410,7 @@
           <div class="faq-item">
             <button class="faq-question" type="button">
               <span>Nudite li opcije za vegetarijance, vegane i alergije?</span>
-              <span class="faq-toggle-icon">˅</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
             </button>
             <div class="faq-answer">
               <p>Da, s posebnom pažnjom kreiramo jelovnike za sve prehrambene preferencije i alergije, uz jasno označena jela.</p>
@@ -420,7 +420,7 @@
           <div class="faq-item">
             <button class="faq-question" type="button">
               <span>Koliko ranije trebamo rezervirati catering?</span>
-              <span class="faq-toggle-icon">˅</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
             </button>
             <div class="faq-answer">
               <p>Preporučujemo rezervaciju najmanje 3–4 tjedna unaprijed, a za veće događaje i ranije, kako bismo osigurali najbolju uslugu.</p>
@@ -430,7 +430,7 @@
           <div class="faq-item">
             <button class="faq-question" type="button">
               <span>Nudite li i najam opreme?</span>
-              <span class="faq-toggle-icon">˅</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
             </button>
             <div class="faq-answer">
               <p>Po potrebi možemo organizirati i najam dodatne opreme – stolova, stolica, stolnjaka, čaša i ostalog inventara.</p>
@@ -552,8 +552,8 @@
           <ul class="footer-column-list">
             <li><a href="#top">Home</a></li>
             <li><a href="#usluge">Vjenčanja</a></li>
-            <li><a href="#usluge">Poslovni eventi</a></li>
-            <li><a href="#usluge">Privatne zabave</a></li>
+            <li><a href="business.html">Poslovni eventi</a></li>
+            <li><a href="party.html">Privatne zabave</a></li>
           </ul>
         </div>
         <div class="footer-column">

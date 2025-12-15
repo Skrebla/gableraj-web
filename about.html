@@ -24,17 +24,26 @@
         <a href="index.html"><img class="logo" src="image/logo.png" alt="Catering Gableraj" /></a>
     </div>
 
+    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="mobile-menu-overlay"></div>
+
     <nav class="nav-center">
       <div class="nav-dropdown">
-        <a href="index.html#usluge" class="nav-link">Usluge <i class="fas fa-chevron-down"></i></a>
+        <a href="#" class="nav-link" onclick="return false;">Usluge <i class="fas fa-chevron-down"></i></a>
         <div class="nav-dropdown-menu">
           <a href="weddings.html" class="nav-dropdown-item">Vjenčanja</a>
-          <a href="index.html#usluge" class="nav-dropdown-item">Poslovni eventi</a>
-          <a href="index.html#usluge" class="nav-dropdown-item">Privatne zabave</a>
+          <a href="business.html" class="nav-dropdown-item">Poslovni eventi</a>
+          <a href="party.html" class="nav-dropdown-item">Privatne zabave</a>
         </div>
       </div>
       <a href="galerija.html" class="nav-link">Galerija</a>
       <a href="about.html" class="nav-link active">O nama</a>
+      <div class="nav-mobile-button">
+        <a href="index.html#kontakt"><button class="btn-primary">Ponuda</button></a>
+      </div>
     </nav>
 
     <div class="nav-right">
@@ -50,8 +59,8 @@
     </picture>
     <div class="hero-content">
       <div class="gallery-header-left">
-        <div class="gallery-kicker" style="color: #ffffff;">O NAMA</div>
-        <h1 class="gallery-title" style="color: #ffffff;">Catering Gableraj</h1>
+        <div class="gallery-kicker about-kicker-mob" style="color: #ffffff;">O NAMA</div>
+        <h1 class="gallery-title about-title-mob" style="color: #ffffff;">Catering Gableraj</h1>
       </div>
   </section>
 
@@ -83,8 +92,10 @@
           <div class="about-us-text-wrapper">
             <p class="gallery-text-columns">
               <span class="drop-cap">C</span>atering Gableraj je obiteljski catering iz Zagreba s više od 40 godina iskustva u gastronomiji i ugostiteljstvu. Spojem tradicije i modernog pristupa, stvaramo personalizirana catering rješenja za vjenčanja, privatne i poslovne događaje.
+              
               Radimo s pažljivo odabranim, svježim i lokalnim namirnicama, uz potpunu diskreciju, pouzdanost i individualan pristup svakom klijentu. 
               Vjerujemo da vrhunski catering nije samo u hrani, već u doživljaju, povjerenju i osjećaju sigurnosti. Svakom događaju pristupamo s jednakom pažnjom, bez obzira na njegovu veličinu ili tip.  
+              <br class="mobile-break"><br class="mobile-break">
               Naša filozofija temelji se na individualnom pristupu – slušamo, savjetujemo i prilagođavamo se željama klijenata kako bismo stvorili autentično i besprijekorno iskustvo. Poštujemo tradiciju, ali je oblikujemo kroz suvremene tehnike, prezentaciju i organizaciju. 
               Kvaliteta za nas podrazumijeva korištenje svježih, lokalnih i sezonskih namirnica, pouzdanu izvedbu bez kompromisa te visoku razinu profesionalnosti u svakom detalju.
               Naš je cilj jednostavan: klijentima omogućiti bezbrižnost, a njihovim gostima iskustvo koje se pamti.
@@ -229,14 +240,14 @@
         </div>
         <div class="gallery-slider-item">
           <picture>
-            <source srcset="image/Gableraj-172.avif" type="image/avif" />
-            <img src="image/Gableraj-172.webp" alt="Catering Gableraj" loading="lazy" />
+            <source srcset="image/Gableraj-18.avif" type="image/avif" />
+            <img src="image/Gableraj-18.webp" alt="Catering Gableraj" loading="lazy" />
           </picture>
         </div>
         <div class="gallery-slider-item">
           <picture>
-            <source srcset="image/Gableraj-173.avif" type="image/avif" />
-            <img src="image/Gableraj-173.webp" alt="Catering Gableraj" loading="lazy" />
+            <source srcset="image/Gableraj-5.avif" type="image/avif" />
+            <img src="image/Gableraj-5.webp" alt="Catering Gableraj" loading="lazy" />
           </picture>
         </div>
         <div class="gallery-slider-item">
@@ -297,8 +308,8 @@
           <ul class="footer-column-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#usluge">Vjenčanja</a></li>
-            <li><a href="index.html#usluge">Poslovni eventi</a></li>
-            <li><a href="index.html#usluge">Privatne zabave</a></li>
+            <li><a href="business.html">Poslovni eventi</a></li>
+            <li><a href="party.html">Privatne zabave</a></li>
           </ul>
         </div>
         <div class="footer-column">
