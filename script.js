@@ -126,31 +126,84 @@
       });
     }
 
-    // Service pill reveal on viewport entry - all appear together
+    // Service pill reveal on viewport entry
     const servicePills = document.querySelectorAll('.service-pill');
     const servicesSection = document.querySelector('.services');
     
-    if (servicePills.length && servicesSection && 'IntersectionObserver' in window) {
-      const sectionObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Add is-visible to all pills at once
-              servicePills.forEach((pill) => pill.classList.add('is-visible'));
-              sectionObserver.unobserve(entry.target);
+    // Check if mobile device
+    const isMobileDevice = window.innerWidth <= 767;
+    
+    if (servicePills.length && 'IntersectionObserver' in window) {
+      if (isMobileDevice) {
+        // On mobile: each pill appears individually when it comes into view
+        servicePills.forEach((pill) => {
+          const pillObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  pill.classList.add('is-visible');
+                  pillObserver.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.3,
+              rootMargin: '0px 0px -10% 0px',
             }
-          });
-        },
-        {
-          threshold: 0.7,
-          rootMargin: '0px 0px -10% 0px',
+          );
+          
+          // Observe the parent service card instead of the pill itself
+          const serviceCard = pill.closest('.service-card, .service-main-card');
+          if (serviceCard) {
+            pillObserver.observe(serviceCard);
+          } else {
+            pillObserver.observe(pill);
+          }
+        });
+      } else {
+        // On desktop: all pills appear when section comes into view
+        if (servicesSection) {
+          const sectionObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  servicePills.forEach((pill) => pill.classList.add('is-visible'));
+                  sectionObserver.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.3,
+              rootMargin: '0px 0px -30% 0px',
+            }
+          );
+          sectionObserver.observe(servicesSection);
         }
-      );
-
-      sectionObserver.observe(servicesSection);
+      }
     } else if (servicePills.length) {
       // Fallback without IntersectionObserver
-      servicePills.forEach((pill) => pill.classList.add('is-visible'));
+      if (isMobileDevice) {
+        // On mobile: check each pill individually
+        servicePills.forEach((pill) => {
+          const serviceCard = pill.closest('.service-card, .service-main-card');
+          if (serviceCard) {
+            const rect = serviceCard.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            if (isVisible) {
+              pill.classList.add('is-visible');
+            }
+          }
+        });
+      } else {
+        // On desktop: check if section is visible
+        if (servicesSection) {
+          const rect = servicesSection.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+          if (isVisible) {
+            servicePills.forEach((pill) => pill.classList.add('is-visible'));
+          }
+        }
+      }
     }
   
     // Service cards clickable
@@ -171,44 +224,92 @@
       });
     });
 
-    // Catering features reveal on viewport entry - left to right with staggered delays
+    // Catering features reveal on viewport entry
     const cateringFeatures = document.querySelectorAll('.catering-feature');
     const cateringSection = document.querySelector('.catering-highlight');
     
-    if (cateringFeatures.length && cateringSection && 'IntersectionObserver' in window) {
-      const cateringObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Add is-visible to each feature with staggered delays (left to right)
-              cateringFeatures.forEach(function (feature, index) {
-                setTimeout(function () {
+    // Check if mobile device for catering features
+    const isMobileForCatering = window.innerWidth <= 767;
+    
+    if (cateringFeatures.length && 'IntersectionObserver' in window) {
+      if (isMobileForCatering) {
+        // On mobile: each feature appears individually when it comes into view
+        cateringFeatures.forEach((feature) => {
+          const featureObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
                   feature.classList.add('is-visible');
-                }, index * 200); // 150ms delay between each (0ms, 150ms, 300ms, 450ms)
+                  featureObserver.unobserve(entry.target);
+                }
               });
-              cateringObserver.unobserve(entry.target);
+            },
+            {
+              threshold: 0.3,
+              rootMargin: '0px 0px -10% 0px',
             }
-          });
-        },
-        {
-          threshold: 0.8,
-          rootMargin: '0px 0px -10% 0px',
+          );
+          
+          featureObserver.observe(feature);
+        });
+      } else {
+        // On desktop: all features appear together with staggered delays when section comes into view
+        if (cateringSection) {
+          const cateringObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  // Add is-visible to each feature with staggered delays (left to right)
+                  cateringFeatures.forEach(function (feature, index) {
+                    setTimeout(function () {
+                      feature.classList.add('is-visible');
+                    }, index * 200); // 200ms delay between each
+                  });
+                  cateringObserver.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.2,
+              rootMargin: '0px 0px -20% 0px',
+            }
+          );
+          cateringObserver.observe(cateringSection);
         }
-      );
-
-      cateringObserver.observe(cateringSection);
+      }
     } else if (cateringFeatures.length) {
       // Fallback without IntersectionObserver
-      cateringFeatures.forEach(function (feature, index) {
-        setTimeout(function () {
-          feature.classList.add('is-visible');
-        }, index * 150);
-      });
+      if (isMobileForCatering) {
+        // On mobile: check each feature individually
+        cateringFeatures.forEach((feature) => {
+          const rect = feature.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+          if (isVisible) {
+            feature.classList.add('is-visible');
+          }
+        });
+      } else {
+        // On desktop: check if section is visible and show all with delays
+        if (cateringSection) {
+          const rect = cateringSection.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+          if (isVisible) {
+            cateringFeatures.forEach(function (feature, index) {
+              setTimeout(function () {
+                feature.classList.add('is-visible');
+              }, index * 150);
+            });
+          }
+        }
+      }
     }
 
     // Animated number counter for stats
     const statValues = document.querySelectorAll('.stat-value');
     const aboutStats = document.querySelector('.about-stats');
+    
+    // Check if mobile device for stats animation
+    const isMobileForStats = window.innerWidth <= 767;
     
     if (statValues.length && aboutStats && 'IntersectionObserver' in window) {
       let hasAnimated = false;
@@ -223,7 +324,8 @@
                 const target = parseInt(stat.getAttribute('data-target'));
                 const isMillionStat = target === 1000; // Special case for "1M+"
                 const countTarget = isMillionStat ? 1000 : target;
-                const duration = 3000; // 3 seconds
+                // Faster duration on mobile (1.5s) vs desktop (3s)
+                const duration = isMobileForStats ? 1500 : 3000;
                 const increment = countTarget / (duration / 16); // 60fps
                 let current = 0;
                 
@@ -251,8 +353,9 @@
           });
         },
         {
-          threshold: 0.5,
-          rootMargin: '0px 0px -10% 0px',
+          // Lower threshold on mobile to trigger earlier
+          threshold: isMobileForStats ? 0.2 : 0.5,
+          rootMargin: isMobileForStats ? '0px 0px -5% 0px' : '0px 0px -10% 0px',
         }
       );
       
@@ -1242,6 +1345,7 @@
       mobileMenuOverlay.classList.add('is-open');
       body.style.overflow = 'hidden';
       mobileMenuToggle.innerHTML = '<i class="fas fa-times"></i>';
+      mobileMenuToggle.classList.add('menu-open');
     }
 
     function closeMobileMenu() {
@@ -1249,6 +1353,7 @@
       mobileMenuOverlay.classList.remove('is-open');
       body.style.overflow = '';
       mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      mobileMenuToggle.classList.remove('menu-open');
       // Close dropdown if open
       if (navDropdown) {
         navDropdown.classList.remove('is-open');
@@ -1313,5 +1418,58 @@
         closeMobileMenu();
       }
     });
+  })();
+
+  // Change logo based on page
+  (function() {
+    const logo = document.querySelector('.logo');
+    const body = document.body;
+    const heroGallery = document.querySelector('.hero-gallery');
+    
+    // Check if we're on index.html (no page-specific body class)
+    const isHomePage = !body.classList.contains('weddings-page') && 
+                       !body.classList.contains('business-page') && 
+                       !body.classList.contains('party-page') && 
+                       !body.classList.contains('about-page');
+    
+    // Check if we're on galerija.html (has hero-gallery class)
+    const isGalleryPage = heroGallery !== null;
+    
+    if (logo) {
+      function updateLogo() {
+        if (isGalleryPage) {
+          // Gallery page - use black logo
+          if (logo.src && !logo.src.includes('logo.png')) {
+            logo.src = logo.src.replace('logo-white.png', 'logo.png').replace('logo.png', 'logo.png');
+          }
+        } else if (isHomePage) {
+          // Home page (index.html) - use white logo on mobile
+          if (window.innerWidth <= 767) {
+            // Mobile - use white logo
+            if (logo.src && !logo.src.includes('logo-white.png')) {
+              logo.src = logo.src.replace('logo.png', 'logo-white.png').replace('logo.png', 'logo-white.png');
+            }
+          } else {
+            // Desktop - use regular logo
+            if (logo.src && logo.src.includes('logo-white.png')) {
+              logo.src = logo.src.replace('logo-white.png', 'logo.png');
+            }
+          }
+        } else {
+          // Other pages - use regular logo
+          if (logo.src && (logo.src.includes('logo-white.png') || logo.src.includes('logo.png'))) {
+            logo.src = logo.src.replace('logo-white.png', 'logo.png').replace('logo.png', 'logo.png');
+          }
+        }
+      }
+      
+      // Update on load
+      updateLogo();
+      
+      // Update on resize (only for home page)
+      if (isHomePage) {
+        window.addEventListener('resize', updateLogo);
+      }
+    }
   })();
   

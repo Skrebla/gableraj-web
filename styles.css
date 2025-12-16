@@ -252,8 +252,8 @@
   }
   
   .hero-title {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(32px, 4vw, 98px);
+    font-family: "Marcellus", serif;
+    font-size: clamp(32px, 4vw, 72px);
     line-height: 1.1;
     font-weight: 400;
     margin-bottom: 32px;
@@ -371,9 +371,23 @@
 
   /* PHILOSOPHY SECTION */
   .philosophy-section {
-    /*background: #F8F5F2;*/
+    background: #fafafa;
     padding: 80px 0;
     margin-top: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philosophy-section::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, transparent 0%, rgba(245, 240, 235, 0.6) 100%);
+    pointer-events: none;
+    z-index: 0;
   }
   
   .philosophy-content {
@@ -383,6 +397,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 1;
   }
   
   .philosophy-kicker {
@@ -460,6 +476,7 @@
   .btn-outline {
     border-radius: 999px;
     padding: 10px 20px;
+    color:  var(--text);
     font-size: 16px;
     display: inline-flex;
     align-items: center;
@@ -579,6 +596,7 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.3);
     pointer-events: none;
+    z-index: 1;
   }
 
   .service-side-cards {
@@ -1187,9 +1205,9 @@
   }
   
   .catering-feature-title {
-    font-size: 18px;
-    font-weight: 600;
-    font-family: "Montserrat"!important;
+    font-size: 22px;
+    font-weight: 400;
+    font-family: "Marcellus"!important;
     color: #fcfcfc;
   }
   
@@ -1409,6 +1427,7 @@
   .faq-question {
     font-family: var(--font-marcellus);
     width: 100%;
+    color:  var(--text);
     border: none;
     background: none;
     padding: 0;
@@ -1456,8 +1475,7 @@
   
   /* FANCY TEXT SECTION */
   .fancy-text-section {
-    margin: 80px 0;
-    padding: 60px 0;
+   
     overflow: hidden;
     position: relative;
   }
@@ -1502,8 +1520,9 @@
   /* CONTACT SECTION */
   .contact {
     margin-top: 120px;
-    margin-bottom: 80px;
+    margin-bottom: 120px;
   }
+  
   
   .contact-card {
     border-radius: 24px;
@@ -1832,7 +1851,7 @@
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 12px;
+    padding: 0;
   }
   
   .footer-inner {
@@ -2029,7 +2048,7 @@
 
   /* ABOUT PAGE */
   .about-us-section {
-    margin-top: 40px;
+    margin-top: 120px;
 
     overflow-x: hidden;
   }
@@ -2413,8 +2432,8 @@
     .logo {
       height: 46px;
       max-width: 100%;
-      
     }
+
 
     .mobile-menu-toggle {
       display: block;
@@ -2501,15 +2520,102 @@
 
     /* Hero - Mobile */
     .hero {
-      height: 50vh;
+      height: 90vh;
       min-height: 300px;
       margin: 0 20px;
       border-radius: 12px;
     }
 
+    /* Hero - Mobile for index.html only (exclude pages with specific hero classes) */
+    .hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party) {
+      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
+      border-radius: 0;
+      width: 100%;
+    }
+
+    .hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party) .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 32px 20px;
+    }
+
+    /* Make navbar transparent on mobile for index.html only */
+    body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar {
+      background: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      padding: 12px 20px 0;
+    }
+
+    /* Change hamburger icon to white on mobile for index.html only */
+    body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .mobile-menu-toggle {
+      color: #ffffff;
+    }
+
+    body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .mobile-menu-toggle i {
+      color: #ffffff;
+    }
+
+    /* Change X icon to black when menu is open on index.html */
+    body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .mobile-menu-toggle.menu-open {
+      color: #000000;
+    }
+
+    body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .mobile-menu-toggle.menu-open i {
+      color: #000000;
+    }
+
+    .hero video,
+    .hero picture img {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-content {
+      padding: 32px 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 8vw, 48px);
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+    }
+
     .hero-about {
       height: 50vh;
-      min-height: 280px;
+      min-height: 250px;
+    }
+
+    .hero-weddings {
+      height: 50vh;
+      min-height: 250px;
+    }
+    .hero-weddings picture img {
+      object-position: 30% 10%;
+    }
+
+    .hero-business {
+      height: 50vh;
+      min-height: 250px;
+    }
+
+    .hero-party {
+      height: 50vh;
+      min-height: 250px;
+    }
+
+    .hero-gallery {
+      height: 50vh;
+      min-height: 250px;
+      margin: 0 20px;
+      border-radius: 12px;
     }
 
     .hero-content {
@@ -2540,11 +2646,16 @@
 
     /* Philosophy Section - Mobile */
     .philosophy-section {
-      padding: 60px 0;
+      padding: 60px 0px;
+      background: #fafafa;
+      position: relative;
+      overflow: hidden;
     }
 
     .philosophy-content {
       padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .philosophy-quote {
@@ -2582,7 +2693,7 @@
 
     /* About Us Section - Mobile */
     .about-us-section {
-      margin-top: 32px;
+      margin-top: 80px;
     }
 
     .about-us-grid {
@@ -2698,7 +2809,7 @@
     }
 
     .contact-cta-content {
-      padding: 0 20px;
+      padding: 0;
     }
 
     .contact-cta-title {
@@ -2709,6 +2820,363 @@
     .contact-cta-button {
       padding: 14px 36px;
       font-size: 14px;
+    }
+
+    /* Wedding Services Section - Mobile */
+    .wedding-services-section {
+      padding: 60px 0;
+    }
+
+    .wedding-services-section .page {
+      padding: 0 20px;
+    }
+
+    .wedding-services-header {
+      margin-bottom: 40px;
+      padding: 0;
+    }
+
+    .wedding-services-title {
+      font-size: clamp(28px, 7vw, 38px);
+      letter-spacing: -1px;
+    }
+
+    .wedding-services-slider-container {
+      padding: 0;
+    }
+
+    /* Gallery Page - Mobile */
+    .gallery-page {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .gallery-page-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding-top: 40px;
+    }
+
+    /* Services Section - Mobile (Index Page) */
+    .services {
+      margin-top: 60px;
+    }
+
+    .services-header {
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 40px;
+      padding: 0;
+    }
+
+    .services-header-left {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    .services-title {
+      font-size: clamp(28px, 7vw, 38px);
+      letter-spacing: -1px;
+    }
+
+    .services-header-right {
+      flex: 1;
+      padding-top: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .service-main-card {
+      min-height: 250px;
+      max-height: 250px;
+      position: relative;
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 250px;
+      max-height: 250px;
+    }
+
+    .service-side-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-height: none;
+    }
+
+    .service-pill {
+      z-index: 10;
+      left: 12px;
+      bottom: 12px;
+      padding: 8px 22px 8px 14px;
+      font-size: 12px;
+    }
+
+    .service-pill-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* Catering Highlight Section - Mobile */
+    .catering-highlight {
+      margin-top: 60px !important;
+      padding-bottom: 30px!important;
+      height: auto;
+      min-height: auto;
+    }
+
+    .catering-highlight-inner .page {
+      padding: 60px 20px !important;
+    }
+
+    .catering-title {
+      font-size: clamp(28px, 7vw, 38px);
+      margin-bottom: 32px;
+    }
+
+    .catering-features {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .catering-feature {
+      width: 100%;
+    }
+
+    /* Gallery Section - Mobile (Index Page) */
+    .gallery {
+      margin-top: 60px;
+    }
+
+    .gallery-header {
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 40px;
+      padding: 0;
+    }
+
+    .gallery-header-left {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    .gallery-header-right {
+      flex: 1;
+      padding-top: 0;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 0 20px;
+    }
+
+    .gallery-main-item,
+    .gallery-side-items {
+      grid-column: 1;
+    }
+
+    .gallery-main-item {
+      min-height: 300px;
+      max-height: 400px;
+    }
+
+    .gallery-side-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .gallery-more {
+      padding: 0 20px;
+      margin-top: 40px;
+    }
+
+    /* About Section - Mobile (Index Page) */
+    .about {
+      margin-top: 60px;
+    }
+
+    .about-grid {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .about-media {
+      flex: 1;
+      width: 100%;
+    }
+
+    .about-placeholder {
+      width: 100%;
+    }
+
+    .about-content {
+      max-width: 100%;
+    }
+
+    .about-title {
+      font-size: clamp(28px, 7vw, 38px);
+      letter-spacing: -1px;
+    }
+
+    .about-stats {
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 32px;
+      padding-top: 32px;
+    }
+
+    /* FAQ Section - Mobile */
+    .faq {
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+
+    .faq-grid {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .faq-intro {
+      width: 100%;
+    }
+
+    .faq-title {
+      font-size: clamp(28px, 7vw, 38px);
+      letter-spacing: -1px;
+      padding-right: 0;
+    }
+
+    .faq-list {
+      width: 100%;
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid #eee;
+      padding-top: 24px;
+    }
+
+    /* Contact Section - Mobile */
+    .contact {
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+
+    .contact-card {
+      flex-direction: column;
+      gap: 32px;
+      padding: 32px 20px;
+    }
+
+    .contact-intro {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    .contact-title {
+      font-size: clamp(28px, 7vw, 38px);
+      letter-spacing: -1px;
+    }
+
+    .contact-form {
+      grid-template-columns: 1fr;
+    }
+
+    /* Description Section - Mobile (Weddings Page) */
+    .description-section {
+      padding: 60px 0;
+      margin-top: 0;
+    }
+
+    .description-section .services-header {
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 40px;
+      padding: 0;
+    }
+
+    .description-section .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 0;
+    }
+
+    .gallery-main-item,
+    .gallery-side-items {
+      grid-column: 1;
+    }
+
+    .gallery-main-item {
+      min-height: 300px;
+      max-height: 400px;
+    }
+
+    .gallery-side-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Fancy Text Section - Mobile */
+    .fancy-text-section {
+      margin:  0;
+      padding: 0;
+    }
+
+    .fancy-text-row {
+      font-size: clamp(24px, 6vw, 40px);
+      margin: 12px 0;
+    }
+
+    .fancy-text-content {
+      padding: 0;
+    }
+
+    /* Locations Section - Mobile */
+    .locations-section {
+      padding: 60px 0;
+      min-height: auto;
+    }
+
+    .locations-slide .services-header {
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 40px;
+      padding: 0;
+    }
+
+    .locations-slide .services-header-left {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    .locations-title {
+      font-size: clamp(28px, 7vw, 38px);
+      letter-spacing: -1px;
+    }
+
+    .locations-slide .services-header-right {
+      flex: 1;
+      padding-top: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .locations-slide .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 0;
+    }
+
+    .locations-navigation {
+      margin-top: 24px;
     }
 
     /* Gallery Slider - Mobile */
@@ -2750,10 +3218,18 @@
         min-height: 250px;
       }
 
-      .about-title-mob {
+      /*.about-title-mob {
         font-size: clamp(34px, 7vw, 38px)!important;
-      }
+      }*/
       .about-kicker-mob{
+        margin-bottom: 6px!important;
+      }
+
+      /* Apply same margin to hero kickers on other pages */
+      .hero .gallery-kicker,
+      .hero-business .gallery-kicker,
+      .hero-party .gallery-kicker,
+      .hero-weddings .gallery-kicker {
         margin-bottom: 6px!important;
       }
 
@@ -2765,6 +3241,38 @@
       .why-choose-title {
         font-size: clamp(24px, 6vw, 32px);
       }
+
+      .hero-weddings picture img {
+        object-position: 30% 10%;
+      }
+
+      .hero-business {
+        height: 50vh;
+        min-height: 250px;
+      }
+
+
+      .hero-business picture img {
+        object-position: 20% 10%!important;
+      }
+
+      .hero-party {
+        height: 50vh;
+        min-height: 250px;
+      }
+
+      .hero-party picture img {
+        object-position: center 50%;
+      }
+
+      .hero-gallery {
+        height: 50vh;
+        min-height: 250px;
+      }
+
+      .hero-gallery picture img {
+        object-position: center 40%;
+      }
     }
 
     /* Footer - Mobile */
@@ -2773,6 +3281,10 @@
     }
 
     .about-page .footer {
+      padding-top: 80px;
+    }
+
+    .weddings-page .footer {
       padding-top: 80px;
     }
 
@@ -2815,9 +3327,30 @@
 
     .hero {
       margin: 0 32px;
+      height: 60vh;
+    }
+
+    .hero-content {
+      padding: 48px 32px;
     }
 
     .hero-about {
+      height: 42vh;
+    }
+
+    .hero-weddings {
+      height: 42vh;
+    }
+
+    .hero-business {
+      height: 42vh;
+    }
+
+    .hero-party {
+      height: 42vh;
+    }
+
+    .hero-gallery {
       height: 42vh;
     }
 
@@ -2847,6 +3380,153 @@
 
     .why-choose-header-left {
       flex: 0 0 45%;
+    }
+
+    /* Description Section - Tablet (Weddings Page) */
+    .description-section {
+      padding: 80px 0;
+    }
+
+    .description-section .services-header {
+      gap: 48px;
+    }
+
+    .description-section .services-header-left {
+      flex: 0 0 50%;
+    }
+
+    .description-section .services-header-right {
+      flex: 1;
+      padding-top: 40px;
+    }
+
+    /* Gallery Page - Tablet */
+    .gallery-page-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    /* Services Section - Tablet (Index Page) */
+    .services-header {
+      gap: 48px;
+    }
+
+    .services-header-left {
+      flex: 0 0 50%;
+    }
+
+    .services-header-right {
+      flex: 1;
+      padding-top: 40px;
+    }
+
+    .services-grid {
+      grid-template-columns: 1.4fr 1.4fr;
+      gap: 12px;
+    }
+
+    /* Catering Highlight Section - Tablet */
+    .catering-highlight {
+      margin-top: 80px !important;
+    }
+
+    .catering-highlight-inner .page {
+      padding: 80px 32px !important;
+    }
+
+    .catering-features {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .catering-feature {
+      flex: 0 0 calc(50% - 8px);
+    }
+
+    /* Gallery Section - Tablet (Index Page) */
+    .gallery-header {
+      gap: 48px;
+    }
+
+    .gallery-header-left {
+      flex: 0 0 50%;
+    }
+
+    .gallery-header-right {
+      flex: 1;
+      padding-top: 40px;
+    }
+
+    /* About Section - Tablet (Index Page) */
+    .about-grid {
+      gap: 48px;
+    }
+
+    .about-media {
+      flex: 0 0 52%;
+    }
+
+    .about-content {
+      flex: 1;
+      max-width: 420px;
+    }
+
+    .about-stats {
+      flex-direction: row;
+      gap: 32px;
+    }
+
+    /* FAQ Section - Tablet */
+    .faq-grid {
+      flex-direction: row;
+      gap: 64px;
+    }
+
+    .faq-intro {
+      width: 50%;
+    }
+
+    .faq-list {
+      width: 50%;
+      border-left: 1px solid #eee;
+      padding-left: 40px;
+      border-top: none;
+      padding-top: 0;
+    }
+
+    /* Contact Section - Tablet */
+    .contact-card {
+      flex-direction: row;
+      gap: 48px;
+      padding: 40px 48px;
+    }
+
+    .contact-intro {
+      flex: 0 0 36%;
+    }
+
+    .contact-form {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Locations Section - Tablet */
+    .locations-section {
+      padding: 80px 0;
+      min-height: auto;
+    }
+
+    .locations-slide .services-header {
+      gap: 48px;
+    }
+
+    .locations-slide .services-header-left {
+      flex: 0 0 50%;
+    }
+
+    .locations-slide .services-header-right {
+      flex: 1;
+      padding-top: 40px;
     }
 
     .gallery-slider-item {
@@ -2916,11 +3596,76 @@
       font-size: clamp(20px, 5vw, 28px);
     }
 
-    .gallery-title,
-    .why-choose-title {
-      font-size: clamp(24px, 6vw, 32px);
+      .gallery-title,
+      .why-choose-title,
+      .services-title,
+      .about-title,
+      .faq-title,
+      .contact-title {
+        font-size: clamp(24px, 6vw, 32px);
+      }
+
+      /* Services Section - Very Small Screens */
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-side-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .service-main-card {
+        position: relative;
+        min-height: 250px;
+        max-height: 250px;
+      }
+
+      .service-card {
+        position: relative;
+        min-height: 250px;
+        max-height: 250px;
+      }
+
+      .service-pill {
+        z-index: 10 !important;
+        left: 12px;
+        bottom: 12px;
+        padding: 8px 22px 8px 14px;
+        font-size: 12px;
+        opacity: 0;
+        transform: translateY(24px);
+        display: inline-flex !important;
+      }
+
+      .service-pill.is-visible {
+        animation: pill-rise 0.8s ease forwards;
+      }
+
+      .service-pill-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      /* Catering Highlight - Very Small Screens */
+      .catering-highlight-inner .page {
+        padding: 40px 20px !important;
+      }
+
+      .catering-features {
+        flex-direction: column;
+      }
+
+      .catering-feature {
+        flex: 1;
+        width: 100%;
+      }
+
+      /* About Section - Very Small Screens */
+      .about-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
     }
-  }
 
   @media (max-width: 1024px) and (min-width: 769px) {
     .wedding-service-card {
@@ -2971,7 +3716,7 @@
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 12px;
+    padding: 0;
   }
 
   .locations-text {
@@ -3130,11 +3875,11 @@
 
   @media (max-width: 768px) {
     .wedding-services-section {
-      padding: 80px 0;
+      padding: 60px 0;
     }
 
     .wedding-services-title {
-      font-size: 32px;
+      font-size: clamp(28px, 7vw, 38px);
     }
 
     .wedding-service-card {
@@ -3143,15 +3888,16 @@
     }
 
     .locations-section {
-      padding: 80px 0;
+      padding: 60px 0;
+      min-height: auto;
     }
 
     .locations-title {
-      font-size: 32px;
+      font-size: clamp(28px, 7vw, 38px);
     }
 
     .locations-description {
-      font-size: 20px;
+      font-size: 16px;
     }
 
     .locations-images {

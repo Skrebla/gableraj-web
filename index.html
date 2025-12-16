@@ -21,8 +21,14 @@
   <!-- NAVBAR -->
   <header class="navbar" >
     <div class="nav-left">
-        <img class="logo" src="image/logo.png" alt="Catering Gableraj" />
+        <a href="index.html"><img class="logo" src="image/logo.png" alt="Catering Gableraj" /></a>
     </div>
+
+    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="mobile-menu-overlay"></div>
 
     <nav class="nav-center">
       <div class="nav-dropdown">
@@ -35,10 +41,13 @@
       </div>
       <a href="galerija.html" class="nav-link">Galerija</a>
       <a href="about.html" class="nav-link">O nama</a>
+      <div class="nav-mobile-button">
+        <a href="#kontakt"><button class="btn-primary">Ponuda</button></a>
+      </div>
     </nav>
 
     <div class="nav-right">
-      <button class="btn-primary">Ponuda</button>
+      <a href="#kontakt"><button class="btn-primary">Ponuda</button></a>
     </div>
   </header>
 
@@ -59,10 +68,12 @@
       </div>
 
       <div class="hero-cta-row">
-        <button class="btn-ghost">
-          Zatraži ponudu
-          <span>➜</span>
-        </button>
+        <a href="#kontakt">
+          <button class="btn-ghost">
+            Zatraži ponudu
+            
+          </button>
+        </a>
       </div>
     </div>
   </section>
@@ -265,7 +276,7 @@
         </div>
         <div class="gallery-header-right">
           <p class="gallery-text-columns">
-            <span class="drop-cap">U</span>ronite u fascinantan svijet u kojem su raznolikost i kulinarska izvrsnost u središtu pažnje. Naš cilj je uvijek stvarati profinjena jela koja na svakom tanjuru spajaju svježinu i inovaciju. Zato se oslanjamo isključivo na svježe i posebno kvalitetne sastojke. Svako jelo priprema se s pažnjom i strašću, kako bi razveselilo ne samo nepce, već i dušu. Consectetur adipiscing elit, sed do eiusm onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur adipiscing elit, sed do eiusm onsectetur adipiscing elit, sed do eiusmod tempor ut labore sed adipiscing do eiusmod tempor.
+            <span class="drop-cap">U</span>ronite u fascinantan svijet u kojem su raznolikost i kulinarska izvrsnost u središtu pažnje. Naš cilj je uvijek stvarati profinjena jela koja na svakom tanjuru spajaju svježinu i inovaciju. Zato se oslanjamo isključivo na svježe i posebno kvalitetne sastojke. Svako jelo priprema se s pažnjom i strašću, kako bi razveselilo ne samo nepce, već i dušu.
           </p>
         </div>
       </div>
@@ -337,7 +348,7 @@
           <p class="about-text">Naš cilj je uvijek stvarati profinjena jela koja na svakom tanjuru spajaju svježinu i inovaciju. Zato se oslanjamo isključivo na svježe i posebno kvalitetne sastojke. Svako jelo priprema se s pažnjom i strašću, kako bi razveselilo ne samo nepce, već i dušu.</p>
           <a href="about.html"><button class="btn-primary about-button">
             Naša priča
-            <span class="btn-icon">➜</span>
+           
           </button></a>
           
           <div class="about-stats">
@@ -373,7 +384,7 @@
           <p class="faq-text">Organizacija događaja može djelovati zahtjevno, ali uz nas sve ide glatko. Tu smo da odgovorimo na sva vaša pitanja.</p>
           <button class="btn-primary faq-button">
             Zatraži ponudu
-            <span class="btn-icon">➜</span>
+           
           </button>
         </div>
         <div class="faq-list">
