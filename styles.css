@@ -1233,14 +1233,14 @@
   }
   
   .about-placeholder {
-    background-image: url("image/Gableraj-01.webp"); /* Fallback for older browsers */
+    background-image: url("image/Gableraj-66.webp"); /* Fallback for older browsers */
     background-image: -webkit-image-set(
-      url("image/Gableraj-01.avif") type("image/avif"),
-      url("image/Gableraj-01.webp") type("image/webp")
+      url("image/Gableraj-66.avif") type("image/avif"),
+      url("image/Gableraj-66.webp") type("image/webp")
     );
     background-image: image-set(
-      url("image/Gableraj-01.avif") type("image/avif"),
-      url("image/Gableraj-01.webp") type("image/webp")
+      url("image/Gableraj-66.avif") type("image/avif"),
+      url("image/Gableraj-66.webp") type("image/webp")
     );
     background-size: cover;
     background-position: center top;
@@ -1941,7 +1941,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 16px;
     color: #f5f5f5;
     cursor: pointer;
   }
@@ -2356,6 +2356,32 @@
   .contact-cta-button:active {
     transform: translateY(0);
   }
+  /* CONTACT CTA SECTION GALLERY */
+  .contact-cta-section-gallery{
+    background: var(--background);
+    padding-top: 80px!important;
+    padding-bottom: 140px!important;
+  }
+  .contact-cta-kicker-gallery {
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-family: var(--font-marcellus);
+  }
+
+  .contact-cta-title-gallery {
+    font-family: "Marcellus", serif;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.2;
+    color: var(--text);
+    font-weight: 400;
+    max-width: 800px;
+    margin: 18px auto 48px;
+  }
+
 
   /* MOBILE MENU */
   .mobile-menu-toggle {
