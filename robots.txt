@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://catering-gableraj.hr/sitemap.xml
