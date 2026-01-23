@@ -532,32 +532,254 @@
       // Get your public key from https://dashboard.emailjs.com/admin/integration
       emailjs.init("QPQWvCmqM0AYvPEUF"); // Replace with your EmailJS public key
       
+      // Helper function to show error message below input field
+      function showFieldError(fieldId, errorMessage) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+        
+        // Remove existing error message if any
+        removeFieldError(fieldId);
+        
+        // Create error message element
+        const errorElement = document.createElement('div');
+        errorElement.className = 'field-error';
+        errorElement.id = fieldId + '-error';
+        errorElement.textContent = errorMessage;
+        errorElement.style.color = '#dc3545';
+        errorElement.style.fontSize = '12px';
+        errorElement.style.marginTop = '4px';
+        errorElement.style.display = 'block';
+        
+        // Add error styling to input
+        field.style.borderColor = '#dc3545';
+        
+        // Insert error message after the input field
+        const fieldContainer = field.closest('.contact-field');
+        if (fieldContainer) {
+          fieldContainer.appendChild(errorElement);
+        }
+      }
+      
+      // Helper function to remove error message
+      function removeFieldError(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+        
+        // Remove error message element
+        const errorElement = document.getElementById(fieldId + '-error');
+        if (errorElement) {
+          errorElement.remove();
+        }
+        
+        // Remove error styling from input
+        field.style.borderColor = '';
+      }
+      
+      // Clear all field errors
+      function clearAllFieldErrors() {
+        const fieldIds = ['ime', 'email', 'telefon', 'tip-eventa', 'datum', 'lokacija', 'broj-gostiju'];
+        fieldIds.forEach(function(fieldId) {
+          removeFieldError(fieldId);
+        });
+      }
+      
+      // Comprehensive form validation function
+      function validateForm() {
+        let isValid = true;
+        
+        // Clear previous errors
+        clearAllFieldErrors();
+        
+        // Get form values
+        const ime = document.getElementById('ime').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const telefon = document.getElementById('telefon').value.trim();
+        const tipEventa = document.getElementById('tip-eventa').value;
+        const datum = document.getElementById('datum').value;
+        const lokacija = document.getElementById('lokacija').value.trim();
+        const brojGostiju = document.getElementById('broj-gostiju').value.trim();
+        
+        // Validate Ime (Name) - required, at least 2 characters
+        if (!ime) {
+          showFieldError('ime', 'Ime i prezime je obavezno polje.');
+          isValid = false;
+        } else if (ime.length < 2) {
+          showFieldError('ime', 'Ime i prezime mora imati najmanje 2 znaka.');
+          isValid = false;
+        }
+        
+        // Validate Email - required, valid format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email) {
+          showFieldError('email', 'Email adresa je obavezno polje.');
+          isValid = false;
+        } else if (!emailRegex.test(email)) {
+          showFieldError('email', 'Molimo unesite valjanu email adresu.');
+          isValid = false;
+        }
+        
+        // Validate Telefon (Phone) - required, valid Croatian phone format
+        const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+        if (!telefon) {
+          showFieldError('telefon', 'Broj telefona je obavezno polje.');
+          isValid = false;
+        } else if (!phoneRegex.test(telefon) || telefon.replace(/\D/g, '').length < 8) {
+          showFieldError('telefon', 'Molimo unesite valjan broj telefona.');
+          isValid = false;
+        }
+        
+        // Validate Tip događaja (Event Type) - should have a value (select always has default)
+        // This is optional validation, but we'll check anyway
+        
+        // Validate Datum (Date) - should be a valid date, not in the past
+        if (!datum) {
+          showFieldError('datum', 'Datum događaja je obavezno polje.');
+          isValid = false;
+        } else {
+          const selectedDate = new Date(datum);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          selectedDate.setHours(0, 0, 0, 0);
+          
+          if (selectedDate < today) {
+            showFieldError('datum', 'Datum događaja ne može biti u prošlosti.');
+            isValid = false;
+          }
+        }
+        
+        // Validate Lokacija (Location) - required, at least 2 characters
+        if (!lokacija) {
+          showFieldError('lokacija', 'Lokacija je obavezno polje.');
+          isValid = false;
+        } else if (lokacija.length < 2) {
+          showFieldError('lokacija', 'Lokacija mora imati najmanje 2 znaka.');
+          isValid = false;
+        }
+        
+        // Validate Broj gostiju (Number of guests) - required, must be a positive number
+        if (!brojGostiju) {
+          showFieldError('broj-gostiju', 'Broj gostiju je obavezno polje.');
+          isValid = false;
+        } else {
+          const numGuests = parseInt(brojGostiju, 10);
+          if (isNaN(numGuests) || numGuests < 1) {
+            showFieldError('broj-gostiju', 'Broj gostiju mora biti pozitivan broj (najmanje 1).');
+            isValid = false;
+          }
+        }
+        
+        return isValid;
+      }
+      
+      // Add real-time validation on blur (when user leaves a field)
+      const formFields = ['ime', 'email', 'telefon', 'datum', 'lokacija', 'broj-gostiju'];
+      formFields.forEach(function(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.addEventListener('blur', function() {
+            // Validate only this field
+            const value = field.value.trim();
+            
+            if (fieldId === 'ime') {
+              if (!value) {
+                showFieldError(fieldId, 'Ime i prezime je obavezno polje.');
+              } else if (value.length < 2) {
+                showFieldError(fieldId, 'Ime i prezime mora imati najmanje 2 znaka.');
+              } else {
+                removeFieldError(fieldId);
+              }
+            } else if (fieldId === 'email') {
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!value) {
+                showFieldError(fieldId, 'Email adresa je obavezno polje.');
+              } else if (!emailRegex.test(value)) {
+                showFieldError(fieldId, 'Molimo unesite valjanu email adresu.');
+              } else {
+                removeFieldError(fieldId);
+              }
+            } else if (fieldId === 'telefon') {
+              const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+              if (!value) {
+                showFieldError(fieldId, 'Broj telefona je obavezno polje.');
+              } else if (!phoneRegex.test(value) || value.replace(/\D/g, '').length < 8) {
+                showFieldError(fieldId, 'Molimo unesite valjan broj telefona.');
+              } else {
+                removeFieldError(fieldId);
+              }
+            } else if (fieldId === 'datum') {
+              if (!value) {
+                showFieldError(fieldId, 'Datum događaja je obavezno polje.');
+              } else {
+                const selectedDate = new Date(value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                selectedDate.setHours(0, 0, 0, 0);
+                
+                if (selectedDate < today) {
+                  showFieldError(fieldId, 'Datum događaja ne može biti u prošlosti.');
+                } else {
+                  removeFieldError(fieldId);
+                }
+              }
+            } else if (fieldId === 'lokacija') {
+              if (!value) {
+                showFieldError(fieldId, 'Lokacija je obavezno polje.');
+              } else if (value.length < 2) {
+                showFieldError(fieldId, 'Lokacija mora imati najmanje 2 znaka.');
+              } else {
+                removeFieldError(fieldId);
+              }
+            } else if (fieldId === 'broj-gostiju') {
+              if (!value) {
+                showFieldError(fieldId, 'Broj gostiju je obavezno polje.');
+              } else {
+                const numGuests = parseInt(value, 10);
+                if (isNaN(numGuests) || numGuests < 1) {
+                  showFieldError(fieldId, 'Broj gostiju mora biti pozitivan broj (najmanje 1).');
+                } else {
+                  removeFieldError(fieldId);
+                }
+              }
+            }
+          });
+          
+          // Clear error on input (real-time feedback)
+          field.addEventListener('input', function() {
+            if (field.style.borderColor === 'rgb(220, 53, 69)' || field.style.borderColor === '#dc3545') {
+              // Only clear if there was an error
+              const errorElement = document.getElementById(fieldId + '-error');
+              if (errorElement && errorElement.textContent) {
+                // Re-validate on input to provide immediate feedback
+                field.dispatchEvent(new Event('blur'));
+              }
+            }
+          });
+        }
+      });
+      
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Validate all fields
+        if (!validateForm()) {
+          // Scroll to first error
+          const firstError = contactForm.querySelector('.field-error');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+        
         // Get form data
         const formData = {
-          ime: document.getElementById('ime').value,
-          email: document.getElementById('email').value,
-          telefon: document.getElementById('telefon').value,
+          ime: document.getElementById('ime').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          telefon: document.getElementById('telefon').value.trim(),
           tip_eventa: document.getElementById('tip-eventa').value,
           datum: document.getElementById('datum').value,
-          lokacija: document.getElementById('lokacija').value,
-          broj_gostiju: document.getElementById('broj-gostiju').value
+          lokacija: document.getElementById('lokacija').value.trim(),
+          broj_gostiju: document.getElementById('broj-gostiju').value.trim()
         };
-        
-        // Basic validation
-        if (!formData.ime || !formData.email || !formData.telefon) {
-          showMessage('Molimo ispunite sva obavezna polja.', 'error');
-          return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
-          showMessage('Molimo unesite valjanu email adresu.', 'error');
-          return;
-        }
         
         // Disable submit button
         const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -567,7 +789,7 @@
         
         // Send email using EmailJS
         // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs from EmailJS dashboard
-        emailjs.send('service_y058qx8', 'template_lxqalxv', {
+        emailjs.send('service_iftu7dh', 'template_lxqalxv', {
           from_name: formData.ime,
           from_email: formData.email,
           phone: formData.telefon,
@@ -575,11 +797,12 @@
           event_date: formData.datum,
           location: formData.lokacija,
           guest_count: formData.broj_gostiju,
-          to_email: 'tonyskrebla@gmail.com' // Your email address
+          to_email: 'info@catering-gableraj.hr' // Your email address
         })
         .then(function() {
           showMessage('Hvala vam! Vaš upit je uspješno poslan. Javit ćemo vam se u najkraćem roku.', 'success');
           contactForm.reset();
+          clearAllFieldErrors(); // Clear any remaining errors
         }, function(error) {
           console.error('EmailJS Error:', error);
           showMessage('Došlo je do greške pri slanju upita. Molimo pokušajte ponovno ili nas kontaktirajte direktno.', 'error');
@@ -1227,6 +1450,14 @@
       });
     }
 
+    // Close menu when clicking on mobile menu logo
+    const mobileMenuLogo = navCenter.querySelector('.mobile-menu-logo');
+    if (mobileMenuLogo) {
+      mobileMenuLogo.addEventListener('click', function() {
+        closeMobileMenu();
+      });
+    }
+
     // Close menu on escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && navCenter.classList.contains('is-open')) {
@@ -1247,6 +1478,7 @@
     const logo = document.querySelector('.logo');
     const body = document.body;
     const heroGallery = document.querySelector('.hero-gallery');
+    const navbar = document.querySelector('.navbar');
     
     // Check if we're on index.html (no page-specific body class)
     const isHomePage = !body.classList.contains('weddings-page') && 
@@ -1256,31 +1488,46 @@
     
     // Check if we're on galerija.html (has hero-gallery class)
     const isGalleryPage = heroGallery !== null;
+    const isLandingPage = isHomePage && !isGalleryPage;
     
     if (logo) {
       function updateLogo() {
         if (isGalleryPage) {
           // Gallery page - use black logo
-          if (logo.src && !logo.src.includes('logo.png')) {
-            logo.src = logo.src.replace('logo-white.png', 'logo.png').replace('logo.png', 'logo.png');
+          if (logo.src && !logo.src.includes('logo-black-hor.png')) {
+            logo.src = logo.src.replace('logo-white-hor.png', 'logo-black-hor.png').replace('logo-black-hor.png', 'logo-black-hor.png');
           }
-        } else if (isHomePage) {
-          // Home page (index.html) - use white logo on mobile
+        } else if (isLandingPage) {
+          // Landing page (index.html) - change based on scroll on mobile
           if (window.innerWidth <= 767) {
-            // Mobile - use white logo
-            if (logo.src && !logo.src.includes('logo-white.png')) {
-              logo.src = logo.src.replace('logo.png', 'logo-white.png').replace('logo.png', 'logo-white.png');
+            // Mobile - check scroll state
+            const isScrolled = navbar && navbar.classList.contains('navbar-scrolled');
+            if (isScrolled) {
+              // Scrolled - use black logo
+              if (logo.src && !logo.src.includes('logo-black-hor.png')) {
+                logo.src = logo.src.replace('logo-white-hor.png', 'logo-black-hor.png');
+              }
+            } else {
+              // At top - use white logo
+              if (logo.src && !logo.src.includes('logo-white-hor.png')) {
+                logo.src = logo.src.replace('logo-black-hor.png', 'logo-white-hor.png');
+              }
             }
           } else {
-            // Desktop - use regular logo
-            if (logo.src && logo.src.includes('logo-white.png')) {
-              logo.src = logo.src.replace('logo-white.png', 'logo.png');
+            // Desktop - use regular logo (black)
+            if (logo.src && logo.src.includes('logo-white-hor.png')) {
+              logo.src = logo.src.replace('logo-white-hor.png', 'logo-black-hor.png');
             }
+          }
+        } else if (isHomePage) {
+          // Other home page variants - use regular logo
+          if (logo.src && logo.src.includes('logo-white-hor.png')) {
+            logo.src = logo.src.replace('logo-white-hor.png', 'logo-black-hor.png');
           }
         } else {
           // Other pages - use regular logo
-          if (logo.src && (logo.src.includes('logo-white.png') || logo.src.includes('logo.png'))) {
-            logo.src = logo.src.replace('logo-white.png', 'logo.png').replace('logo.png', 'logo.png');
+          if (logo.src && (logo.src.includes('logo-white-hor.png') || logo.src.includes('logo-black-hor.png'))) {
+            logo.src = logo.src.replace('logo-white-hor.png', 'logo-black-hor.png').replace('logo-black-hor.png', 'logo-black-hor.png');
           }
         }
       }
@@ -1293,5 +1540,154 @@
         window.addEventListener('resize', updateLogo);
       }
     }
+  })();
+
+  // Navbar hide on scroll down, show on scroll up
+  (function() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
+    const logo = document.querySelector('.logo');
+    const body = document.body;
+    const heroGallery = document.querySelector('.hero-gallery');
+    
+    // Check if we're on index.html (landing page)
+    const isHomePage = !body.classList.contains('weddings-page') && 
+                       !body.classList.contains('business-page') && 
+                       !body.classList.contains('party-page') && 
+                       !body.classList.contains('about-page');
+    const isGalleryPage = heroGallery !== null;
+    const isLandingPage = isHomePage && !isGalleryPage;
+
+    let lastScrollTop = 0;
+    let ticking = false;
+    let isInitialized = false;
+
+    function updateLogo() {
+      // Only update logo on mobile for landing page
+      if (!isLandingPage || !logo || window.innerWidth > 767) return;
+      
+      const isScrolled = navbar.classList.contains('navbar-scrolled');
+      const currentSrc = logo.src || '';
+      
+      if (isScrolled) {
+        // Scrolled - use black logo
+        if (!currentSrc.includes('logo-black-hor.png')) {
+          logo.src = currentSrc.replace('logo-white-hor.png', 'logo-black-hor.png');
+        }
+      } else {
+        // At top - use white logo
+        if (!currentSrc.includes('logo-white-hor.png')) {
+          logo.src = currentSrc.replace('logo-black-hor.png', 'logo-white-hor.png');
+        }
+      }
+    }
+
+    function updateNavbar() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Always show navbar at the very top
+      if (scrollTop <= 0) {
+        navbar.classList.remove('navbar-hidden');
+        navbar.classList.remove('navbar-scrolled');
+        updateLogo(); // Update logo when back at top
+        lastScrollTop = scrollTop;
+        ticking = false;
+        isInitialized = true;
+        return;
+      }
+
+      // Add/remove scrolled class for background transparency
+      // Keep transparent at top, add background when scrolled
+      const hadScrolledClass = navbar.classList.contains('navbar-scrolled');
+      if (scrollTop > 50) {
+        navbar.classList.add('navbar-scrolled');
+        // Remove inline style to let CSS take over when scrolled
+        if (isLandingPage && window.innerWidth <= 767) {
+          navbar.style.background = '';
+        }
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+        // Explicitly set transparent background when back at top (mobile landing page)
+        if (isLandingPage && window.innerWidth <= 767) {
+          navbar.style.background = 'transparent';
+        }
+      }
+      
+      // Update logo if scroll state changed
+      if (hadScrolledClass !== navbar.classList.contains('navbar-scrolled')) {
+        updateLogo();
+      }
+
+      // Determine scroll direction
+      const scrollingDown = scrollTop > lastScrollTop;
+      const scrollingUp = scrollTop < lastScrollTop;
+
+      // Only apply hide/show logic after initialization to prevent flicker
+      if (isInitialized) {
+        // Hide navbar immediately when scrolling down (from any position)
+        if (scrollingDown && scrollTop > 0) {
+          navbar.classList.add('navbar-hidden');
+        } 
+        // Show navbar when scrolling up
+        else if (scrollingUp) {
+          navbar.classList.remove('navbar-hidden');
+        }
+      } else {
+        // On first scroll, mark as initialized and hide if scrolling down
+        if (scrollingDown && scrollTop > 0) {
+          isInitialized = true;
+          navbar.classList.add('navbar-hidden');
+        }
+      }
+
+      lastScrollTop = scrollTop;
+      ticking = false;
+    }
+
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateNavbar);
+        ticking = true;
+      }
+    }
+
+    // Use passive listener for better scroll performance
+    window.addEventListener('scroll', requestTick, { passive: true });
+    
+    // Initialize - set initial scroll position but don't trigger state changes
+    lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Ensure navbar starts in correct state (transparent at top) - especially for mobile landing page
+    if (lastScrollTop <= 0) {
+      navbar.classList.remove('navbar-scrolled');
+      navbar.classList.remove('navbar-hidden');
+      // Explicitly set transparent background for mobile landing page
+      if (isLandingPage && window.innerWidth <= 767) {
+        navbar.style.background = 'transparent';
+      }
+    }
+    
+    // Only initialize state if we're not at the top
+    if (lastScrollTop > 0) {
+      isInitialized = true;
+      if (lastScrollTop > 50) {
+        navbar.classList.add('navbar-scrolled');
+        // Remove inline style to let CSS take over
+        if (isLandingPage && window.innerWidth <= 767) {
+          navbar.style.background = '';
+        }
+      }
+      navbar.classList.add('navbar-hidden');
+      updateLogo(); // Update logo on initial load if scrolled
+    } else {
+      // Initialize logo at top
+      updateLogo();
+    }
+    
+    // Update logo on window resize (in case of mobile/desktop switch)
+    window.addEventListener('resize', function() {
+      updateLogo();
+    }, { passive: true });
   })();
   
