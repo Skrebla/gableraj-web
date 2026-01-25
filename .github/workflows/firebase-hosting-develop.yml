@@ -1,0 +1,28 @@
+# Deploy develop branch to Firebase Preview Channel
+# This creates a preview URL that you can test before merging to main
+
+name: Deploy to Firebase Preview (develop)
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for git commit hash
+      
+      - name: Update cache-busting version
+        run: |
+          chmod +x update-cache-version.sh
+          ./update-cache-version.sh
+      
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GABLERAJ }}
+          projectId: gableraj
+          # No channelId specified = creates a preview channel
+          # You'll get a preview URL in the GitHub Actions output
