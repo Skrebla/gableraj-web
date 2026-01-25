@@ -447,28 +447,43 @@
     // Lazy load hero video to improve LCP
     const heroVideo = document.getElementById('hero-video');
     if (heroVideo) {
+      let videoLoadAttempted = false;
+      
       // Function to load and play video
       function loadAndPlayVideo() {
-        if (!heroVideo) return;
+        if (!heroVideo || videoLoadAttempted) return;
+        videoLoadAttempted = true;
         
         // Load the video
         heroVideo.load();
         
-        // Try to play after video metadata is loaded
-        heroVideo.addEventListener('loadedmetadata', function() {
-          heroVideo.play().catch(function(err) {
-            console.log('Autoplay blocked, will play on interaction:', err);
-          });
-        }, { once: true });
-        
-        // Fallback: try to play after canplay event
-        heroVideo.addEventListener('canplay', function() {
-          if (heroVideo.paused) {
-            heroVideo.play().catch(function(err) {
-              console.log('Video play attempt:', err);
-            });
+        // Try to play after video can start playing
+        function attemptPlay() {
+          if (heroVideo.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+            const playPromise = heroVideo.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(function() {
+                  // Video is playing
+                  console.log('Video started playing');
+                })
+                .catch(function(err) {
+                  // Autoplay was prevented - this is normal
+                  console.log('Autoplay prevented (normal):', err.name);
+                });
+            }
           }
-        }, { once: true });
+        }
+        
+        // Try to play when video has enough data
+        heroVideo.addEventListener('loadeddata', attemptPlay, { once: true });
+        heroVideo.addEventListener('canplay', attemptPlay, { once: true });
+        heroVideo.addEventListener('canplaythrough', attemptPlay, { once: true });
+        
+        // Fallback: if video is already ready, try to play immediately
+        if (heroVideo.readyState >= 2) {
+          setTimeout(attemptPlay, 100);
+        }
       }
       
       // Load video after page is interactive to improve LCP
@@ -480,7 +495,7 @@
         // Wait for page to be interactive
         window.addEventListener('load', function() {
           // Small delay to ensure poster image is painted first
-          setTimeout(loadAndPlayVideo, 100);
+          setTimeout(loadAndPlayVideo, 200);
         });
       }
     }
@@ -489,28 +504,53 @@
     const heroSection = document.querySelector('.hero');
     
     if (heroVideo && heroSection && 'IntersectionObserver' in window) {
+      let isVideoReady = false;
+      let hasUserInteracted = false;
+      
+      // Mark video as ready when it can play
+      heroVideo.addEventListener('canplaythrough', function() {
+        isVideoReady = true;
+      }, { once: true });
+      
+      // Track user interaction to allow autoplay
+      document.addEventListener('click', function() {
+        hasUserInteracted = true;
+      }, { once: true });
+      
       const videoObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               // Video is in viewport - play it
-              heroVideo.play().catch(function(err) {
-                // Ignore autoplay errors (browser may block autoplay)
-                console.log('Video play prevented:', err);
-              });
+              // Only try to play if video is ready or user has interacted
+              if (isVideoReady || hasUserInteracted || heroVideo.readyState >= 3) {
+                const playPromise = heroVideo.play();
+                if (playPromise !== undefined) {
+                  playPromise.catch(function(err) {
+                    // Ignore autoplay errors (browser may block autoplay)
+                    console.log('Video play prevented:', err);
+                  });
+                }
+              }
             } else {
               // Video is out of viewport - pause it to save resources
-              heroVideo.pause();
+              // Only pause if video is actually playing
+              if (!heroVideo.paused) {
+                heroVideo.pause();
+              }
             }
           });
         },
         {
-          threshold: 0.5, // Trigger when 50% of video is visible
-          rootMargin: '0px'
+          threshold: 0.1, // Trigger when 10% of video is visible (more lenient)
+          rootMargin: '50px' // Add margin to prevent flickering
         }
       );
-
-      videoObserver.observe(heroSection);
+      
+      // Start observing after a small delay to let initial load complete
+      setTimeout(function() {
+        videoObserver.observe(heroSection);
+      }, 500);
     }
 
     // Fancy text scroll animation (optimized)
