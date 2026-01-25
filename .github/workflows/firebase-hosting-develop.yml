@@ -27,15 +27,31 @@ jobs:
           node-version: '18'
       
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: npm install -g firebase-tools@latest
       
       - name: Deploy to Firebase Preview Channel
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GABLERAJ }}
         run: |
-          echo "$FIREBASE_SERVICE_ACCOUNT" > $HOME/firebase-service-account.json
+          set -e  # Exit on error
+          
+          # Write service account (handle both base64 and plain JSON)
+          if echo "$FIREBASE_SERVICE_ACCOUNT" | base64 -d > /tmp/sa.json 2>/dev/null; then
+            mv /tmp/sa.json $HOME/firebase-service-account.json
+            echo "✓ Service account decoded from base64"
+          else
+            echo "$FIREBASE_SERVICE_ACCOUNT" > $HOME/firebase-service-account.json
+            echo "✓ Service account written as JSON"
+          fi
+          
           export GOOGLE_APPLICATION_CREDENTIALS=$HOME/firebase-service-account.json
+          
+          echo "Setting Firebase project to gableraj..."
           firebase use gableraj --non-interactive
+          
+          echo "Deploying to preview channel 'develop-preview'..."
           firebase hosting:channel:deploy develop-preview --only hosting --non-interactive
-          echo "✅ Preview deployed successfully!"
+          
+          echo ""
+          echo "✅ Deployment successful!"
           echo "🌐 Preview URL: https://gableraj--develop-preview.web.app"
