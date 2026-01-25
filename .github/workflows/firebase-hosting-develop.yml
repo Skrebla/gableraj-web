@@ -57,12 +57,20 @@ jobs:
           firebase projects:list
           
           echo "Deploying to preview channel 'develop-preview'..."
-          firebase hosting:channel:deploy develop-preview --non-interactive
+          # Capture the output to get the actual preview URL
+          DEPLOY_OUTPUT=$(firebase hosting:channel:deploy develop-preview --non-interactive 2>&1 || true)
+          echo "$DEPLOY_OUTPUT"
+          
+          # Extract the preview URL from Firebase output
+          PREVIEW_URL=$(echo "$DEPLOY_OUTPUT" | grep -oP 'https://[^\s]+\.web\.app' | head -1 || echo "")
           
           echo ""
           echo "✅ Deployment successful!"
+          if [ -n "$PREVIEW_URL" ]; then
+            echo "🌐 Preview URL: $PREVIEW_URL"
+          else
+            echo "🌐 Preview URL: https://gableraj--develop-preview.web.app"
+            echo "📋 If this doesn't work, check Firebase Console for the actual URL"
+          fi
           echo ""
-          echo "🌐 Preview URL: https://gableraj--develop-preview.web.app"
-          echo "📋 Check the output above for the actual preview URL if different"
-          echo ""
-          echo "Note: Firebase Auth warnings are normal and don't affect hosting deployment"
+          echo "ℹ️  Note: Firebase Auth warnings are normal and don't affect hosting deployment"
