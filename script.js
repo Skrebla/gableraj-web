@@ -24,11 +24,31 @@
           }
         }
         lightbox.classList.add('is-open');
+        
+        // Hide navbar when lightbox opens
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+          navbar.classList.add('navbar-hidden');
+        }
       }
   
       function closeLightbox() {
         lightbox.classList.remove('is-open');
         lightboxImg.src = '';
+        
+        // Restore navbar state based on scroll position
+        // The scroll handler will take care of showing/hiding based on scroll direction
+        const navbar = document.querySelector('.navbar');
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (navbar) {
+          // If at top, show navbar; otherwise let scroll handler decide
+          if (scrollTop <= 0) {
+            navbar.classList.remove('navbar-hidden');
+          }
+          // Trigger scroll event to update navbar state
+          window.dispatchEvent(new Event('scroll'));
+        }
       }
   
       document.addEventListener('click', function (e) {
@@ -1619,6 +1639,10 @@
         updateLogo();
       }
 
+      // Check if lightbox is open
+      const lightbox = document.getElementById('gallery-lightbox');
+      const isLightboxOpen = lightbox && lightbox.classList.contains('is-open');
+
       // Determine scroll direction
       const scrollingDown = scrollTop > lastScrollTop;
       const scrollingUp = scrollTop < lastScrollTop;
@@ -1629,9 +1653,13 @@
         if (scrollingDown && scrollTop > 0) {
           navbar.classList.add('navbar-hidden');
         } 
-        // Show navbar when scrolling up
-        else if (scrollingUp) {
+        // Show navbar when scrolling up (but not if lightbox is open)
+        else if (scrollingUp && !isLightboxOpen) {
           navbar.classList.remove('navbar-hidden');
+        }
+        // Keep navbar hidden if lightbox is open
+        else if (isLightboxOpen) {
+          navbar.classList.add('navbar-hidden');
         }
       } else {
         // On first scroll, mark as initialized and hide if scrolling down
