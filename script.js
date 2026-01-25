@@ -444,8 +444,26 @@
       yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Pause/play hero video based on viewport visibility
+    // Lazy load hero video to improve LCP
     const heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+      // Load video after page is interactive to improve LCP
+      // The poster image will be the LCP element instead
+      if (document.readyState === 'complete') {
+        // Page already loaded, load video immediately
+        heroVideo.load();
+      } else {
+        // Wait for page to be interactive
+        window.addEventListener('load', function() {
+          // Small delay to ensure poster image is painted first
+          setTimeout(function() {
+            heroVideo.load();
+          }, 100);
+        });
+      }
+    }
+
+    // Pause/play hero video based on viewport visibility
     const heroSection = document.querySelector('.hero');
     
     if (heroVideo && heroSection && 'IntersectionObserver' in window) {

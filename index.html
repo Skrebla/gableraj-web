@@ -149,6 +149,9 @@
 
   <!-- External stylesheet -->
   <link rel="stylesheet" href="styles.css?v=1.0.1">
+  
+  <!-- Preload hero poster image for better LCP -->
+  <link rel="preload" as="image" href="image/Gableraj-video-2-reverse-compressed-2.webp" fetchpriority="high">
 </head>
 <body>
 
@@ -190,12 +193,12 @@
 
   <!-- HERO -->
   <section class="hero">
-    <video id="hero-video" autoplay muted loop playsinline>
-      <source src="image/Gableraj-video-2-reverse.mp4" type="video/mp4" />
+    <video id="hero-video" autoplay muted loop playsinline preload="none" poster="image/Gableraj-video-2-reverse-compressed-2.webp">
+      <source src="image/Gableraj-video-2-reverse-compressed-2.mp4" type="video/mp4" />
       <!-- Fallback image if video doesn't load -->
       <picture>
-        <source srcset="image/Gableraj-68.avif" type="image/avif" />
-        <img src="image/Gableraj-68.webp" alt="Catering stol s raznovrsnom hranom" />
+        <source srcset="image/Gableraj-video-2-reverse-compressed-2.avif" type="image/avif" />
+        <img src="image/Gableraj-video-2-reverse-compressed-2.webp" alt="Catering stol s raznovrsnom hranom" fetchpriority="high" />
       </picture>
     </video>
     <div class="hero-content">
