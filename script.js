@@ -447,18 +447,40 @@
     // Lazy load hero video to improve LCP
     const heroVideo = document.getElementById('hero-video');
     if (heroVideo) {
+      // Function to load and play video
+      function loadAndPlayVideo() {
+        if (!heroVideo) return;
+        
+        // Load the video
+        heroVideo.load();
+        
+        // Try to play after video metadata is loaded
+        heroVideo.addEventListener('loadedmetadata', function() {
+          heroVideo.play().catch(function(err) {
+            console.log('Autoplay blocked, will play on interaction:', err);
+          });
+        }, { once: true });
+        
+        // Fallback: try to play after canplay event
+        heroVideo.addEventListener('canplay', function() {
+          if (heroVideo.paused) {
+            heroVideo.play().catch(function(err) {
+              console.log('Video play attempt:', err);
+            });
+          }
+        }, { once: true });
+      }
+      
       // Load video after page is interactive to improve LCP
       // The poster image will be the LCP element instead
       if (document.readyState === 'complete') {
         // Page already loaded, load video immediately
-        heroVideo.load();
+        loadAndPlayVideo();
       } else {
         // Wait for page to be interactive
         window.addEventListener('load', function() {
           // Small delay to ensure poster image is painted first
-          setTimeout(function() {
-            heroVideo.load();
-          }, 100);
+          setTimeout(loadAndPlayVideo, 100);
         });
       }
     }
