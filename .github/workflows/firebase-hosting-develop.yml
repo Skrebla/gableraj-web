@@ -61,4 +61,8 @@ jobs:
           
           echo ""
           echo "✅ Deployment successful!"
+          echo ""
           echo "🌐 Preview URL: https://gableraj--develop-preview.web.app"
+          echo "📋 Check the output above for the actual preview URL if different"
+          echo ""
+          echo "Note: Firebase Auth warnings are normal and don't affect hosting deployment"
