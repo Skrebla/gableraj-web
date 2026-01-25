@@ -21,10 +21,21 @@ jobs:
           chmod +x update-cache-version.sh
           ./update-cache-version.sh
       
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GABLERAJ }}
-          projectId: gableraj
-          # No channelId specified = creates a preview channel
-          # You'll get a preview URL in the GitHub Actions output
+          node-version: '18'
+      
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+      
+      - name: Deploy to Firebase Preview Channel
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GABLERAJ }}
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" > $HOME/firebase-service-account.json
+          export GOOGLE_APPLICATION_CREDENTIALS=$HOME/firebase-service-account.json
+          firebase use gableraj --non-interactive
+          firebase hosting:channel:deploy develop-preview --only hosting --non-interactive
+          echo "✅ Preview deployed successfully!"
+          echo "🌐 Preview URL: https://gableraj--develop-preview.web.app"
