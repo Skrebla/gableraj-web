@@ -29,9 +29,6 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@latest
       
-      - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
-      
       - name: Deploy to Firebase Preview Channel
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GABLERAJ }}
@@ -52,12 +49,8 @@ jobs:
           echo "Setting Firebase project to gableraj..."
           firebase use gableraj --non-interactive
           
-          echo "Getting hosting site ID..."
-          SITE_ID=$(firebase hosting:sites:list --json 2>/dev/null | jq -r '.[0].site' || echo "gableraj")
-          echo "Using site: $SITE_ID"
-          
           echo "Deploying to preview channel 'develop-preview'..."
-          firebase hosting:channel:deploy develop-preview --site "$SITE_ID" --non-interactive
+          firebase deploy --only hosting --channel develop-preview --non-interactive
           
           echo ""
           echo "✅ Deployment successful!"
