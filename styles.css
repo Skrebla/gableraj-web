@@ -3141,6 +3141,14 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       max-height: none;
+      align-items: stretch;
+    }
+
+    .service-side-cards .service-card {
+      height: 100%;
+      min-height: 250px;
+      max-height: 250px;
+      flex: none; /* Override flex from desktop */
     }
 
     .service-pill {
@@ -3796,6 +3804,10 @@
     /* Catering Highlight Section - Tablet */
     .catering-highlight {
       margin-top: 80px !important;
+      height: auto;
+      min-height: 600px;
+      overflow: visible;
+      padding-bottom: 80px;
     }
 
     .catering-highlight-inner .page {
