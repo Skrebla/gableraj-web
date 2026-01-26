@@ -49,8 +49,11 @@ jobs:
           echo "Setting Firebase project to gableraj..."
           firebase use gableraj --non-interactive
           
+          echo "Verifying firebase.json..."
+          cat firebase.json
+          
           echo "Deploying to preview channel 'develop-preview'..."
-          firebase deploy --only hosting --channel develop-preview --non-interactive
+          firebase hosting:channel:deploy develop-preview --non-interactive
           
           echo ""
           echo "✅ Deployment successful!"
