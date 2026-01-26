@@ -444,28 +444,6 @@
       yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Simple hero video handling
-    const heroVideo = document.getElementById('hero-video');
-    if (heroVideo) {
-      // Prevent multiple loads - only load once when page is ready
-      let videoLoaded = false;
-      
-      function loadVideoOnce() {
-        if (videoLoaded || heroVideo.readyState > 0) return;
-        videoLoaded = true;
-        heroVideo.load();
-      }
-      
-      // Load video after page load to prevent multiple requests
-      if (document.readyState === 'complete') {
-        setTimeout(loadVideoOnce, 500);
-      } else {
-        window.addEventListener('load', function() {
-          setTimeout(loadVideoOnce, 500);
-        }, { once: true });
-      }
-    }
-
     // Fancy text scroll animation (optimized)
     const fancyTextSection = document.querySelector('.fancy-text-section');
     const fancyTextFirst = document.querySelector('.fancy-text-row--first');
