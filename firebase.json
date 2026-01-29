@@ -11,6 +11,7 @@
       "CHAT_SESSION_SUMMARY.md",
       "llms.txt"
     ],
+    "cleanUrls": true,
     "headers": [
       {
         "source": "**/*.html",
