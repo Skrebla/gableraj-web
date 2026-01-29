@@ -794,6 +794,14 @@
           showMessage('Hvala vam! Vaš upit je uspješno poslan. Javit ćemo vam se u najkraćem roku.', 'success');
           contactForm.reset();
           clearAllFieldErrors(); // Clear any remaining errors
+          // Google Ads conversion tracking (Submit lead form)
+          if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-17906241738/90qKCOnVie8bEMqhrtpC',
+              'value': 1.0,
+              'currency': 'EUR'
+            });
+          }
         }, function(error) {
           console.error('EmailJS Error:', error);
           showMessage('Došlo je do greške pri slanju upita. Molimo pokušajte ponovno ili nas kontaktirajte direktno.', 'error');
