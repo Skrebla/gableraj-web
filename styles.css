@@ -1683,6 +1683,123 @@
     border: 1px solid #f5c6cb;
   }
   
+  /* CLIENTS SECTION (trusted by / our clients) */
+  .clients-section {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+  
+  .clients-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .clients-kicker {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-family: var(--font-marcellus);
+    color: #221f1e;
+    margin-bottom: 12px;
+  }
+  
+  .clients-title {
+    font-family: var(--font-marcellus);
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    color: #221f1e;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .clients-logos-wrap {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
+  .clients-logos-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 24px 32px;
+  }
+  
+  .clients-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    padding: 16px;
+    background: #fafafa;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+  
+  .clients-logo-item img {
+    width: 100%;
+    max-width: 140px;
+    height: 48px;
+    object-fit: contain;
+    object-position: center;
+  }
+  
+  /* Tablet: 4 columns, 3 rows (4+4+3) */
+  @media (max-width: 991px) {
+    .clients-logos-grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 20px 24px;
+    }
+  }
+  
+  /* Mobile: 3 columns (4 rows: 3+3+3+2) */
+  @media (max-width: 767px) {
+    .clients-section {
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+    .clients-header {
+      margin-bottom: 32px;
+    }
+    .clients-title {
+      font-size: clamp(24px, 6vw, 32px);
+    }
+    .clients-logos-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .clients-logo-item {
+      min-height: 76px;
+      padding: 12px;
+    }
+    .clients-logo-item img {
+      height: 48px;
+      max-width: 100px;
+    }
+  }
+  
+  /* Small mobile: 2 columns (6 rows: 2+2+2+2+2+1) */
+  @media (max-width: 480px) {
+    .clients-logos-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .clients-logo-item {
+      min-height: 76px;
+      padding: 0px;
+    }
+    .clients-logo-item img {
+      height: 48px;
+      max-width: 100px;
+    }
+  }
+  
   /* FOOTER */
   .footer {
     background: #17191E;

@@ -647,14 +647,14 @@
           isValid = false;
         }
         
-        // Validate Broj gostiju (Number of guests) - required, must be a positive number
+        // Validate Broj gostiju (Number of guests) - required, minimum 25
         if (!brojGostiju) {
           showFieldError('broj-gostiju', 'Broj gostiju je obavezno polje.');
           isValid = false;
         } else {
           const numGuests = parseInt(brojGostiju, 10);
-          if (isNaN(numGuests) || numGuests < 1) {
-            showFieldError('broj-gostiju', 'Broj gostiju mora biti pozitivan broj (najmanje 1).');
+          if (isNaN(numGuests) || numGuests < 25) {
+            showFieldError('broj-gostiju', '25 gostiju minimalno.');
             isValid = false;
           }
         }
@@ -725,8 +725,8 @@
                 showFieldError(fieldId, 'Broj gostiju je obavezno polje.');
               } else {
                 const numGuests = parseInt(value, 10);
-                if (isNaN(numGuests) || numGuests < 1) {
-                  showFieldError(fieldId, 'Broj gostiju mora biti pozitivan broj (najmanje 1).');
+                if (isNaN(numGuests) || numGuests < 25) {
+                  showFieldError(fieldId, '25 gostiju minimalno.');
                 } else {
                   removeFieldError(fieldId);
                 }
@@ -791,17 +791,33 @@
           to_email: 'info@catering-gableraj.hr' // Your email address
         })
         .then(function() {
-          showMessage('Hvala vam! Vaš upit je uspješno poslan. Javit ćemo vam se u najkraćem roku.', 'success');
-          contactForm.reset();
-          clearAllFieldErrors(); // Clear any remaining errors
-          // Google Ads conversion tracking (Submit lead form)
+          // Google Ads conversion (Submit lead form) – event_callback runs after conversion is sent (per Google’s recommendation)
+          var onConversionSent = function() {
+            showMessage('Hvala vam! Vaš upit je uspješno poslan. Javit ćemo vam se u najkraćem roku.', 'success');
+            contactForm.reset();
+            clearAllFieldErrors();
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          };
+          var conversionPayload = {
+            'send_to': 'AW-17906241738/90qKCOnVie8bEMqhrtpC',
+            'value': 1.0,
+            'currency': 'EUR',
+            'event_callback': onConversionSent
+          };
           if (typeof gtag === 'function') {
-            gtag('event', 'conversion', {
-              'send_to': 'AW-17906241738/90qKCOnVie8bEMqhrtpC',
-              'value': 1.0,
-              'currency': 'EUR'
-            });
+            gtag('event', 'conversion', conversionPayload);
+          } else {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(['event', 'conversion', conversionPayload]);
+            onConversionSent();
           }
+          // If gtag’s event_callback never runs (e.g. ad blocker), still show success and re-enable button
+          setTimeout(function() {
+            if (submitBtn.disabled) {
+              onConversionSent();
+            }
+          }, 2500);
         }, function(error) {
           console.error('EmailJS Error:', error);
           showMessage('Došlo je do greške pri slanju upita. Molimo pokušajte ponovno ili nas kontaktirajte direktno.', 'error');
