@@ -1133,14 +1133,14 @@
     border-radius:0;
     overflow: hidden;
     position: relative;
-    background-image: url("image/Gableraj-83.avif"); /* Fallback for older browsers */
+    background-image: url("image/Gableraj-233.avif"); /* Fallback for older browsers */
     background-image: -webkit-image-set(
-      url("image/Gableraj-83.avif") type("image/avif"),
-      url("image/Gableraj-83.webp") type("image/webp")
+      url("image/Gableraj-233.avif") type("image/avif"),
+      url("image/Gableraj-233.webp") type("image/webp")
     );
     background-image: image-set(
-      url("image/Gableraj-83.avif") type("image/avif"),
-      url("image/Gableraj-83.webp") type("image/webp")
+      url("image/Gableraj-233.avif") type("image/avif"),
+      url("image/Gableraj-233.webp") type("image/webp")
     );
     background-size: cover;
     background-position: center;
