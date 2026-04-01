@@ -382,31 +382,44 @@
       statsObserver.observe(aboutStats);
     }
 
-    // About image reveal from left
+    // About image/video reveal from left — observe .about-media, not the whole .about section.
+    // The section is tall (copy + stats); threshold on the full section often never reaches 0.2
+    // while the video is already on screen, so .is-visible never applies and opacity stays 0.
     const aboutPlaceholder = document.querySelector('.about-placeholder');
-    const aboutSection = document.querySelector('.about');
-    
+    const aboutMedia = document.querySelector('.about-media');
+
     if (aboutPlaceholder) {
-      if (aboutSection && 'IntersectionObserver' in window) {
+      const revealAboutPlaceholder = function () {
+        aboutPlaceholder.classList.add('is-visible');
+      };
+
+      if (aboutMedia && 'IntersectionObserver' in window) {
         const aboutImageObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                aboutPlaceholder.classList.add('is-visible');
+                revealAboutPlaceholder();
                 aboutImageObserver.unobserve(entry.target);
               }
             });
           },
           {
-            threshold: 0.2,
-            rootMargin: '100px 0px 0px 0px',
+            threshold: 0,
+            rootMargin: '0px 0px 80px 0px',
           }
         );
 
-        aboutImageObserver.observe(aboutSection);
+        aboutImageObserver.observe(aboutMedia);
+
+        // If already in view before the first paint (e.g. #onama hash), show immediately
+        const r = aboutMedia.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        if (r.top < vh && r.bottom > 0) {
+          revealAboutPlaceholder();
+          aboutImageObserver.unobserve(aboutMedia);
+        }
       } else {
-        // Fallback without IntersectionObserver - show immediately
-        aboutPlaceholder.classList.add('is-visible');
+        revealAboutPlaceholder();
       }
     }
 
