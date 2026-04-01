@@ -1266,12 +1266,16 @@
     align-items: center;
   }
   
+  /* Explicit dimensions so the box is not 0×0 before video metadata loads (common on slow/CDN loads). */
   .about-placeholder {
     width: 50%;
-    max-width: 100%;
+    max-width: min(100%, 360px);
+    aspect-ratio: 9 / 16;
     height: auto;
     border-radius: 16px;
     display: block;
+    object-fit: contain;
+    background: #eceae8;
   }
   
   .about-content {
