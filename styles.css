@@ -674,7 +674,7 @@
   }
   
   #poslovni-eventi img {
-    object-position: center 30%;
+    object-position: center 48%;
   }
   
   .service-main-card img {
@@ -1133,7 +1133,7 @@
     border-radius:0;
     overflow: hidden;
     position: relative;
-    background-image: url("image/Gableraj-83.webp"); /* Fallback for older browsers */
+    background-image: url("image/Gableraj-83.avif"); /* Fallback for older browsers */
     background-image: -webkit-image-set(
       url("image/Gableraj-83.avif") type("image/avif"),
       url("image/Gableraj-83.webp") type("image/webp")
@@ -1261,23 +1261,17 @@
   
   .about-media {
     flex: 0 0 52%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .about-placeholder {
-    background-image: url("image/Gableraj-66.webp"); /* Fallback for older browsers */
-    background-image: -webkit-image-set(
-      url("image/Gableraj-66.avif") type("image/avif"),
-      url("image/Gableraj-66.webp") type("image/webp")
-    );
-    background-image: image-set(
-      url("image/Gableraj-66.avif") type("image/avif"),
-      url("image/Gableraj-66.webp") type("image/webp")
-    );
-    background-size: cover;
-    background-position: center top;
-    width: 80%;
-    aspect-ratio: 4/3;
+    width: 50%;
+    max-width: 100%;
+    height: auto;
     border-radius: 16px;
+    display: block;
     opacity: 0;
     transform: translateX(-500px);
     transition: opacity 1s ease-out, transform 1s ease-out;
