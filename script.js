@@ -383,32 +383,7 @@
     }
 
     // About image reveal from left
-    const aboutPlaceholder = document.querySelector('.about-placeholder');
-    const aboutSection = document.querySelector('.about');
-    
-    if (aboutPlaceholder) {
-      if (aboutSection && 'IntersectionObserver' in window) {
-        const aboutImageObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                aboutPlaceholder.classList.add('is-visible');
-                aboutImageObserver.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.2,
-            rootMargin: '100px 0px 0px 0px',
-          }
-        );
 
-        aboutImageObserver.observe(aboutSection);
-      } else {
-        // Fallback without IntersectionObserver - show immediately
-        aboutPlaceholder.classList.add('is-visible');
-      }
-    }
 
     // About-us image reveal from right
     const aboutUsMedia = document.querySelector('.about-us-media');
