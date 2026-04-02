@@ -3757,7 +3757,8 @@ body {
   .about-media {
     margin-left: -24px;
     margin-right: -24px;
-    width: calc(100% + 48px); /* Compensate for mobile page padding */
+    width: calc(100% + 48px);
+    /* Compensate for mobile page padding */
   }
 
   .about-video {
@@ -4056,7 +4057,8 @@ body {
 
   .about-media {
     flex: 0 0 100%;
-    width: calc(100% + 64px); /* Compensate for page padding for tablet (32px each side) */
+    width: calc(100% + 64px);
+    /* Compensate for page padding for tablet (32px each side) */
     margin-left: -32px;
     margin-right: -32px;
   }
