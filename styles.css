@@ -649,7 +649,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: none;
   pointer-events: none;
   z-index: 1;
 }
@@ -699,6 +699,7 @@ body {
 
 #poslovni-eventi img {
   object-position: center 55%;
+  filter: brightness(1.25);
 }
 
 .service-main-card img {
