@@ -4985,3 +4985,26 @@ body {
     padding: 50px 0;
   }
 }
+
+/* Remove bottom padding from description section */
+.description-section.no-bottom-padding,
+.christmas-theme .description-section {
+  padding-bottom: 0 !important;
+}
+
+.description-section.no-bottom-padding .page,
+.christmas-theme .description-section .page {
+  padding-bottom: 0 !important;
+}
+
+@media (max-width: 767px) {
+  .description-section.no-bottom-padding,
+  .christmas-theme .description-section {
+    padding-bottom: 0 !important;
+  }
+
+  .description-section.no-bottom-padding .page,
+  .christmas-theme .description-section .page {
+    padding-bottom: 0 !important;
+  }
+}
