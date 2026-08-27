@@ -753,6 +753,15 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Šalje se...';
         
+        // Convert date from YYYY-MM-DD to European format DD.MM.YYYY.
+        let formattedDate = formData.datum;
+        if (formData.datum && formData.datum.includes('-')) {
+          const parts = formData.datum.split('-');
+          if (parts.length === 3) {
+            formattedDate = parts[2] + '.' + parts[1] + '.' + parts[0] + '.';
+          }
+        }
+
         // Send email using EmailJS
         // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs from EmailJS dashboard
         emailjs.send('service_iftu7dh', 'template_lxqalxv', {
@@ -760,7 +769,7 @@
           from_email: formData.email,
           phone: formData.telefon,
           event_type: formData.tip_eventa,
-          event_date: formData.datum,
+          event_date: formattedDate,
           location: formData.lokacija,
           guest_count: formData.broj_gostiju,
           to_email: 'info@catering-gableraj.hr' // Your email address
@@ -1707,11 +1716,14 @@
       emailjs.init("QPQWvCmqM0AYvPEUF");
     }
 
+    let hasAttemptedSubmit = false;
+
     function openModal(e) {
       if (e) {
         e.preventDefault();
         e.stopPropagation();
       }
+      hasAttemptedSubmit = false;
       clearAllFieldErrors();
       if (weddingFormMessage) {
         weddingFormMessage.style.display = 'none';
@@ -1721,15 +1733,10 @@
       weddingModal.classList.add('is-active');
       weddingModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-
-      // Auto focus first input after transition
-      setTimeout(function() {
-        const firstInput = document.getElementById('wedding-ime');
-        if (firstInput) firstInput.focus();
-      }, 100);
     }
 
     function closeModal() {
+      hasAttemptedSubmit = false;
       clearAllFieldErrors();
       if (weddingFormMessage) {
         weddingFormMessage.style.display = 'none';
@@ -1810,15 +1817,18 @@
       fieldIds.forEach(removeFieldError);
     }
 
-    function validateWeddingField(fieldId) {
+    function validateWeddingField(fieldId, forceRequired) {
       const field = document.getElementById(fieldId);
       if (!field) return true;
       const value = field.value.trim();
+      const checkRequired = forceRequired || hasAttemptedSubmit;
 
       if (fieldId === 'wedding-ime') {
         if (!value) {
-          showFieldError(fieldId, 'Ime i prezime je obavezno polje.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Ime i prezime je obavezno polje.');
+            return false;
+          }
         } else if (value.length < 2) {
           showFieldError(fieldId, 'Ime i prezime mora imati najmanje 2 znaka.');
           return false;
@@ -1826,8 +1836,10 @@
       } else if (fieldId === 'wedding-email') {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!value) {
-          showFieldError(fieldId, 'Email adresa je obavezno polje.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Email adresa je obavezno polje.');
+            return false;
+          }
         } else if (!emailRegex.test(value)) {
           showFieldError(fieldId, 'Molimo unesite valjanu email adresu.');
           return false;
@@ -1835,16 +1847,20 @@
       } else if (fieldId === 'wedding-telefon') {
         const phoneRegex = /^[\d\s\-\+\(\)]+$/;
         if (!value) {
-          showFieldError(fieldId, 'Broj telefona je obavezno polje.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Broj telefona je obavezno polje.');
+            return false;
+          }
         } else if (!phoneRegex.test(value) || value.replace(/\D/g, '').length < 8) {
           showFieldError(fieldId, 'Molimo unesite valjan broj telefona.');
           return false;
         }
       } else if (fieldId === 'wedding-broj-gostiju') {
         if (!value) {
-          showFieldError(fieldId, 'Broj gostiju je obavezno polje.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Broj gostiju je obavezno polje.');
+            return false;
+          }
         } else {
           const numGuests = parseInt(value, 10);
           if (isNaN(numGuests) || numGuests < 25) {
@@ -1854,16 +1870,17 @@
         }
       } else if (fieldId === 'wedding-lokacija') {
         if (!value) {
-          showFieldError(fieldId, 'Lokacija je obavezno polje.');
-          return false;
-        } else if (value.length < 2) {
-          showFieldError(fieldId, 'Lokacija mora imati najmanje 2 znaka.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Molimo odaberite lokaciju.');
+            return false;
+          }
         }
       } else if (fieldId === 'wedding-datum') {
         if (!value) {
-          showFieldError(fieldId, 'Datum vjenčanja je obavezno polje.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Datum vjenčanja je obavezno polje.');
+            return false;
+          }
         } else {
           const selectedDate = new Date(value);
           const today = new Date();
@@ -1876,18 +1893,24 @@
         }
       } else if (fieldId === 'wedding-stil') {
         if (!value) {
-          showFieldError(fieldId, 'Molimo odaberite stil vjenčanja.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Molimo odaberite stil vjenčanja.');
+            return false;
+          }
         }
       } else if (fieldId === 'wedding-budzet') {
         if (!value) {
-          showFieldError(fieldId, 'Molimo odaberite okvirni budžet.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Molimo odaberite okvirni budžet.');
+            return false;
+          }
         }
       } else if (fieldId === 'wedding-trajanje') {
         if (!value) {
-          showFieldError(fieldId, 'Molimo odaberite trajanje događaja.');
-          return false;
+          if (checkRequired) {
+            showFieldError(fieldId, 'Molimo odaberite trajanje događaja.');
+            return false;
+          }
         }
       }
 
@@ -1900,7 +1923,7 @@
       clearAllFieldErrors();
 
       fieldIds.forEach(function(fieldId) {
-        const fieldValid = validateWeddingField(fieldId);
+        const fieldValid = validateWeddingField(fieldId, true);
         if (!fieldValid) {
           isValid = false;
         }
@@ -1947,20 +1970,18 @@
       updateFieldColor(field);
 
       field.addEventListener('blur', function() {
-        validateWeddingField(fieldId);
+        validateWeddingField(fieldId, false);
         updateFieldColor(field);
       });
 
       field.addEventListener('input', function() {
-        if (field.style.borderColor === 'rgb(220, 53, 69)' || field.style.borderColor === '#dc3545') {
-          validateWeddingField(fieldId);
-        }
+        validateWeddingField(fieldId, false);
         updateFieldColor(field);
       });
 
       if (field.tagName === 'SELECT' || field.type === 'date') {
         field.addEventListener('change', function() {
-          validateWeddingField(fieldId);
+          validateWeddingField(fieldId, false);
           updateFieldColor(field);
         });
       }
@@ -1994,6 +2015,7 @@
     if (weddingForm) {
       weddingForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        hasAttemptedSubmit = true;
 
         if (!validateWeddingForm()) {
           const firstError = weddingForm.querySelector('.field-error');
@@ -2015,6 +2037,15 @@
         const porukaElem = document.getElementById('wedding-poruka');
         const poruka = porukaElem ? porukaElem.value.trim() : '';
 
+        // Convert date from YYYY-MM-DD to European format DD.MM.YYYY.
+        let formattedDate = datum;
+        if (datum && datum.includes('-')) {
+          const parts = datum.split('-');
+          if (parts.length === 3) {
+            formattedDate = parts[2] + '.' + parts[1] + '.' + parts[0] + '.';
+          }
+        }
+
         const submitBtn = weddingForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
@@ -2026,7 +2057,7 @@
           phone: telefon,
           event_type: 'Vjenčanje (' + stil + ')',
           wedding_style: stil,
-          event_date: datum,
+          event_date: formattedDate,
           location: lokacija,
           guest_count: brojGostiju,
           budget: budzet,
@@ -2043,7 +2074,7 @@
           return;
         }
 
-        emailjs.send('service_iftu7dh', 'template_lxqalxv', templateParams)
+        emailjs.send('service_iftu7dh', 'template_nxp87gd', templateParams)
           .then(function() {
             var onConversionSent = function() {
               showWeddingMessage('Hvala vam! Vaš upit za vjenčanje je uspješno poslan. Javit ćemo vam se u najkraćem roku.', 'success');
