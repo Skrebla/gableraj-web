@@ -723,7 +723,7 @@ body {
   bottom: 20px;
   background: rgb(255, 255, 255);
   border-radius: 999px;
-  padding: 10px 18px;
+  padding: 10px 36px 10px 14px;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -3332,7 +3332,7 @@ body {
     z-index: 10;
     left: 12px;
     bottom: 12px;
-    padding: 8px 22px 8px 14px;
+    padding: 8px 32px 8px 14px;
     font-size: 12px;
   }
 
@@ -4220,7 +4220,7 @@ body {
     z-index: 10 !important;
     left: 12px;
     bottom: 12px;
-    padding: 8px 22px 8px 14px;
+    padding: 8px 32px 8px 14px;
     font-size: 12px;
     opacity: 0;
     transform: translateY(24px);
@@ -4509,4 +4509,178 @@ body {
     padding-top: 60px;
   }
 
+}
+
+/* ==========================================================================
+   WEDDING INQUIRY MODAL ("Isplaniraj vjenčanje")
+   ========================================================================== */
+
+.wedding-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wedding-modal-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wedding-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.wedding-modal-container {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: var(--radius-xl, 32px);
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 44px 48px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overscroll-behavior: contain;
+}
+
+.wedding-modal-overlay.is-active .wedding-modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.wedding-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #e7e7e7;
+  background: #fcfcfc;
+  color: #221f1e;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.wedding-modal-close:hover {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+  transform: scale(1.05);
+}
+
+.wedding-modal-header {
+  margin-bottom: 28px;
+  padding-right: 48px;
+}
+
+.wedding-modal-kicker {
+  font-family: var(--font-marcellus);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8c827a;
+  margin-bottom: 8px;
+}
+
+.wedding-modal-title {
+  font-family: var(--font-marcellus);
+  font-size: clamp(24px, 3.5vw, 34px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #111111;
+  margin-bottom: 8px;
+}
+
+.wedding-modal-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.wedding-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+  font-size: 13px;
+}
+
+.wedding-form .contact-field-full {
+  grid-column: 1 / -1;
+}
+
+.wedding-form .contact-submit {
+  margin-top: 10px;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.wedding-form .btn-primary {
+  padding: 12px 32px;
+  font-size: 15px;
+}
+
+.wedding-form button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 767px) {
+  .wedding-modal-overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .wedding-modal-container {
+    padding: 32px 20px 24px;
+    border-radius: 24px 24px 16px 16px;
+    max-height: 92vh;
+  }
+
+  .wedding-modal-close {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .wedding-modal-header {
+    margin-bottom: 20px;
+    padding-right: 36px;
+  }
+
+  .wedding-form {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .wedding-form .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
 }
