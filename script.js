@@ -1717,6 +1717,7 @@
         weddingFormMessage.style.display = 'none';
         weddingFormMessage.textContent = '';
       }
+      syncAllPlaceholderColors();
       weddingModal.classList.add('is-active');
       weddingModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -1734,6 +1735,7 @@
         weddingFormMessage.style.display = 'none';
         weddingFormMessage.textContent = '';
       }
+      syncAllPlaceholderColors();
       weddingModal.classList.remove('is-active');
       weddingModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
@@ -1907,24 +1909,59 @@
       return isValid;
     }
 
+    // Helper to style placeholder color for select and date fields
+    function updateFieldColor(field) {
+      if (!field) return;
+      if (field.tagName === 'SELECT') {
+        if (!field.value) {
+          field.style.color = '#9e9e9e';
+          field.classList.add('is-placeholder');
+        } else {
+          field.style.color = '#111111';
+          field.classList.remove('is-placeholder');
+        }
+      } else if (field.type === 'date') {
+        if (!field.value) {
+          field.style.color = '#9e9e9e';
+          field.classList.remove('has-value');
+        } else {
+          field.style.color = '#111111';
+          field.classList.add('has-value');
+        }
+      }
+    }
+
+    function syncAllPlaceholderColors() {
+      fieldIds.forEach(function(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (field) updateFieldColor(field);
+      });
+    }
+
     // Real-time feedback listeners
     fieldIds.forEach(function(fieldId) {
       const field = document.getElementById(fieldId);
       if (!field) return;
 
+      // Initial color check
+      updateFieldColor(field);
+
       field.addEventListener('blur', function() {
         validateWeddingField(fieldId);
+        updateFieldColor(field);
       });
 
       field.addEventListener('input', function() {
         if (field.style.borderColor === 'rgb(220, 53, 69)' || field.style.borderColor === '#dc3545') {
           validateWeddingField(fieldId);
         }
+        updateFieldColor(field);
       });
 
-      if (field.tagName === 'SELECT') {
+      if (field.tagName === 'SELECT' || field.type === 'date') {
         field.addEventListener('change', function() {
           validateWeddingField(fieldId);
+          updateFieldColor(field);
         });
       }
     });
@@ -2012,6 +2049,7 @@
               showWeddingMessage('Hvala vam! Vaš upit za vjenčanje je uspješno poslan. Javit ćemo vam se u najkraćem roku.', 'success');
               weddingForm.reset();
               clearAllFieldErrors();
+              syncAllPlaceholderColors();
               submitBtn.disabled = false;
               submitBtn.textContent = originalText;
             };
