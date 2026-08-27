@@ -1712,6 +1712,11 @@
         e.preventDefault();
         e.stopPropagation();
       }
+      clearAllFieldErrors();
+      if (weddingFormMessage) {
+        weddingFormMessage.style.display = 'none';
+        weddingFormMessage.textContent = '';
+      }
       weddingModal.classList.add('is-active');
       weddingModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -1724,6 +1729,11 @@
     }
 
     function closeModal() {
+      clearAllFieldErrors();
+      if (weddingFormMessage) {
+        weddingFormMessage.style.display = 'none';
+        weddingFormMessage.textContent = '';
+      }
       weddingModal.classList.remove('is-active');
       weddingModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
