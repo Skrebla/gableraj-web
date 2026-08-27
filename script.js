@@ -2038,4 +2038,298 @@
     }
   })();
 
+  // ==========================================================================
+  // CHRISTMAS PARTY / BOŽIĆNI DOMJENCI FORM & MODAL CONTROLLER
+  // ==========================================================================
+  (function() {
+    const christmasModal = document.getElementById('christmas-modal');
+    const modalForm = document.getElementById('christmas-modal-form');
+    const pageForm = document.getElementById('christmas-form-page');
+    const openModalBtns = document.querySelectorAll('.open-christmas-modal, [data-open-modal="christmas-modal"]');
+    const closeModalBtns = document.querySelectorAll('.christmas-modal-close, [data-close-modal="christmas-modal"]');
+    const backdrop = christmasModal ? christmasModal.querySelector('.christmas-modal-backdrop') : null;
+
+    // Initialize EmailJS safely
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init("QPQWvCmqM0AYvPEUF");
+    }
+
+    function openModal(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      if (!christmasModal) return;
+      christmasModal.classList.add('is-active');
+      christmasModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      setTimeout(function() {
+        const firstInput = document.getElementById('cmodal-ime');
+        if (firstInput) firstInput.focus();
+      }, 100);
+    }
+
+    function closeModal() {
+      if (!christmasModal) return;
+      christmasModal.classList.remove('is-active');
+      christmasModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openModalBtns.forEach(function(btn) {
+      btn.addEventListener('click', openModal);
+    });
+
+    closeModalBtns.forEach(function(btn) {
+      btn.addEventListener('click', closeModal);
+    });
+
+    if (backdrop) {
+      backdrop.addEventListener('click', closeModal);
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && christmasModal && christmasModal.classList.contains('is-active')) {
+        closeModal();
+      }
+    });
+
+    function showFieldError(field, errorMessage) {
+      if (!field) return;
+      removeFieldError(field);
+
+      const errorElement = document.createElement('div');
+      errorElement.className = 'field-error';
+      errorElement.textContent = errorMessage;
+      errorElement.style.color = '#dc3545';
+      errorElement.style.fontSize = '12px';
+      errorElement.style.marginTop = '4px';
+      errorElement.style.display = 'block';
+
+      field.style.borderColor = '#dc3545';
+
+      const fieldContainer = field.closest('.contact-field');
+      if (fieldContainer) {
+        fieldContainer.appendChild(errorElement);
+      }
+    }
+
+    function removeFieldError(field) {
+      if (!field) return;
+      field.style.borderColor = '';
+      const fieldContainer = field.closest('.contact-field');
+      if (fieldContainer) {
+        const err = fieldContainer.querySelector('.field-error');
+        if (err) err.remove();
+      }
+    }
+
+    function validateChristmasForm(form) {
+      let isValid = true;
+      const requiredInputs = form.querySelectorAll('[required]');
+
+      requiredInputs.forEach(function(input) {
+        const val = input.value.trim();
+        removeFieldError(input);
+
+        if (!val) {
+          showFieldError(input, 'Ovo polje je obavezno.');
+          isValid = false;
+          return;
+        }
+
+        if (input.type === 'email') {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(val)) {
+            showFieldError(input, 'Molimo unesite valjanu email adresu.');
+            isValid = false;
+            return;
+          }
+        }
+
+        if (input.type === 'tel') {
+          const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+          if (!phoneRegex.test(val) || val.replace(/\D/g, '').length < 8) {
+            showFieldError(input, 'Molimo unesite valjan broj telefona.');
+            isValid = false;
+            return;
+          }
+        }
+
+        if (input.type === 'number') {
+          const num = parseInt(val, 10);
+          if (isNaN(num) || num < 25) {
+            showFieldError(input, 'Minimalan broj je 25 osoba.');
+            isValid = false;
+            return;
+          }
+        }
+
+        if (input.type === 'date') {
+          const selectedDate = new Date(val);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          selectedDate.setHours(0, 0, 0, 0);
+          if (selectedDate < today) {
+            showFieldError(input, 'Datum ne može biti u prošlosti.');
+            isValid = false;
+            return;
+          }
+        }
+      });
+
+      return isValid;
+    }
+
+    function showFormMsg(msgContainer, text, type) {
+      if (!msgContainer) return;
+      msgContainer.textContent = text;
+      msgContainer.style.display = 'block';
+      msgContainer.className = 'form-message ' + type;
+
+      if (type === 'success') {
+        msgContainer.style.backgroundColor = '#d4edda';
+        msgContainer.style.color = '#155724';
+        msgContainer.style.border = '1px solid #c3e6cb';
+      } else {
+        msgContainer.style.backgroundColor = '#f8d7da';
+        msgContainer.style.color = '#721c24';
+        msgContainer.style.border = '1px solid #f5c6cb';
+      }
+
+      msgContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      if (type === 'error') {
+        setTimeout(function() {
+          msgContainer.style.display = 'none';
+        }, 6000);
+      }
+    }
+
+    function setupFormHandling(form, msgContainer, isModal) {
+      if (!form) return;
+
+      // Real-time input listeners
+      form.querySelectorAll('input, select, textarea').forEach(function(field) {
+        field.addEventListener('blur', function() {
+          if (field.hasAttribute('required') && !field.value.trim()) {
+            showFieldError(field, 'Ovo polje je obavezno.');
+          } else {
+            removeFieldError(field);
+          }
+        });
+
+        field.addEventListener('input', function() {
+          if (field.style.borderColor === 'rgb(220, 53, 69)' || field.style.borderColor === '#dc3545') {
+            removeFieldError(field);
+          }
+        });
+
+        if (field.tagName === 'SELECT') {
+          field.addEventListener('change', function() {
+            removeFieldError(field);
+          });
+        }
+      });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!validateChristmasForm(form)) {
+          const firstErr = form.querySelector('.field-error');
+          if (firstErr) {
+            firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+
+        const prefix = isModal ? 'cmodal-' : 'b2b-';
+        const ime = (form.querySelector('#' + prefix + 'ime') || {}).value || '';
+        const tvrtka = (form.querySelector('#' + prefix + 'tvrtka') || {}).value || '';
+        const email = (form.querySelector('#' + prefix + 'email') || {}).value || '';
+        const telefon = (form.querySelector('#' + prefix + 'telefon') || {}).value || '';
+        const brojGostiju = (form.querySelector('#' + prefix + 'broj-gostiju') || {}).value || '';
+        const datum = (form.querySelector('#' + prefix + 'datum') || {}).value || '';
+        const lokacija = (form.querySelector('#' + prefix + 'lokacija') || {}).value || '';
+        const format = (form.querySelector('#' + prefix + 'format') || {}).value || '';
+        const budzet = (form.querySelector('#' + prefix + 'budzet') || {}).value || 'Po dogovoru';
+        const porukaElem = form.querySelector('#' + prefix + 'poruka');
+        const poruka = porukaElem ? porukaElem.value.trim() : '';
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Šalje se...';
+
+        const templateParams = {
+          from_name: ime.trim() + (tvrtka ? ' (' + tvrtka.trim() + ')' : ''),
+          from_email: email.trim(),
+          phone: telefon.trim(),
+          event_type: 'Božićni domjenak - ' + (tvrtka || 'Tvrtka') + ' [' + format + ']',
+          wedding_style: 'Božićni domjenak / ' + format,
+          event_date: datum,
+          location: lokacija,
+          guest_count: brojGostiju,
+          budget: budzet,
+          duration: 'Božićni event / domjenak',
+          message: 'Tvrtka: ' + tvrtka + '\nFormat domjenka: ' + format + '\nLokacija: ' + lokacija + '\nOkvirni budžet: ' + budzet + '\nPoruka: ' + (poruka || 'Nema dodatne poruke'),
+          to_email: 'info@catering-gableraj.hr'
+        };
+
+        if (typeof emailjs === 'undefined') {
+          showFormMsg(msgContainer, 'Došlo je do greške. Molimo kontaktirajte nas direktno.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          return;
+        }
+
+        emailjs.send('service_iftu7dh', 'template_lxqalxv', templateParams)
+          .then(function() {
+            var onConversionSent = function() {
+              showFormMsg(msgContainer, 'Hvala vam! Vaš upit za božićni domjenak je uspješno poslan. Naš tim će vam se javiti s ponudom u najkraćem roku.', 'success');
+              form.reset();
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+            };
+
+            var conversionPayload = {
+              'send_to': 'AW-17906241738/90qKCOnVie8bEMqhrtpC',
+              'value': 1.0,
+              'currency': 'EUR',
+              'event_callback': onConversionSent
+            };
+
+            if (typeof gtag === 'function') {
+              gtag('event', 'conversion', conversionPayload);
+            } else {
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push(['event', 'conversion', conversionPayload]);
+              onConversionSent();
+            }
+
+            setTimeout(function() {
+              if (submitBtn.disabled) {
+                onConversionSent();
+              }
+            }, 2500);
+          }, function(error) {
+            console.error('EmailJS Christmas Form Error:', error);
+            showFormMsg(msgContainer, 'Došlo je do greške pri slanju upita. Molimo pokušajte ponovno ili nas kontaktirajte putem telefona/emaila.', 'error');
+          })
+          .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          });
+      });
+    }
+
+    const modalMsg = document.getElementById('christmas-modal-form-message');
+    const pageMsg = document.getElementById('christmas-page-form-message');
+
+    if (modalForm) setupFormHandling(modalForm, modalMsg, true);
+    if (pageForm) setupFormHandling(pageForm, pageMsg, false);
+  })();
+
+
   
