@@ -153,7 +153,8 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   padding: 8px 0;
   margin-top: 4px;
-  min-width: 180px;
+  min-width: 200px;
+  width: max-content;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
@@ -177,6 +178,7 @@ body {
   text-decoration: none;
   color: var(--text);
   font-size: 14px;
+  white-space: nowrap;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
@@ -279,19 +281,20 @@ body {
 }
 
 .hero-heading {
-  max-width: 770px;
+  max-width: 950px;
 }
 
 .hero-title {
   font-family: "Marcellus", serif;
-  font-size: clamp(32px, 4vw, 72px);
-  line-height: 1.1;
+  font-size: clamp(32px, 3.2vw, 56px);
+  line-height: 1.15;
   font-weight: 400;
   margin-bottom: 32px;
   color: #fcfcfc;
   opacity: 0;
   transform: translateY(200px);
   animation: hero-rise 1s ease-out 0.2s forwards;
+  text-wrap: balance;
 }
 
 .hero-subtitle {
@@ -540,6 +543,7 @@ body {
   cursor: pointer;
   backdrop-filter: blur(8px);
   transition: background 0.15s ease, transform 0.08s ease, box-shadow 0.08s ease;
+  white-space: nowrap;
 }
 
 .btn-outline {
@@ -2780,8 +2784,9 @@ body {
     /* Space for fixed navbar */
   }
 
-  /* Remove body padding for landing page so hero starts at top */
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) {
+  /* Remove body padding for landing page and christmas page so hero starts at top */
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)),
+  body.christmas-theme {
     padding-top: 0;
   }
 
@@ -2927,8 +2932,9 @@ body {
     border-radius: 12px;
   }
 
-  /* Hero - Mobile for index.html only (exclude pages with specific hero classes) */
-  .hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party) {
+  /* Hero - Mobile for index.html & bozicni-domjenci.html fullscreen heroes */
+  .hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party),
+  .hero.hero-christmas {
     height: 100vh;
     /* Fallback for older browsers */
     height: 100svh;
@@ -2948,54 +2954,55 @@ body {
     position: relative;
   }
 
-  .hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party) .hero-content {
+  .hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party) .hero-content,
+  .hero.hero-christmas .hero-content {
     position: relative;
     z-index: 2;
     padding: 32px 20px 40px;
   }
 
-  /* Ensure navbar starts transparent on landing page (before any scroll) */
+  /* Ensure navbar starts transparent on landing page and christmas page (before any scroll) */
   /* This must come first to set the base state */
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar {
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar,
+  body.christmas-theme .navbar {
     background: transparent !important;
     padding: 12px 20px 0;
   }
 
-  /* Add background when scrolled on mobile home page */
+  /* Add background when scrolled on mobile home page / christmas page */
   /* This must come after the base rule to override when scrolled */
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar.navbar-scrolled {
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar.navbar-scrolled,
+  body.christmas-theme .navbar.navbar-scrolled {
     background: var(--bg) !important;
   }
 
   /* Explicitly set transparent when not scrolled (redundant but ensures clarity) */
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar:not(.navbar-scrolled) {
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar:not(.navbar-scrolled),
+  body.christmas-theme .navbar:not(.navbar-scrolled) {
     background: transparent !important;
   }
 
-  /* Change hamburger icon to white on mobile for index.html only when NOT scrolled */
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar:not(.navbar-scrolled) .mobile-menu-toggle {
+  /* Change hamburger icon to white on mobile when NOT scrolled */
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar:not(.navbar-scrolled) .mobile-menu-toggle,
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar:not(.navbar-scrolled) .mobile-menu-toggle i,
+  body.christmas-theme .navbar:not(.navbar-scrolled) .mobile-menu-toggle,
+  body.christmas-theme .navbar:not(.navbar-scrolled) .mobile-menu-toggle i {
     color: #ffffff;
   }
 
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar:not(.navbar-scrolled) .mobile-menu-toggle i {
-    color: #ffffff;
-  }
-
-  /* Change hamburger icon to black when scrolled on mobile for index.html */
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar.navbar-scrolled .mobile-menu-toggle {
+  /* Change hamburger icon to black when scrolled on mobile */
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar.navbar-scrolled .mobile-menu-toggle,
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar.navbar-scrolled .mobile-menu-toggle i,
+  body.christmas-theme .navbar.navbar-scrolled .mobile-menu-toggle,
+  body.christmas-theme .navbar.navbar-scrolled .mobile-menu-toggle i {
     color: #000000;
   }
 
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .navbar.navbar-scrolled .mobile-menu-toggle i {
-    color: #000000;
-  }
-
-  /* Change X icon to black when menu is open on index.html */
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .mobile-menu-toggle.menu-open {
-    color: #000000;
-  }
-
-  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .mobile-menu-toggle.menu-open i {
+  /* Change X icon to black when menu is open */
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .mobile-menu-toggle.menu-open,
+  body:has(.hero:not(.hero-gallery):not(.hero-about):not(.hero-weddings):not(.hero-business):not(.hero-party)) .mobile-menu-toggle.menu-open i,
+  body.christmas-theme .mobile-menu-toggle.menu-open,
+  body.christmas-theme .mobile-menu-toggle.menu-open i {
     color: #000000;
   }
 
@@ -3034,6 +3041,10 @@ body {
 
   .hero-weddings picture img {
     object-position: 30% 10%;
+  }
+
+  .hero.hero-christmas picture img {
+    object-position: 75% center;
   }
 
   .hero-business {
@@ -3669,6 +3680,10 @@ body {
 
     .hero-weddings picture img {
       object-position: 30% 10%;
+    }
+
+    .hero.hero-christmas picture img {
+      object-position: 75% center;
     }
 
     .hero-business {
@@ -4738,6 +4753,20 @@ body {
   animation: festivePulse 2s infinite ease-in-out;
 }
 
+@media (max-width: 768px) {
+  .nav-link-christmas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-link-christmas .nav-festive-dot {
+    order: 2;
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
+
 @keyframes festivePulse {
   0%, 100% {
     transform: scale(1);
@@ -4768,17 +4797,9 @@ body {
 }
 
 .gallery-kicker-festive {
-  color: #d4af37 !important;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: var(--accent) !important;
   font-weight: 600;
   letter-spacing: 2px;
-}
-
-.festive-icon {
-  color: #d4af37;
-  font-size: 12px;
 }
 
 .hero-lead-text {
@@ -5008,3 +5029,71 @@ body {
     padding-bottom: 0 !important;
   }
 }
+/* Snowflakes Animation */
+.snowflakes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10; /* Ensures visibility over everything in the hero */
+}
+
+.snowflake {
+  display: block;
+  position: absolute;
+  top: -40px;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-40px) translateX(0); opacity: 0; }
+  5% { opacity: 1; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(100vh) translateX(40px); opacity: 0; }
+}
+
+.snowflake:nth-child(1) { left: 91%; font-size: 25px; animation-duration: 12s; animation-delay: 0.2s; opacity: 0.9; }
+.snowflake:nth-child(2) { left: 16%; font-size: 26px; animation-duration: 17s; animation-delay: 6.7s; opacity: 0.83; }
+.snowflake:nth-child(3) { left: 87%; font-size: 25px; animation-duration: 12s; animation-delay: 3.2s; opacity: 0.82; }
+.snowflake:nth-child(4) { left: 25%; font-size: 49px; animation-duration: 17s; animation-delay: 0.5s; opacity: 0.99; }
+.snowflake:nth-child(5) { left: 5%; font-size: 45px; animation-duration: 11s; animation-delay: 9.9s; opacity: 0.94; }
+.snowflake:nth-child(6) { left: 83%; font-size: 34px; animation-duration: 14s; animation-delay: 2.3s; opacity: 0.84; }
+.snowflake:nth-child(7) { left: 39%; font-size: 23px; animation-duration: 20s; animation-delay: 1.9s; opacity: 0.63; }
+.snowflake:nth-child(8) { left: 27%; font-size: 41px; animation-duration: 13s; animation-delay: 7.0s; opacity: 0.64; }
+.snowflake:nth-child(9) { left: 84%; font-size: 25px; animation-duration: 15s; animation-delay: 5.5s; opacity: 0.88; }
+.snowflake:nth-child(10) { left: 23%; font-size: 44px; animation-duration: 13s; animation-delay: 8.2s; opacity: 0.83; }
+.snowflake:nth-child(11) { left: 38%; font-size: 35px; animation-duration: 10s; animation-delay: 5.2s; opacity: 0.7; }
+.snowflake:nth-child(12) { left: 57%; font-size: 27px; animation-duration: 17s; animation-delay: 5.9s; opacity: 0.69; }
+.snowflake:nth-child(13) { left: 29%; font-size: 46px; animation-duration: 16s; animation-delay: 0.8s; opacity: 0.88; }
+.snowflake:nth-child(14) { left: 64%; font-size: 22px; animation-duration: 18s; animation-delay: 3.6s; opacity: 0.69; }
+.snowflake:nth-child(15) { left: 64%; font-size: 23px; animation-duration: 16s; animation-delay: 7.4s; opacity: 0.62; }
+.snowflake:nth-child(16) { left: 40%; font-size: 21px; animation-duration: 14s; animation-delay: 8.9s; opacity: 0.87; }
+.snowflake:nth-child(17) { left: 67%; font-size: 35px; animation-duration: 13s; animation-delay: 2.0s; opacity: 0.9; }
+.snowflake:nth-child(18) { left: 86%; font-size: 44px; animation-duration: 18s; animation-delay: 6.2s; opacity: 0.6; }
+.snowflake:nth-child(19) { left: 44%; font-size: 43px; animation-duration: 14s; animation-delay: 5.8s; opacity: 0.77; }
+.snowflake:nth-child(20) { left: 41%; font-size: 24px; animation-duration: 12s; animation-delay: 8.8s; opacity: 0.75; }
+.snowflake:nth-child(21) { left: 79%; font-size: 25px; animation-duration: 19s; animation-delay: 0.9s; opacity: 0.65; }
+.snowflake:nth-child(22) { left: 61%; font-size: 22px; animation-duration: 11s; animation-delay: 2.9s; opacity: 0.6; }
+.snowflake:nth-child(23) { left: 75%; font-size: 30px; animation-duration: 18s; animation-delay: 7.0s; opacity: 0.63; }
+.snowflake:nth-child(24) { left: 6%; font-size: 23px; animation-duration: 13s; animation-delay: 1.5s; opacity: 0.94; }
+.snowflake:nth-child(25) { left: 54%; font-size: 52px; animation-duration: 15s; animation-delay: 7.2s; opacity: 0.76; }
+.snowflake:nth-child(26) { left: 66%; font-size: 42px; animation-duration: 17s; animation-delay: 6.6s; opacity: 0.69; }
+.snowflake:nth-child(27) { left: 2%; font-size: 43px; animation-duration: 13s; animation-delay: 2.7s; opacity: 0.83; }
+.snowflake:nth-child(28) { left: 42%; font-size: 20px; animation-duration: 12s; animation-delay: 7.7s; opacity: 0.73; }
+.snowflake:nth-child(29) { left: 87%; font-size: 24px; animation-duration: 19s; animation-delay: 8.6s; opacity: 0.79; }
+.snowflake:nth-child(30) { left: 92%; font-size: 49px; animation-duration: 16s; animation-delay: 6.6s; opacity: 0.8; }
+.snowflake:nth-child(31) { left: 28%; font-size: 47px; animation-duration: 14s; animation-delay: 9.4s; opacity: 0.92; }
+.snowflake:nth-child(32) { left: 12%; font-size: 22px; animation-duration: 13s; animation-delay: 11.7s; opacity: 0.92; }
+.snowflake:nth-child(33) { left: 78%; font-size: 34px; animation-duration: 19s; animation-delay: 4.8s; opacity: 0.71; }
+.snowflake:nth-child(34) { left: 2%; font-size: 51px; animation-duration: 11s; animation-delay: 11.3s; opacity: 0.76; }
+.snowflake:nth-child(35) { left: 54%; font-size: 34px; animation-duration: 12s; animation-delay: 7.5s; opacity: 0.84; }
+.snowflake:nth-child(36) { left: 91%; font-size: 46px; animation-duration: 15s; animation-delay: 3.3s; opacity: 0.72; }
+.snowflake:nth-child(37) { left: 25%; font-size: 23px; animation-duration: 11s; animation-delay: 3.1s; opacity: 0.71; }
+.snowflake:nth-child(38) { left: 66%; font-size: 49px; animation-duration: 20s; animation-delay: 10.5s; opacity: 0.78; }
+.snowflake:nth-child(39) { left: 56%; font-size: 51px; animation-duration: 16s; animation-delay: 0.0s; opacity: 0.84; }
+.snowflake:nth-child(40) { left: 52%; font-size: 23px; animation-duration: 10s; animation-delay: 0.4s; opacity: 0.78; }

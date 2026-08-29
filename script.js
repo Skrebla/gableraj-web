@@ -1488,6 +1488,7 @@
     // Check if we're on galerija.html (has hero-gallery class)
     const isGalleryPage = heroGallery !== null;
     const isLandingPage = isHomePage && !isGalleryPage;
+    const isFullscreenHeroPage = isLandingPage || body.classList.contains('christmas-theme');
     
     if (logo) {
       function updateLogo() {
@@ -1496,8 +1497,8 @@
           if (logo.src && !logo.src.includes('logo-black-hor.png')) {
             logo.src = logo.src.replace('logo-white-hor.png', 'logo-black-hor.png').replace('logo-black-hor.png', 'logo-black-hor.png');
           }
-        } else if (isLandingPage) {
-          // Landing page (index.html) - change based on scroll on mobile
+        } else if (isFullscreenHeroPage) {
+          // Fullscreen hero pages (index.html, bozicni-domjenci.html) - change based on scroll on mobile
           if (window.innerWidth <= 767) {
             // Mobile - check scroll state
             const isScrolled = navbar && navbar.classList.contains('navbar-scrolled');
@@ -1534,8 +1535,8 @@
       // Update on load
       updateLogo();
       
-      // Update on resize (only for home page)
-      if (isHomePage) {
+      // Update on resize (for fullscreen hero pages)
+      if (isFullscreenHeroPage) {
         window.addEventListener('resize', updateLogo);
       }
     }
@@ -1557,14 +1558,15 @@
                        !body.classList.contains('about-page');
     const isGalleryPage = heroGallery !== null;
     const isLandingPage = isHomePage && !isGalleryPage;
+    const isFullscreenHeroPage = isLandingPage || body.classList.contains('christmas-theme');
 
     let lastScrollTop = 0;
     let ticking = false;
     let isInitialized = false;
 
     function updateLogo() {
-      // Only update logo on mobile for landing page
-      if (!isLandingPage || !logo || window.innerWidth > 767) return;
+      // Only update logo on mobile for fullscreen hero pages
+      if (!isFullscreenHeroPage || !logo || window.innerWidth > 767) return;
       
       const isScrolled = navbar.classList.contains('navbar-scrolled');
       const currentSrc = logo.src || '';
@@ -2408,6 +2410,438 @@
 
     if (modalForm) setupFormHandling(modalForm, modalMsg, true);
     if (pageForm) setupFormHandling(pageForm, pageMsg, false);
+  })();
+
+  // ==========================================================================
+  // GENERAL INQUIRY MODAL & FORM CONTROLLER ("Zatraži ponudu")
+  // ==========================================================================
+  (function() {
+    const inquiryModal = document.getElementById('inquiry-modal');
+    const inquiryForm = document.getElementById('inquiry-modal-form');
+    const inquiryFormMessage = document.getElementById('inquiry-modal-form-message');
+    const openModalBtns = document.querySelectorAll('.open-inquiry-modal, [data-open-modal="inquiry-modal"]');
+    const closeModalBtns = document.querySelectorAll('.inquiry-modal-close, [data-close-modal="inquiry-modal"]');
+    const backdrop = inquiryModal ? inquiryModal.querySelector('.wedding-modal-backdrop') : null;
+
+    if (!inquiryModal) return;
+
+    // Initialize EmailJS safely
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init("QPQWvCmqM0AYvPEUF");
+    }
+
+    let hasAttemptedSubmit = false;
+
+    function getPageDefaultEventType() {
+      const select = document.getElementById('inquiry-tip-eventa');
+      if (!select) return '';
+      const selectedOption = select.querySelector('option[selected]:not([disabled])');
+      return selectedOption ? selectedOption.value : '';
+    }
+
+    function openModal(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      hasAttemptedSubmit = false;
+      clearAllFieldErrors();
+      if (inquiryFormMessage) {
+        inquiryFormMessage.style.display = 'none';
+        inquiryFormMessage.textContent = '';
+      }
+
+      // Check if button specifies a data-event-type or use page default
+      const btn = e && e.currentTarget ? e.currentTarget : null;
+      const targetEventType = btn ? btn.getAttribute('data-event-type') : null;
+      const select = document.getElementById('inquiry-tip-eventa');
+      if (select) {
+        if (targetEventType) {
+          select.value = targetEventType;
+        } else if (!select.value) {
+          const defaultVal = getPageDefaultEventType();
+          if (defaultVal) {
+            select.value = defaultVal;
+          }
+        }
+      }
+
+      syncAllPlaceholderColors();
+      inquiryModal.classList.add('is-active');
+      inquiryModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      setTimeout(function() {
+        const firstInput = document.getElementById('inquiry-ime');
+        if (firstInput) firstInput.focus();
+      }, 100);
+    }
+
+    function closeModal() {
+      hasAttemptedSubmit = false;
+      clearAllFieldErrors();
+      if (inquiryFormMessage) {
+        inquiryFormMessage.style.display = 'none';
+        inquiryFormMessage.textContent = '';
+      }
+      syncAllPlaceholderColors();
+      inquiryModal.classList.remove('is-active');
+      inquiryModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openModalBtns.forEach(function(btn) {
+      btn.addEventListener('click', openModal);
+    });
+
+    closeModalBtns.forEach(function(btn) {
+      btn.addEventListener('click', closeModal);
+    });
+
+    if (backdrop) {
+      backdrop.addEventListener('click', closeModal);
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && inquiryModal.classList.contains('is-active')) {
+        closeModal();
+      }
+    });
+
+    // Helper functions for field errors
+    function showFieldError(fieldId, errorMessage) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+
+      removeFieldError(fieldId);
+
+      const errorElement = document.createElement('div');
+      errorElement.className = 'field-error';
+      errorElement.id = fieldId + '-error';
+      errorElement.textContent = errorMessage;
+      errorElement.style.color = '#dc3545';
+      errorElement.style.fontSize = '12px';
+      errorElement.style.marginTop = '4px';
+      errorElement.style.display = 'block';
+
+      field.style.borderColor = '#dc3545';
+
+      const fieldContainer = field.closest('.contact-field');
+      if (fieldContainer) {
+        fieldContainer.appendChild(errorElement);
+      }
+    }
+
+    function removeFieldError(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+
+      const errorElement = document.getElementById(fieldId + '-error');
+      if (errorElement) {
+        errorElement.remove();
+      }
+      field.style.borderColor = '';
+    }
+
+    const fieldIds = [
+      'inquiry-ime',
+      'inquiry-email',
+      'inquiry-telefon',
+      'inquiry-tip-eventa',
+      'inquiry-datum',
+      'inquiry-lokacija',
+      'inquiry-broj-gostiju'
+    ];
+
+    function clearAllFieldErrors() {
+      fieldIds.forEach(removeFieldError);
+    }
+
+    function validateInquiryField(fieldId, forceRequired) {
+      const field = document.getElementById(fieldId);
+      if (!field) return true;
+      const value = field.value.trim();
+      const checkRequired = forceRequired || hasAttemptedSubmit;
+
+      if (fieldId === 'inquiry-ime') {
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Ime i prezime je obavezno polje.');
+            return false;
+          }
+        } else if (value.length < 2) {
+          showFieldError(fieldId, 'Ime i prezime mora imati najmanje 2 znaka.');
+          return false;
+        }
+      } else if (fieldId === 'inquiry-email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Email adresa je obavezno polje.');
+            return false;
+          }
+        } else if (!emailRegex.test(value)) {
+          showFieldError(fieldId, 'Molimo unesite valjanu email adresu.');
+          return false;
+        }
+      } else if (fieldId === 'inquiry-telefon') {
+        const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Broj telefona je obavezno polje.');
+            return false;
+          }
+        } else if (!phoneRegex.test(value) || value.replace(/\D/g, '').length < 8) {
+          showFieldError(fieldId, 'Molimo unesite valjan broj telefona.');
+          return false;
+        }
+      } else if (fieldId === 'inquiry-tip-eventa') {
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Molimo odaberite tip događaja.');
+            return false;
+          }
+        }
+      } else if (fieldId === 'inquiry-datum') {
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Datum događaja je obavezno polje.');
+            return false;
+          }
+        } else {
+          const selectedDate = new Date(value);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          selectedDate.setHours(0, 0, 0, 0);
+          if (selectedDate < today) {
+            showFieldError(fieldId, 'Datum događaja ne može biti u prošlosti.');
+            return false;
+          }
+        }
+      } else if (fieldId === 'inquiry-lokacija') {
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Lokacija je obavezno polje.');
+            return false;
+          }
+        } else if (value.length < 2) {
+          showFieldError(fieldId, 'Lokacija mora imati najmanje 2 znaka.');
+          return false;
+        }
+      } else if (fieldId === 'inquiry-broj-gostiju') {
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Broj gostiju je obavezno polje.');
+            return false;
+          }
+        } else {
+          const numGuests = parseInt(value, 10);
+          if (isNaN(numGuests) || numGuests < 25) {
+            showFieldError(fieldId, '25 gostiju minimalno.');
+            return false;
+          }
+        }
+      }
+
+      removeFieldError(fieldId);
+      return true;
+    }
+
+    function validateInquiryForm() {
+      let isValid = true;
+      clearAllFieldErrors();
+
+      fieldIds.forEach(function(fieldId) {
+        const fieldValid = validateInquiryField(fieldId, true);
+        if (!fieldValid) {
+          isValid = false;
+        }
+      });
+
+      return isValid;
+    }
+
+    function updateFieldColor(field) {
+      if (!field) return;
+      if (field.tagName === 'SELECT') {
+        if (!field.value) {
+          field.style.color = '#9e9e9e';
+          field.classList.add('is-placeholder');
+        } else {
+          field.style.color = '#111111';
+          field.classList.remove('is-placeholder');
+        }
+      } else if (field.type === 'date') {
+        if (!field.value) {
+          field.style.color = '#9e9e9e';
+          field.classList.remove('has-value');
+        } else {
+          field.style.color = '#111111';
+          field.classList.add('has-value');
+        }
+      }
+    }
+
+    function syncAllPlaceholderColors() {
+      fieldIds.forEach(function(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (field) updateFieldColor(field);
+      });
+    }
+
+    // Real-time feedback listeners
+    fieldIds.forEach(function(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+
+      updateFieldColor(field);
+
+      field.addEventListener('blur', function() {
+        validateInquiryField(fieldId, false);
+        updateFieldColor(field);
+      });
+
+      field.addEventListener('input', function() {
+        validateInquiryField(fieldId, false);
+        updateFieldColor(field);
+      });
+
+      if (field.tagName === 'SELECT' || field.type === 'date') {
+        field.addEventListener('change', function() {
+          validateInquiryField(fieldId, false);
+          updateFieldColor(field);
+        });
+      }
+    });
+
+    function showInquiryMessage(text, type) {
+      if (!inquiryFormMessage) return;
+      inquiryFormMessage.textContent = text;
+      inquiryFormMessage.style.display = 'block';
+      inquiryFormMessage.className = 'form-message ' + type;
+
+      if (type === 'success') {
+        inquiryFormMessage.style.backgroundColor = '#d4edda';
+        inquiryFormMessage.style.color = '#155724';
+        inquiryFormMessage.style.border = '1px solid #c3e6cb';
+      } else {
+        inquiryFormMessage.style.backgroundColor = '#f8d7da';
+        inquiryFormMessage.style.color = '#721c24';
+        inquiryFormMessage.style.border = '1px solid #f5c6cb';
+      }
+
+      inquiryFormMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      if (type === 'error') {
+        setTimeout(function() {
+          inquiryFormMessage.style.display = 'none';
+        }, 6000);
+      }
+    }
+
+    if (inquiryForm) {
+      inquiryForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        hasAttemptedSubmit = true;
+
+        if (!validateInquiryForm()) {
+          const firstError = inquiryForm.querySelector('.field-error');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+
+        const ime = document.getElementById('inquiry-ime').value.trim();
+        const email = document.getElementById('inquiry-email').value.trim();
+        const telefon = document.getElementById('inquiry-telefon').value.trim();
+        const tipEventa = document.getElementById('inquiry-tip-eventa').value;
+        const datum = document.getElementById('inquiry-datum').value;
+        const lokacija = document.getElementById('inquiry-lokacija').value.trim();
+        const brojGostiju = document.getElementById('inquiry-broj-gostiju').value.trim();
+        const porukaElem = document.getElementById('inquiry-poruka');
+        const poruka = porukaElem ? porukaElem.value.trim() : '';
+
+        // Convert date from YYYY-MM-DD to European format DD.MM.YYYY.
+        let formattedDate = datum;
+        if (datum && datum.includes('-')) {
+          const parts = datum.split('-');
+          if (parts.length === 3) {
+            formattedDate = parts[2] + '.' + parts[1] + '.' + parts[0] + '.';
+          }
+        }
+
+        const submitBtn = inquiryForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Šalje se...';
+
+        const templateParams = {
+          from_name: ime,
+          from_email: email,
+          phone: telefon,
+          event_type: tipEventa,
+          event_date: formattedDate,
+          location: lokacija,
+          guest_count: brojGostiju,
+          message: poruka ? poruka : 'Nema dodatne poruke',
+          to_email: 'info@catering-gableraj.hr'
+        };
+
+        if (typeof emailjs === 'undefined') {
+          console.error('EmailJS is not loaded');
+          showInquiryMessage('Došlo je do greške. Molimo osvježite stranicu ili nas kontaktirajte direktno.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          return;
+        }
+
+        emailjs.send('service_iftu7dh', 'template_lxqalxv', templateParams)
+          .then(function() {
+            var onConversionSent = function() {
+              showInquiryMessage('Hvala vam! Vaš upit je uspješno poslan. Javit ćemo vam se u najkraćem roku.', 'success');
+              inquiryForm.reset();
+              const defaultVal = getPageDefaultEventType();
+              const select = document.getElementById('inquiry-tip-eventa');
+              if (defaultVal && select) {
+                select.value = defaultVal;
+              }
+              clearAllFieldErrors();
+              syncAllPlaceholderColors();
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+            };
+
+            var conversionPayload = {
+              'send_to': 'AW-17906241738/90qKCOnVie8bEMqhrtpC',
+              'value': 1.0,
+              'currency': 'EUR',
+              'event_callback': onConversionSent
+            };
+
+            if (typeof gtag === 'function') {
+              gtag('event', 'conversion', conversionPayload);
+            } else {
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push(['event', 'conversion', conversionPayload]);
+              onConversionSent();
+            }
+
+            setTimeout(function() {
+              if (submitBtn.disabled) {
+                onConversionSent();
+              }
+            }, 2500);
+          }, function(error) {
+            console.error('EmailJS Inquiry Form Error:', error);
+            showInquiryMessage('Došlo je do greške pri slanju upita. Molimo pokušajte ponovno ili nas kontaktirajte direktno.', 'error');
+          })
+          .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          });
+      });
+    }
   })();
 
 
