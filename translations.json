@@ -616,8 +616,8 @@
     "de": "Ja, wir kreieren mit besonderer Sorgfalt Menüs für alle Ernährungspräferenzen und Allergien, mit deutlich gekennzeichneten Gerichten."
   },
   "Gala večera u sljedovima": {
-    "en": "Multi-course gala dinner",
-    "de": "Mehrgängiges Gala-Dinner"
+    "en": "Gala dinner in courses",
+    "de": "Gala-Dinner in Gängen"
   },
   "Galerija": {
     "en": "Gallery",
@@ -796,8 +796,8 @@
     "de": "Wir erfüllen all Ihre Wünsche. Wir widmen uns der Schaffung magischer Momente, an die Sie sich ein Leben lang erinnern werden."
   },
   "Catering za vjenčanja": {
-    "en": "Catering for weddings",
-    "de": "Catering für Hochzeiten"
+    "en": "Wedding catering",
+    "de": "Hochzeitscatering"
   },
   "Tip događaja *": {
     "en": "Event type *",
@@ -1025,7 +1025,7 @@
   },
   "Odabir lokacije": {
     "en": "Location selection",
-    "de": "Location-Auswahl"
+    "de": "Standortauswahl"
   },
   "Predsvadbeno okupljanje": {
     "en": "Pre-wedding gathering",
@@ -1162,5 +1162,493 @@
   "Kreiramo nezaboravne trenutke.": {
     "en": "We create unforgettable moments.",
     "de": "Wir schaffen unvergessliche Momente."
+  },
+  "Koncept vjenčanja": {
+    "en": "Wedding concept",
+    "de": "Hochzeitskonzept"
+  },
+  "Klijent 5": {
+    "en": "Client 5",
+    "de": "Kunde 5"
+  },
+  "Catering za privatne zabave": {
+    "en": "Catering for private parties",
+    "de": "Catering für private Feiern"
+  },
+  "Catering za ipraćaje, catering kod mladenaca doma u Zagrebu i okolici - Catering Gableraj": {
+    "en": "Catering for farewells, catering at the newlyweds' home in Zagreb and surroundings - Catering Gableraj",
+    "de": "Catering für Abschiede, Catering bei den Brautleuten zu Hause in Zagreb und Umgebung - Catering Gableraj"
+  },
+  "HNS partner": {
+    "en": "HNS partner",
+    "de": "HNS Partner"
+  },
+  "Losos plata za sve prilike, najbolji Catering u Zagrebu": {
+    "en": "Salmon platter for all occasions, best Catering in Zagreb",
+    "de": "Lachsplatte für alle Anlässe, bestes Catering in Zagreb"
+  },
+  "Elegantna postava za poslovni božićni party": {
+    "en": "Elegant setup for a corporate Christmas party",
+    "de": "Elegantes Setup für eine Firmenweihnachtsfeier"
+  },
+  "Dvorac Medvedgrad, lokacija za vjenčanja partneri Catering Gableraj": {
+    "en": "Medvedgrad Castle, wedding location partners Catering Gableraj",
+    "de": "Schloss Medvedgrad, Hochzeitslocation-Partner Catering Gableraj"
+  },
+  "Prezentacija finger food hrane za korporativni domjenak": {
+    "en": "Finger food presentation for a corporate reception",
+    "de": "Fingerfood-Präsentation für einen Firmenempfang"
+  },
+  "Oprema za evente, catering Catering Gableraj": {
+    "en": "Event equipment, catering Catering Gableraj",
+    "de": "Eventausstattung, Catering Catering Gableraj"
+  },
+  "Zagorske štrukle, domaće i tople - Catering Gableraj": {
+    "en": "Zagorske štrukle, homemade and warm - Catering Gableraj",
+    "de": "Zagorske štrukle, hausgemacht und warm - Catering Gableraj"
+  },
+  "Scatolina za manja vjenčanja u partnerstvu s Catering Gableraj": {
+    "en": "Scatolina for smaller weddings in partnership with Catering Gableraj",
+    "de": "Scatolina für kleinere Hochzeiten in Partnerschaft mit Catering Gableraj"
+  },
+  "Rimac Group partner": {
+    "en": "Rimac Group partner",
+    "de": "Rimac Group Partner"
+  },
+  "Najam catering opreme na području Zagreba i okolice - Catering Gableraj": {
+    "en": "Catering equipment rental in Zagreb and surroundings - Catering Gableraj",
+    "de": "Verleih von Catering-Ausrüstung im Raum Zagreb und Umgebung - Catering Gableraj"
+  },
+  "Stol sa sokovima za domjenke - Catering Gableraj": {
+    "en": "Juice table for receptions - Catering Gableraj",
+    "de": "Safttisch für Empfänge - Catering Gableraj"
+  },
+  "Slatki adventski stol": {
+    "en": "Sweet Advent table",
+    "de": "Süßer Adventstisch"
+  },
+  "Catering Gableraj - logo": {
+    "en": "Catering Gableraj - logo",
+    "de": "Catering Gableraj - Logo"
+  },
+  "Klub Šumica, lokacija za vjenčanja partneri Catering Gableraj": {
+    "en": "Klub Šumica, wedding location partners Catering Gableraj",
+    "de": "Klub Šumica, Hochzeitslocation-Partner Catering Gableraj"
+  },
+  "Adventski domjenak u uredu": {
+    "en": "Advent reception in the office",
+    "de": "Adventsempfang im Büro"
+  },
+  "Erste Banka partner": {
+    "en": "Erste Banka partner",
+    "de": "Erste Banka Partner"
+  },
+  "Klub Šumica unutrašnjost, lokacija za vjenčanja partneri Catering Gableraj": {
+    "en": "Klub Šumica interior, wedding location partners Catering Gableraj",
+    "de": "Klub Šumica Innenraum, Hochzeitslocation-Partner Catering Gableraj"
+  },
+  "Aperitiv stol, šampanjac i aperol spritze - Catering Gableraj": {
+    "en": "Aperitif table, champagne and aperol spritz - Catering Gableraj",
+    "de": "Aperitif-Tisch, Champagner und Aperol Spritz - Catering Gableraj"
+  },
+  "Elegantno uređen prostor za vjenčanja i Catering Gableraj": {
+    "en": "Elegantly decorated space for weddings and Catering Gableraj",
+    "de": "Elegant dekorierter Raum für Hochzeiten und Catering Gableraj"
+  },
+  "Galerija 6": {
+    "en": "Gallery 6",
+    "de": "Galerie 6"
+  },
+  "Svježe kiflice - Catering Gableraj Zagreb": {
+    "en": "Fresh crescent rolls - Catering Gableraj Zagreb",
+    "de": "Frische Hörnchen - Catering Gableraj Zagreb"
+  },
+  "svadbeni catering - Catering Gableraj Zagreb": {
+    "en": "wedding catering - Catering Gableraj Zagreb",
+    "de": "Hochzeitscatering - Catering Gableraj Zagreb"
+  },
+  "Švedski stol za vjenčanja i domjenke - Catering Gableraj Zagreb": {
+    "en": "Buffet table for weddings and receptions - Catering Gableraj Zagreb",
+    "de": "Buffet für Hochzeiten und Empfänge - Catering Gableraj Zagreb"
+  },
+  "Vila Dalmacija vjenčanja uz more - Catering Gableraj": {
+    "en": "Villa Dalmacija weddings by the sea - Catering Gableraj",
+    "de": "Villa Dalmacija Hochzeiten am Meer - Catering Gableraj"
+  },
+  "Catering Gableraj profesionalni konobari": {
+    "en": "Catering Gableraj professional waiters",
+    "de": "Catering Gableraj professionelle Kellner"
+  },
+  "Lokacija s pogledom na Zagreb i profesionalna organizacija Catering Gableraj": {
+    "en": "Location with a view of Zagreb and professional organization by Catering Gableraj",
+    "de": "Location mit Blick auf Zagreb und professionelle Organisation durch Catering Gableraj"
+  },
+  "Šampanjac za evente- Catering Gableraj": {
+    "en": "Champagne for events - Catering Gableraj",
+    "de": "Champagner für Events - Catering Gableraj"
+  },
+  "Foresta ambijent za vjenčanja - Catering Gableraj": {
+    "en": "Foresta ambiance for weddings - Catering Gableraj",
+    "de": "Foresta Ambiente für Hochzeiten - Catering Gableraj"
+  },
+  "Alkoholna pića za catering - Catering Gableraj": {
+    "en": "Alcoholic beverages for catering - Catering Gableraj",
+    "de": "Alkoholische Getränke für Catering - Catering Gableraj"
+  },
+  "Torta za proslavu": {
+    "en": "Cake for celebration",
+    "de": "Torte für die Feier"
+  },
+  "Vinarija Trs Ilok rustikalno vjenčanje - Catering Gableraj": {
+    "en": "Vinarija Trs Ilok rustic wedding - Catering Gableraj",
+    "de": "Vinarija Trs Ilok rustikale Hochzeit - Catering Gableraj"
+  },
+  "Domaće štrudle od jabuka, višnji i sira - Catering Gableraj": {
+    "en": "Homemade apple, cherry and cheese strudels - Catering Gableraj",
+    "de": "Hausgemachte Apfel-, Kirsch- und Käsestrudel - Catering Gableraj"
+  },
+  "Klijent 6": {
+    "en": "Client 6",
+    "de": "Kunde 6"
+  },
+  "Klijent 11": {
+    "en": "Client 11",
+    "de": "Kunde 11"
+  },
+  "Šator i poslovni event i uslugu Cateringa Gableraja": {
+    "en": "Tent and corporate event and Catering Gableraj service",
+    "de": "Zelt und Firmenevent und Catering Gableraj Service"
+  },
+  "Poslovni eventi - Catering Gableraj Zagreb": {
+    "en": "Corporate events - Catering Gableraj Zagreb",
+    "de": "Firmenevents - Catering Gableraj Zagreb"
+  },
+  "Finger Food i Adventski kokteli": {
+    "en": "Finger food and Advent cocktails",
+    "de": "Fingerfood und Adventscocktails"
+  },
+  "Svečana večera na otvorenom prostoru u Medvedgradu - Catering Gableraj": {
+    "en": "Gala dinner outdoors in Medvedgrad - Catering Gableraj",
+    "de": "Gala-Dinner im Freien in Medvedgrad - Catering Gableraj"
+  },
+  "Foresta ekskluzivna lokacija - Catering Gableraj": {
+    "en": "Foresta exclusive location - Catering Gableraj",
+    "de": "Foresta exklusive Location - Catering Gableraj"
+  },
+  "Foresta šumski resort vjenčanja na otvorenom - Catering Gableraj": {
+    "en": "Foresta forest resort outdoor weddings - Catering Gableraj",
+    "de": "Foresta Waldresort Hochzeiten im Freien - Catering Gableraj"
+  },
+  "Svadbena torta za vjenčanja - Catering Gableraj Zagreb": {
+    "en": "Wedding cake for weddings - Catering Gableraj Zagreb",
+    "de": "Hochzeitstorte für Hochzeiten - Catering Gableraj Zagreb"
+  },
+  "GNK partner": {
+    "en": "GNK partner",
+    "de": "GNK Partner"
+  },
+  "Kornel i Catering Gableraj nude luksuznu atmosferu za vjenčanja i svečane prigode": {
+    "en": "Kornel and Catering Gableraj offer a luxurious atmosphere for weddings and festive occasions",
+    "de": "Kornel und Catering Gableraj bieten eine luxuriöse Atmosphäre für Hochzeiten und festliche Anlässe"
+  },
+  "Svježe domaće kiflice za domjenak - Catering Zagreb": {
+    "en": "Fresh homemade crescent rolls for reception - Catering Zagreb",
+    "de": "Frische hausgemachte Hörnchen für Empfang - Catering Zagreb"
+  },
+  "Vinarija Trs Ilok ambijent za slavlja - Catering Gableraj": {
+    "en": "Vinarija Trs Ilok ambiance for celebrations - Catering Gableraj",
+    "de": "Vinarija Trs Ilok Ambiente für Feiern - Catering Gableraj"
+  },
+  "Svadbena torta za vjenčanja - Catering Gableraj": {
+    "en": "Wedding cake for weddings - Catering Gableraj",
+    "de": "Hochzeitstorte für Hochzeiten - Catering Gableraj"
+  },
+  "Klijent 9": {
+    "en": "Client 9",
+    "de": "Kunde 9"
+  },
+  "Kompletna organizacija - Catering Gableraj Zagreb": {
+    "en": "Complete organization - Catering Gableraj Zagreb",
+    "de": "Komplette Organisation - Catering Gableraj Zagreb"
+  },
+  "Catering stol s raznovrsnom hranom - Catering Zagreb": {
+    "en": "Catering table with diverse food - Catering Zagreb",
+    "de": "Catering-Tisch mit vielfältigen Speisen - Catering Zagreb"
+  },
+  "Privatna zabava uz bazen i Catering Gableraj": {
+    "en": "Private party by the pool and Catering Gableraj",
+    "de": "Private Feier am Pool und Catering Gableraj"
+  },
+  "Slatki stol za sve prigode - Catering Gableraj Zagreb": {
+    "en": "Sweet table for all occasions - Catering Gableraj Zagreb",
+    "de": "Sweet Table für alle Anlässe - Catering Gableraj Zagreb"
+  },
+  "BMW Hrvatska partner": {
+    "en": "BMW Hrvatska partner",
+    "de": "BMW Hrvatska Partner"
+  },
+  "Vila Dalmacija vjenčanja u Splitu - Catering Gableraj": {
+    "en": "Villa Dalmacija weddings in Split - Catering Gableraj",
+    "de": "Villa Dalmacija Hochzeiten in Split - Catering Gableraj"
+  },
+  "Bauerfeind partner": {
+    "en": "Bauerfeind partner",
+    "de": "Bauerfeind Partner"
+  },
+  "Lokacija po vašoj želji - Catering Gableraj": {
+    "en": "Location of your choice - Catering Gableraj",
+    "de": "Location nach Ihrem Wunsch - Catering Gableraj"
+  },
+  "Hladna plata Catering Gableraj, najbolje u Zagrebu": {
+    "en": "Cold platter Catering Gableraj, the best in Zagreb",
+    "de": "Kalte Platte Catering Gableraj, die beste in Zagreb"
+  },
+  "Plata pršuta i sira na okruglum pladnju - Catering Gableraj": {
+    "en": "Prosciutto and cheese platter on a round tray - Catering Gableraj",
+    "de": "Prosciutto- und Käseplatte auf einem runden Tablett - Catering Gableraj"
+  },
+  "Kompletna organizacija vašeg vjenčanja - Catering Gableraj": {
+    "en": "Complete organization of your wedding - Catering Gableraj",
+    "de": "Komplette Organisation Ihrer Hochzeit - Catering Gableraj"
+  },
+  "Svečani bife stol s platama i delikatesama": {
+    "en": "Festive buffet table with platters and delicacies",
+    "de": "Festliches Buffet mit Platten und Delikatessen"
+  },
+  "Premium catering i finger food - Catering Gableraj": {
+    "en": "Premium catering and finger food - Catering Gableraj",
+    "de": "Premium Catering und Fingerfood - Catering Gableraj"
+  },
+  "Uz opremu i šatore Catering Gableraj nudi organizaciju evenata na Vašim lokacijama": {
+    "en": "With equipment and tents Catering Gableraj offers event organization at your locations",
+    "de": "Mit Ausrüstung und Zelten bietet Catering Gableraj Eventorganisation an Ihren Standorten"
+  },
+  "Torta za vjenčanja i svečane prigode - Catering Gableraj": {
+    "en": "Cake for weddings and festive occasions - Catering Gableraj",
+    "de": "Torte für Hochzeiten und festliche Anlässe - Catering Gableraj"
+  },
+  "Šampanjac za svadbe i cocktail hour - Catering Gableraj": {
+    "en": "Champagne for weddings and cocktail hour - Catering Gableraj",
+    "de": "Champagner für Hochzeiten und Cocktailstunde - Catering Gableraj"
+  },
+  "Klub Šumica partner": {
+    "en": "Klub Šumica partner",
+    "de": "Klub Šumica Partner"
+  },
+  "Svečani švedski stol": {
+    "en": "Festive buffet table",
+    "de": "Festliches Buffet"
+  },
+  "Hladna plata na svadbenom stolu - Catering Gableraj": {
+    "en": "Cold platter on the wedding table - Catering Gableraj",
+    "de": "Kalte Platte auf dem Hochzeitstisch - Catering Gableraj"
+  },
+  "Najam opreme za catering, najbolji Catering Gableraj u Zagrebu": {
+    "en": "Catering equipment rental, the best Catering Gableraj in Zagreb",
+    "de": "Catering-Ausrüstungsverleih, das beste Catering Gableraj in Zagreb"
+  },
+  "Šampanjac za vjenčanja i svečane prigode - Catering Gableraj": {
+    "en": "Champagne for weddings and festive occasions - Catering Gableraj",
+    "de": "Champagner für Hochzeiten und festliche Anlässe - Catering Gableraj"
+  },
+  "Plata domaćeg sira na zlatnom pladnju - Catering Gableraj": {
+    "en": "Local cheese platter on a golden tray - Catering Gableraj",
+    "de": "Lokale Käseplatte auf einem goldenen Tablett - Catering Gableraj"
+  },
+  "Svježe i domaće namirnice - Catering Gableraj Zagreb": {
+    "en": "Fresh and local ingredients - Catering Gableraj Zagreb",
+    "de": "Frische und lokale Zutaten - Catering Gableraj Zagreb"
+  },
+  "Slatki svadbeni stol - Catering Gableraj Zagreb": {
+    "en": "Sweet wedding table - Catering Gableraj Zagreb",
+    "de": "Süßer Hochzeitstisch - Catering Gableraj Zagreb"
+  },
+  "Švedski stol Catering Gableraj": {
+    "en": "Buffet table Catering Gableraj",
+    "de": "Buffet Catering Gableraj"
+  },
+  "HGK partner": {
+    "en": "HGK partner",
+    "de": "HGK Partner"
+  },
+  "Plata domaćeg sira na catering stolu - Catering Zagreb": {
+    "en": "Local cheese platter on a catering table - Catering Zagreb",
+    "de": "Lokale Käseplatte auf einem Cateringtisch - Catering Zagreb"
+  },
+  "Klijent 1": {
+    "en": "Client 1",
+    "de": "Kunde 1"
+  },
+  "Domaće i svježe namirnice - Catering Gableraj": {
+    "en": "Local and fresh ingredients - Catering Gableraj",
+    "de": "Lokale und frische Zutaten - Catering Gableraj"
+  },
+  "Otvoreni prostor za vjenčanja uz bazen i Catering Gableraj": {
+    "en": "Outdoor space for weddings by the pool and Catering Gableraj",
+    "de": "Außenbereich für Hochzeiten am Pool und Catering Gableraj"
+  },
+  "Klijent 7": {
+    "en": "Client 7",
+    "de": "Kunde 7"
+  },
+  "Klijent 10": {
+    "en": "Client 10",
+    "de": "Kunde 10"
+  },
+  "DS partner": {
+    "en": "DS partner",
+    "de": "DS Partner"
+  },
+  "Meni prilagodljiv Vašim željama - Catering Gableraj": {
+    "en": "Menu customizable to your wishes - Catering Gableraj",
+    "de": "Menü anpassbar an Ihre Wünsche - Catering Gableraj"
+  },
+  "Hladna plata na švedskom stolu - Catering Zagreb": {
+    "en": "Cold platter on the buffet table - Catering Zagreb",
+    "de": "Kalte Platte auf dem Buffet - Catering Zagreb"
+  },
+  "Klijent 3": {
+    "en": "Client 3",
+    "de": "Kunde 3"
+  },
+  "Catering Gableraj za vjenčanja na otvorenom prostoru": {
+    "en": "Catering Gableraj for outdoor weddings",
+    "de": "Catering Gableraj für Hochzeiten im Freien"
+  },
+  "Galerija 4": {
+    "en": "Gallery 4",
+    "de": "Galerie 4"
+  },
+  "Cocktail hour nudi Catering Gableraj ispred hale za vjenčanje": {
+    "en": "Cocktail hour offered by Catering Gableraj in front of the wedding hall",
+    "de": "Cocktailstunde angeboten von Catering Gableraj vor der Hochzeitshalle"
+  },
+  "Uređenje svadbenog stola - Catering Gableraj": {
+    "en": "Wedding table decoration - Catering Gableraj",
+    "de": "Hochzeitstischdekoration - Catering Gableraj"
+  },
+  "Premium finger food i catering - Catering Gableraj": {
+    "en": "Premium finger food and catering - Catering Gableraj",
+    "de": "Premium Fingerfood und Catering - Catering Gableraj"
+  },
+  "Klijent 2": {
+    "en": "Client 2",
+    "de": "Kunde 2"
+  },
+  "AWT partner": {
+    "en": "AWT partner",
+    "de": "AWT Partner"
+  },
+  "Švedski stol, hladno predjelo i finger food - Catering Gableraj": {
+    "en": "Buffet table, cold appetizer and finger food - Catering Gableraj",
+    "de": "Buffet, kalte Vorspeise und Fingerfood - Catering Gableraj"
+  },
+  "Poslovni eventi- - Catering Gableraj Zagreb": {
+    "en": "Corporate events- - Catering Gableraj Zagreb",
+    "de": "Firmenevents- - Catering Gableraj Zagreb"
+  },
+  "Hladna plata domaćih namirnica - Catering Gableraj Zagreb": {
+    "en": "Cold platter of local ingredients - Catering Gableraj Zagreb",
+    "de": "Kalte Platte mit lokalen Zutaten - Catering Gableraj Zagreb"
+  },
+  "Klijent 8": {
+    "en": "Client 8",
+    "de": "Kunde 8"
+  },
+  "Profesionalna usluga i konobari - Catering Gableraj": {
+    "en": "Professional service and waiters - Catering Gableraj",
+    "de": "Professioneller Service und Kellner - Catering Gableraj"
+  },
+  "Kuhano vino i zimski bar": {
+    "en": "Mulled wine and winter bar",
+    "de": "Glühwein und Winterbar"
+  },
+  "Vila Dalmacija otvorena terasa - Catering Gableraj": {
+    "en": "Villa Dalmacija open terrace - Catering Gableraj",
+    "de": "Villa Dalmacija offene Terrasse - Catering Gableraj"
+  },
+  "Foccacia domaća i najbolja u Zagrebu - Catering Gableraj": {
+    "en": "Homemade focaccia and the best in Zagreb - Catering Gableraj",
+    "de": "Hausgemachte Focaccia und die beste in Zagreb - Catering Gableraj"
+  },
+  "Klub Šumica cocktail hour, lokacija za vjenčanja partneri Catering Gableraj": {
+    "en": "Klub Šumica cocktail hour, wedding location partners Catering Gableraj",
+    "de": "Klub Šumica Cocktailstunde, Hochzeitslocation-Partner Catering Gableraj"
+  },
+  "Vjenčanje - Catering Gableraj Zagreb": {
+    "en": "Wedding - Catering Gableraj Zagreb",
+    "de": "Hochzeit - Catering Gableraj Zagreb"
+  },
+  "Catering stol s raznovrsnom hranom": {
+    "en": "Catering table with diverse food",
+    "de": "Catering-Tisch mit vielfältigen Speisen"
+  },
+  "Catering Gableraj logo": {
+    "en": "Catering Gableraj logo",
+    "de": "Catering Gableraj Logo"
+  },
+  "Phoenix Farmacija partner": {
+    "en": "Phoenix Farmacija partner",
+    "de": "Phoenix Farmacija Partner"
+  },
+  "Pogled na prirodu i Catering Gableraj": {
+    "en": "View of nature and Catering Gableraj",
+    "de": "Blick auf die Natur und Catering Gableraj"
+  },
+  "Slastice i finger food - Catering Gableraj": {
+    "en": "Sweets and finger food - Catering Gableraj",
+    "de": "Süßigkeiten und Fingerfood - Catering Gableraj"
+  },
+  "Najam opreme i dekoracije": {
+    "en": "Equipment and decoration rental",
+    "de": "Ausrüstungs- und Dekorationsverleih"
+  },
+  "Najam opreme, šatora, stolova stolica - Catering Gableraj": {
+    "en": "Equipment, tent, table and chair rental - Catering Gableraj",
+    "de": "Ausrüstungs-, Zelt-, Tisch- und Stuhlverleih - Catering Gableraj"
+  },
+  "Profesionalna usluga - Catering Gableraj Zagreb": {
+    "en": "Professional service - Catering Gableraj Zagreb",
+    "de": "Professioneller Service - Catering Gableraj Zagreb"
+  },
+  "Božićni domjenci i blagdanski catering za tvrtke Zagreb": {
+    "en": "Christmas receptions and holiday catering for companies in Zagreb",
+    "de": "Weihnachtsempfänge und Feiertagscatering für Unternehmen in Zagreb"
+  },
+  "Catering konobar profesionalni za vjenčanja i svečane prigode": {
+    "en": "Professional catering waiter for weddings and festive occasions",
+    "de": "Professioneller Catering-Kellner für Hochzeiten und festliche Anlässe"
+  },
+  "Bayer partner": {
+    "en": "Bayer partner",
+    "de": "Bayer Partner"
+  },
+  "Vinarija Trs Ilok vjenčanja u vinogradima - Catering Gableraj": {
+    "en": "Vinarija Trs Ilok weddings in vineyards - Catering Gableraj",
+    "de": "Vinarija Trs Ilok Hochzeiten in den Weinbergen - Catering Gableraj"
+  },
+  "Galerija 5": {
+    "en": "Gallery 5",
+    "de": "Galerie 5"
+  },
+  "Catering Gableraj konobari za vjenčanja i svečane prigode": {
+    "en": "Catering Gableraj waiters for weddings and festive occasions",
+    "de": "Catering Gableraj Kellner für Hochzeiten und festliche Anlässe"
+  },
+  "Zatvoreni prostor i Catering Gableraj": {
+    "en": "Indoor space and Catering Gableraj",
+    "de": "Innenbereich und Catering Gableraj"
+  },
+  "Klijent 4": {
+    "en": "Client 4",
+    "de": "Kunde 4"
+  },
+  "Fleksibilni meni - Catering Gableraj Zagreb": {
+    "en": "Flexible menu - Catering Gableraj Zagreb",
+    "de": "Flexibles Menü - Catering Gableraj Zagreb"
+  },
+  "Gourmet meni": {
+    "en": "Gourmet menu",
+    "de": "Gourmet-Menü"
   }
 }
