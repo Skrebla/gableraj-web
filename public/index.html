@@ -1,89 +1,963 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="hr">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/12.8.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/12.8.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/12.8.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/12.8.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/12.8.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/12.8.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/12.8.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/12.8.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/12.8.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/12.8.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<head>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Catering Gableraj" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17906241738"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-17906241738');
+  </script>
+
+  <title>Catering Gableraj | Catering za sve prigode</title>
+  <meta name="description"
+    content="Tražite vrhunski catering za svadbu, poslovni domjenak ili privatnu zabavu? Catering Gableraj nudi domaća jela i finger food na području Zagreba i okolice. Nazovite nas!">
+  <meta name="keywords"
+    content="catering zagreb, catering gableraj, catering za svadbu, catering za vjenčanje, catering oprema, najam opreme, dostava gableca, finger food, svadbene svečanosti, vjenčanje, domjenci, catering gableraj">
+  <meta name="author" content="Catering Gableraj">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Catering Gableraj | Catering za sve prigode">
+  <meta property="og:description" content="Planirate svadbu ili poslovni događaj? Pogledajte našu ponudu!">
+  <meta property="og:image" content="https://catering-gableraj.hr/images/Gableraj-172.webp">
+  <meta property="og:url" content="https://catering-gableraj.hr">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="hr_HR">
+
+  <!--JSON-LD-->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CateringService",
+          "@id": "https://catering-gableraj.hr/#organization",
+          "name": "Catering Gableraj",
+          "legalName": "Catering Gableraj d.o.o.",
+          "url": "https://catering-gableraj.hr",
+          "logo": "https://catering-gableraj.hr/image/logo_original.jpg",
+          "image": "https://catering-gableraj.hr/image/logo_original.jpg",
+          "description": "Catering za sve prigode u Zagrebu i okolici. Specijalizirani za vjenčanja, domjenke, poslovne i privatne evente.",
+          "telephone": "+385-91-2703-091",
+          "email": [
+            "tomislav@restoran-gableraj.com",
+            "info@catering-gableraj.hr"
+          ],
+          "priceRange": "$$",
+          "servesCuisine": "Croatian, Mediterranean",
+          "areaServed": [
+            {"@type": "City", "name": "Dugo Selo"},
+            {"@type": "City", "name": "Zagreb"},
+            {"@type": "City", "name": "Sesvete"},
+            {"@type": "City", "name": "Varazdin"},
+            {"@type": "City", "name": "Zapresic"},
+            {"@type": "City", "name": "Zabok"},
+            {"@type": "City", "name": "Karlovac"}
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Ulica hrvatskih branitelja 7",
+            "addressLocality": "Dugo Selo",
+            "postalCode": "10370",
+            "addressCountry": "HR"
+          },
+          "subOrganization": {
+            "@type": "CateringService",
+            "@id": "https://catering-gableraj.hr/#kitchen",
+            "name": "Catering Gableraj - Kuhinja i Dostava",
+            "image": "https://gableraj.hr/images/Gableraj-200.webp",
+            "hasMap": "https://maps.google.com/?cid=3308539668511951611&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ",
+            "telephone": "+385-91-2703-091",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Dubrava 256C",
+              "addressLocality": "Zagreb",
+              "postalCode": "10040",
+              "addressCountry": "HR"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 45.8279127,
+              "longitude": 16.0745631
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "opens": "00:00",
+                "closes": "23:59"
+              }
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://catering-gableraj.hr/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Dostavlja li Catering Gableraj hranu u Zagreb?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Da, vršimo dostavu cateringa i toplih gableca na području Dugog Sela, Sesveta i cijelog Zagreba."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Nudite li catering za vjenčanja, privatne zabave i poslovne evente?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Specijalizirani smo za catering za vjenčanja, krštenja, rođendane i poslovne domjenke uz široku ponudu finger fooda, domaćih jela, toplih i hladnih predjela te glavnih jela."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Možemo li prilagoditi meni prema vlastitim željama?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Naravno, naš meni je potpuno fleksibilan. Možete birati između naših klasičnih jelovnika ili ga oblikovati prema vlastitim željama i potrebama."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Nudite li opcije za vegetarijance i vegane?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Da, s posebnom pažnjom kreiramo jelovnike za sve prehrambene preferencije i alergije, uz jasno označena jela."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Koliko ranije trebamo rezervirati catering?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Preporučujemo rezervaciju najmanje 3–4 tjedna unaprijed, a za veće događaje i ranije, kako bismo osigurali najbolju uslugu."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Nudite li najam opreme?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Da, možemo organizirati i najam dodatne opreme – stolova, stolica, stolnjaka, čaša i ostalog inventara."
+              }
+            }
+          ]
         }
-      });
+      ]
+    }
     </script>
-  </body>
+
+  <!-- Optional fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Playfair:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- External stylesheet -->
+  <link rel="stylesheet" href="/styles.css?v=9b17761">
+
+  <link rel="alternate" hreflang="hr" href="https://catering-gableraj.hr/" />
+  <link rel="alternate" hreflang="en" href="https://catering-gableraj.hr/en/" />
+  <link rel="alternate" hreflang="de" href="https://catering-gableraj.hr/de/" />
+  <link rel="alternate" hreflang="x-default" href="https://catering-gableraj.hr/" />
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="/"><img class="logo" src="/image/logo-black-hor.png" alt="Catering Gableraj" /></a>
+    </div>
+
+    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="mobile-menu-overlay"></div>
+
+    <nav class="nav-center">
+      <a href="/" class="mobile-menu-logo">
+        <img src="/image/logo-black-vert.png" alt="Catering Gableraj" />
+      </a>
+      <div class="nav-dropdown">
+        <a href="#" class="nav-link" onclick="return false;">Usluge <i class="fas fa-chevron-down"></i></a>
+        <div class="nav-dropdown-menu">
+          <a href="/vjencanja.html" class="nav-dropdown-item">Vjenčanja</a>
+          <a href="/poslovni-eventi.html" class="nav-dropdown-item">Poslovni eventi</a>
+          <a href="/privatne-zabave.html" class="nav-dropdown-item">Privatne zabave</a>
+          <a href="/bozicni-domjenci.html" class="nav-dropdown-item">🎄 Božićni domjenci</a>
+        </div>
+      </div>
+      <a href="/galerija.html" class="nav-link">Galerija</a>
+      <a href="/about.html" class="nav-link">O nama</a>
+      <a href="/bozicni-domjenci.html" class="nav-link nav-link-christmas">
+        <span class="nav-festive-dot"></span>Božićni domjenci
+      </a>
+      
+      <div class="nav-dropdown lang-switcher">
+        <a href="#" class="nav-link" onclick="return false;">HR <i class="fas fa-globe"></i></a>
+        <div class="nav-dropdown-menu">
+          <a href="/" class="nav-dropdown-item" onclick="localStorage.setItem('langOverride', 'hr')">HR</a>
+          <a href="/en/" class="nav-dropdown-item" onclick="localStorage.setItem('langOverride', 'en')">EN</a>
+          <a href="/de/" class="nav-dropdown-item" onclick="localStorage.setItem('langOverride', 'de')">DE</a>
+        </div>
+      </div>
+    
+      <div class="nav-mobile-button">
+        <button class="btn-primary open-wedding-modal" data-open-modal="wedding-modal">Isplaniraj vjenčanje</button>
+      </div>
+    </nav>
+
+    <div class="nav-right">
+      <button class="btn-primary open-wedding-modal" data-open-modal="wedding-modal">Isplaniraj vjenčanje</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <video id="hero-video" autoplay muted loop playsinline poster="image/Gableraj-video-2-reverse-compressed-2.webp">
+      <source src="/image/Gableraj-video-2-reverse-compressed-2.webm" type="video/webm" />
+      <source src="/image/Gableraj-video-2-reverse-compressed-3.mp4" type="video/mp4" />
+      <!-- Fallback image if video doesn't load -->
+      <picture>
+        <source srcset="/image/Gableraj-video-2-reverse-compressed-2.avif" type="image/avif" />
+        <img src="/image/Gableraj-video-2-reverse-compressed-2.webp" alt="Catering stol s raznovrsnom hranom" />
+      </picture>
+    </video>
+    <div class="hero-content">
+      <div class="hero-heading">
+        <h1 class="hero-title">Premium catering za vjenčanja, poslovne i privatne evente</h1>
+        <p class="hero-subtitle">Gdje se stil susreće s okusom.</p>
+      </div>
+
+      <div class="hero-cta-row">
+        <button type="button" class="btn-ghost open-inquiry-modal" data-open-modal="inquiry-modal">
+          Zatraži ponudu
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <div class="page">
+    <section id="usluge" class="services">
+      <div class="services-header">
+        <div class="services-header-left">
+          <div class="services-kicker">USLUGE</div>
+          <h2 class="services-title">Catering usluge za sve prigode</h2>
+          <p class="services-subtitle">Ukusna perfekcija, stvorena za vas.</p>
+        </div>
+        <div class="services-header-right">
+          Dobrodošli u Catering Gableraj i uronite u fascinantan svijet u kojem su raznolikost i kulinarska izvrsnost u
+          središtu pažnje. Naš cilj je uvijek stvarati profinjena jela koja na svakom tanjuru spajaju svježinu i
+          inovaciju. Zato se oslanjamo isključivo na svježe i posebno kvalitetne sastojke. Bez obzira trebate li
+          catering za svadbu, privatnu zabavu ili poslovni event na području Hrvatske, svako jelo priprema se s pažnjom
+          i strašću, kako bi razveselilo ne samo nepce, već i dušu.
+        </div>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-main-card service-card" data-link="vjencanja.html">
+          <picture>
+            <source srcset="/image/svadba.avif" type="image/avif" />
+            <img src="/image/svadba.webp" alt="Vjenčanje - Catering Gableraj Zagreb" loading="lazy" />
+          </picture>
+          <div class="service-pill">
+            <div class="service-pill-icon">
+              <img src="/image/service-01.png" alt="svadbeni catering - Catering Gableraj Zagreb" loading="lazy" />
+            </div>
+            <div class="service-pill-text">
+              <span class="service-pill-title">Vjenčanja</span>
+            </div>
+          </div>
+        </div>
+        <div class="service-main-card service-card" id="poslovni-eventi" data-link="poslovni-eventi.html">
+          <picture>
+            <source srcset="/image/Gableraj-250.avif" type="image/avif" />
+            <img src="/image/Gableraj-250.webp" alt="Poslovni eventi - Catering Gableraj Zagreb" loading="lazy" />
+          </picture>
+          <div class="service-pill">
+            <div class="service-pill-icon">
+              <img src="/image/service-02.png" alt="Poslovni eventi- - Catering Gableraj Zagreb" loading="lazy" />
+            </div>
+            <div class="service-pill-text">
+              <span class="service-pill-title">Poslovni eventi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CATERING HIGHLIGHT -->
+  <section class="catering-highlight" style="width:100%; margin-top:96px; padding:0; border-radius:0;">
+    <div class="catering-highlight-inner">
+      <div class="page"
+        style="max-width:1440px; width:100%; margin:0 auto; padding:72px 24px; display:flex; flex-direction:column; align-items:center;">
+        <div class="catering-kicker">CATERING GABLERAJ</div>
+        <h2 class="catering-title">Stvorite nezaboravne uspomene</h2>
+
+        <div class="catering-features">
+          <div class="catering-feature">
+            <div class="catering-feature-icon">
+              <img src="/image/service-14.png" alt="Fleksibilni meni - Catering Gableraj Zagreb" loading="lazy" />
+            </div>
+            <div class="catering-feature-title">Fleksibilni meni</div>
+            <div class="catering-feature-text">Odaberite s našeg klasičnog menija i prilagodite ga prema vašim željama.
+            </div>
+          </div>
+
+          <div class="catering-feature">
+            <div class="catering-feature-icon">
+              <img src="/image/service-16.png" alt="Svježe i domaće namirnice - Catering Gableraj Zagreb"
+                loading="lazy" />
+            </div>
+            <div class="catering-feature-title">Svježe i domaće namirnice</div>
+            <div class="catering-feature-text">Naša jela pripremamo od domaćih i svježih sastojaka.</div>
+          </div>
+
+          <div class="catering-feature">
+            <div class="catering-feature-icon">
+              <img src="/image/service-12.png" alt="Kompletna organizacija - Catering Gableraj Zagreb" loading="lazy" />
+            </div>
+            <div class="catering-feature-title">Kompletna organizacija</div>
+            <div class="catering-feature-text">Planiramo i realiziramo, brinemo se o svakom detalju vašeg događaja.
+            </div>
+          </div>
+
+          <div class="catering-feature">
+            <div class="catering-feature-icon">
+              <img src="/image/service-15.png" alt="Profesionalna usluga - Catering Gableraj Zagreb" loading="lazy" />
+            </div>
+            <div class="catering-feature-title">Profesionalna usluga</div>
+            <div class="catering-feature-text">Naš iskusan tim uvijek je spreman pružiti vrhunsku uslugu.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- GALLERY -->
+  <section id="galerija" class="gallery" style="padding:0;">
+    <div class="page">
+      <div class="gallery-header">
+        <div class="gallery-header-left">
+          <div class="gallery-kicker">GALERIJA</div>
+          <h2 class="gallery-title">Priča o okusu, tradiciji i stilu.</h2>
+          <p class="gallery-subtitle">Slika govori tisuću riječi.</p>
+        </div>
+        <div class="gallery-header-right">
+          <p class="gallery-text-columns">
+            <span class="drop-cap">K</span>ažu da slika govori tisuću riječi, ali naše fotografije govore o tisućama
+            sretnih trenutaka i savršenih zalogaja. Dopustite da Vas inspiriraju prizori naših kulinarskih kreacija gdje
+            svaki detalj priča priču o posvećenosti i estetici. Naš cilj je oživjeti Vaše želje, bilo da se radi o
+            elegantnom vjenčanju, svečanoj proslavi ili poslovnom domjenku.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-main-item">
+        <picture>
+          <source srcset="/image/Gableraj-54.avif" type="image/avif" />
+          <img src="/image/Gableraj-54.webp" alt="Švedski stol za vjenčanja i domjenke - Catering Gableraj Zagreb"
+            loading="lazy" />
+        </picture>
+      </div>
+
+      <div class="gallery-side-items">
+        <div class="gallery-item">
+          <picture>
+            <source srcset="/image/Gableraj-234.avif" type="image/avif" />
+            <img src="/image/Gableraj-234.webp" alt="Svježe kiflice - Catering Gableraj Zagreb" loading="lazy"
+              style="object-position: center 70%;" />
+          </picture>
+        </div>
+        <div class="gallery-item">
+          <picture>
+            <source srcset="/image/Gableraj-261.avif" type="image/avif" />
+            <img src="/image/Gableraj-261.webp" alt="Premium finger food i catering - Catering Gableraj"
+              loading="lazy" style="object-position: center 90%;" />
+          </picture>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-grid gallery-grid--mirrored">
+      <div class="gallery-side-items">
+        <div class="gallery-item">
+          <picture>
+            <source srcset="/image/Gableraj-38.avif" type="image/avif" />
+            <img src="/image/Gableraj-38.webp" alt="Hladna plata domaćih namirnica - Catering Gableraj Zagreb"
+              loading="lazy" />
+          </picture>
+        </div>
+        <div class="gallery-item">
+          <picture>
+            <source srcset="/image/Gableraj-235.avif" type="image/avif" />
+            <img src="/image/Gableraj-235.webp" alt="Slatki stol za sve prigode - Catering Gableraj Zagreb"
+              loading="lazy" style="object-position: center 75%;" />
+          </picture>
+        </div>
+      </div>
+
+      <div class="gallery-main-item">
+        <picture>
+          <source srcset="/image/Gableraj-204.avif" type="image/avif" />
+          <img src="/image/Gableraj-204.webp" alt="Slatki stol za sve prigode - Catering Gableraj Zagreb"
+            loading="lazy" />
+        </picture>
+      </div>
+    </div>
+
+    <div class="gallery-more">
+      <a href="/galerija.html" class="gallery-more-link">POGLEDAJ JOŠ SLIKA ➜</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="page">
+    <section id="onama" class="about">
+      <div class="about-grid">
+        <div class="about-media">
+          <video class="about-video" autoplay muted loop playsinline poster="image/Gableraj-66.webp">
+            <source src="/image/reel_compressed.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="about-content">
+          <div class="about-kicker">O NAMA</div>
+          <h2 class="about-title">Dobrodošli u svijet Gableraja</h2>
+          <p class="about-text">Naš cilj je uvijek stvarati profinjena jela koja na svakom tanjuru spajaju svježinu i
+            inovaciju. Zato se oslanjamo isključivo na svježe i posebno kvalitetne sastojke. Svako jelo priprema se s
+            pažnjom i strašću, kako bi razveselilo ne samo nepce, već i dušu.</p>
+          <a href="/about.html"><button class="btn-primary about-button">
+              Naša priča
+
+            </button></a>
+
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-label">Klijenata</div>
+              <div class="stat-value" data-target="897">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Evenata</div>
+              <div class="stat-value" data-target="2548">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Years</div>
+              <div class="stat-value" data-target="10">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Posluženih jela</div>
+              <div class="stat-value" data-target="1000">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FAQ -->
+  <div class="page">
+    <section id="faq" class="faq">
+      <div class="faq-grid">
+        <div class="faq-intro">
+          <div class="faq-kicker">FAQ</div>
+          <h2 class="faq-title">Od prvog kontakta do zadnjeg zalogaja</h2>
+          <p class="faq-text">Organizacija događaja može djelovati zahtjevno, ali uz nas sve ide glatko. Tu smo da
+            odgovorimo na sva vaša pitanja.</p>
+
+          <a href="#kontakt">
+            <button class="btn-primary faq-button">
+              Zatraži ponudu
+            </button>
+          </a>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item is-open">
+            <button class="faq-question" type="button">
+              <span>Možemo li prilagoditi meni prema vlastitim željama?</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Naravno, naš meni je potpuno fleksibilan. Možete birati između naših klasičnih jelovnika ili ga
+                oblikovati prema vlastitim željama i potrebama.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Radite li samo vjenčanja ili i druge vrste događaja?</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Organiziramo i poslužujemo sve vrste događaja – od intimnih proslava do velikih poslovnih evenata.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Imate li unaprijed definirane pakete ili se sve prilagođava?</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Nudimo nekoliko predloženih paketa, ali svaki se može dodatno prilagoditi vašem budžetu i željama.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Nudite li opcije za vegetarijance, vegane i alergije?</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Da, s posebnom pažnjom kreiramo jelovnike za sve prehrambene preferencije i alergije, uz jasno označena
+                jela.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Koliko ranije trebamo rezervirati catering?</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Preporučujemo rezervaciju najmanje 3–4 tjedna unaprijed, a za veće događaje i ranije, kako bismo
+                osigurali najbolju uslugu.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Nudite li i najam opreme?</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Po potrebi možemo organizirati i najam dodatne opreme – stolova, stolica, stolnjaka, čaša i ostalog
+                inventara.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Radite li izvan Zagreba?</span>
+              <i class="fas fa-chevron-down faq-toggle-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Naravno! Primarno radimo u Zagrebu i okolici, ali za veće evente, vjenčanja i korporativne projekte,
+                dostupni smo diljem cijele Hrvatske.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FANCY TEXT SECTION -->
+  <section class="fancy-text-section">
+    <div class="fancy-text-row fancy-text-row--first">
+      <span class="fancy-text-content">Catering Gableraj • Gdje se stil susreće s okusom • Catering Gableraj • Gdje se
+        stil susreće s okusom • Catering Gableraj • Gdje se stil susreće s okusom •</span>
+    </div>
+    <div class="fancy-text-row fancy-text-row--second">
+      <span class="fancy-text-content">Catering Gableraj • Svježe namirnice • Profesionalna usluga • Svježe namirnice •
+        Profesionalna usluga • Svježe namirnice • Profesionalna usluga •</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="page">
+    <section id="kontakt" class="contact">
+      <div class="contact-card">
+        <div class="contact-intro">
+          <div class="contact-kicker">Kontakt</div>
+          <h2 class="contact-title">Započnimo zajedno vašu priču</h2>
+          <p class="contact-text">Organizacija događaja može djelovati zahtjevno, ali uz nas sve ide glatko. Ispunite
+            obrazac i javit ćemo vam se u najkraćem roku.</p>
+
+          <hr style="border:0; border-top:1px solid #e5e5e5; margin:24px 0;">
+
+          <div class="contact-info">
+            <div class="contact-info-item" style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+              <div
+                style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; color:#6b6b6b;">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <div style="font-weight:600; font-size:14px;">E-mail</div>
+                <div style="font-size:13px; color:var(--muted);">info@catering-gableraj.hr</div>
+              </div>
+            </div>
+
+            <div class="contact-info-item" style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+              <div
+                style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; color:#6b6b6b;">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <div style="font-weight:600; font-size:14px;">Call us</div>
+                <div style="font-size:13px; color:var(--muted);">+385 91 270 3091</div>
+              </div>
+            </div>
+
+            <div class="contact-info-item" style="display:flex; align-items:center; gap:16px;">
+              <div
+                style="width:44px; height:44px; border-radius:50%; background:#e7e7e7; display:flex; align-items:center; justify-content:center; color:#6b6b6b;">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div>
+                <div style="font-weight:600; font-size:14px;">Opening hours</div>
+                <div style="font-size:13px; color:var(--muted);">24/7</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form id="contact-form" class="contact-form">
+          <div class="contact-field">
+            <label for="ime">Ime i prezime</label>
+            <input id="ime" type="text" name="ime" placeholder="Vaše ime" />
+          </div>
+          <div class="contact-field">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="ime@primjer.hr" />
+          </div>
+          <div class="contact-field">
+            <label for="telefon">Telefon</label>
+            <input id="telefon" type="tel" name="telefon" placeholder="Broj telefona" />
+          </div>
+          <div class="contact-field">
+            <label for="tip-eventa">Tip događaja</label>
+            <select id="tip-eventa" name="tip_eventa">
+              <option value="svadbena vecera">Svadbena večera</option>
+              <option value="predsvadbeno skupljanje">Predsvadbeno skupljanje</option>
+              <option value="poslovni">Poslovni event</option>
+              <option value="privatna zabava">Privatna zabava</option>
+              <option value="bozicni domjenci">Božićni domjenci</option>
+            </select>
+          </div>
+          <div class="contact-field">
+            <label for="datum">Datum događaja</label>
+            <input id="datum" type="date" name="datum" />
+          </div>
+          <div class="contact-field">
+            <label for="lokacija">Lokacija</label>
+            <input id="lokacija" type="text" name="lokacija" placeholder="Grad / lokacija" />
+          </div>
+          <div class="contact-field">
+            <label for="broj-gostiju">Broj gostiju</label>
+            <input id="broj-gostiju" type="number" name="broj_gostiju" min="25" placeholder="min. 25" />
+          </div>
+          <div class="contact-field contact-submit">
+            <button type="submit" class="btn-primary">Pošalji upit</button>
+            <div id="form-message" class="form-message"
+              style="display:none; margin-top:12px; padding:12px; border-radius:8px; font-size:13px;"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- CLIENTS / TRUSTED BY -->
+    <section class="clients-section" aria-labelledby="clients-title">
+      <div class="clients-header">
+        <div class="clients-kicker">Naši klijenti</div>
+        <h2 id="clients-title" class="clients-title">Zadovoljstvo naših klijenata je na prvom mjestu</h2>
+      </div>
+      <div class="clients-logos-wrap">
+        <div class="clients-logos-grid">
+          <div class="clients-logo-item"><img src="/image/gnk_logo.svg" alt="Klijent 6" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/hns_logo.svg" alt="Klijent 8" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/hgk_logo.svg" alt="Klijent 7" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/bmw_logo.svg" alt="Klijent 4" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/erste_logo.svg" alt="Klijent 5" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/bauerfeind_logo.svg" alt="Klijent 2" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/bayer_logo.svg" alt="Klijent 3" loading="lazy" /></div>
+
+
+          <div class="clients-logo-item"><img src="/image/phoenix_logo.svg" alt="Klijent 9" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/rimac_logo.svg" alt="Klijent 10" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/sumica_logo.svg" alt="Klijent 11" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/ds_logo.svg" alt="Klijent 1" loading="lazy" /></div>
+          <div class="clients-logo-item"><img src="/image/awt_logo.svg" alt="Klijent 1" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer footer-gallery">
+    <div class="footer-gallery-strip">
+      <div class="footer-strip-images">
+        <img src="/image/Gableraj-38.webp" alt="Hladna plata na švedskom stolu - Catering Zagreb" loading="lazy" />
+        <img src="/image/Gableraj-010.webp" alt="Plata domaćeg sira na catering stolu - Catering Zagreb"
+          loading="lazy" />
+        <img src="/image/Gableraj-21.webp" alt="Svježe domaće kiflice za domjenak - Catering Zagreb" loading="lazy" />
+        <img src="/image/Gableraj-47.webp" alt="Najam catering opreme na području Zagreba i okolice - Catering Gableraj"
+          loading="lazy" />
+        <img src="/image/Gableraj-222.webp" alt="Slatki svadbeni stol - Catering Gableraj Zagreb" loading="lazy" />
+        <img src="/image/Gableraj-204.webp" alt="Svadbena torta za vjenčanja - Catering Gableraj Zagreb"
+          loading="lazy" />
+      </div>
+      <a href="https://www.instagram.com/gableraj/?hl=en" target="_blank" rel="noopener noreferrer"
+        class="footer-instagram-btn" aria-label="Instagram @gableraj">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+    <div class="footer-bottom-bar">
+      <div class="page footer-inner">
+        <div class="footer-brand">
+          <a href="/" class="footer-brand-logo">
+            <img src="/image/logo-white-hor.png" alt="Catering Gableraj" />
+          </a>
+          <p class="footer-brand-text">Gdje se stil susreće s okusom.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <div class="footer-column-title">Linkovi</div>
+            <ul class="footer-column-list">
+              <li><a href="/">Home</a></li>
+              <li><a href="/bozicni-domjenci.html">Božićni domjenci</a></li>
+              <li><a href="/vjencanja.html">Vjenčanja</a></li>
+              <li><a href="/poslovni-eventi.html">Poslovni eventi</a></li>
+              <li><a href="/privatne-zabave.html">Privatne zabave</a></li>
+              <li><a href="/galerija.html">Galerija</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <div class="footer-column-title">O nama</div>
+            <ul class="footer-column-list">
+              <li><a href="/about.html">Naša priča</a></li>
+              <li><a href="mailto:info@catering-gableraj.hr">Karijera</a></li>
+            </ul>
+          </div>
+          <div class="footer-column footer-column-contact">
+            <div class="footer-column-title">KONTAKT</div>
+            <a href="mailto:info@catering-gableraj.hr" class="footer-contact-link">info@catering-gableraj.hr</a>
+            <a href="tel:+385912703091" class="footer-contact-link">+385 91 270 3091</a>
+          </div>
+          <div class="footer-column">
+            <div class="footer-column-title">Zapratite nas</div>
+            <div class="footer-bottom-socials">
+              <a href="https://www.instagram.com/gableraj/" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://web.facebook.com/cateringgableraj/" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page footer-bottom">
+        <span>© <span id="year"></span> Gableraj. Sva prava pridržana.</span>
+        <span>Izrada web stranice – Škreblin</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="gallery-lightbox" class="lightbox">
+    <div class="lightbox-inner">
+      <button type="button" class="lightbox-close" aria-label="Zatvori">×</button>
+      <picture id="lightbox-picture">
+        <img src="" alt="Galerija" />
+      </picture>
+    </div>
+  </div>
+
+  <!-- WEDDING INQUIRY MODAL ("Isplaniraj vjenčanje") -->
+  <div id="wedding-modal" class="wedding-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="wedding-modal-title">
+    <div class="wedding-modal-backdrop"></div>
+    <div class="wedding-modal-container">
+      <button type="button" class="wedding-modal-close" aria-label="Zatvori obrazac">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="wedding-modal-header">
+        <div class="wedding-modal-kicker">KONTAKT</div>
+        <h2 id="wedding-modal-title" class="wedding-modal-title">Isplanirajte vaše vjenčanje</h2>
+        <p class="wedding-modal-subtitle">Na temelju vaših želja pripremit ćemo potpuno personaliziranu ponudu u roku od 24 sata.</p>
+      </div>
+
+      <form id="wedding-form" class="wedding-form contact-form" novalidate>
+        <div class="contact-field">
+          <label for="wedding-ime">Ime i prezime *</label>
+          <input id="wedding-ime" type="text" name="wedding_ime" required />
+        </div>
+        <div class="contact-field">
+          <label for="wedding-email">Email adresa *</label>
+          <input id="wedding-email" type="email" name="wedding_email" required />
+        </div>
+        <div class="contact-field">
+          <label for="wedding-telefon">Broj telefona *</label>
+          <input id="wedding-telefon" type="tel" name="wedding_telefon" required />
+        </div>
+        <div class="contact-field">
+          <label for="wedding-broj-gostiju">Broj gostiju *</label>
+          <input id="wedding-broj-gostiju" type="number" name="wedding_broj_gostiju" min="25" placeholder="min. 25" required />
+        </div>
+        <div class="contact-field">
+          <label for="wedding-lokacija">Lokacija / Mjesto proslave *</label>
+          <select id="wedding-lokacija" name="wedding_lokacija" required>
+            <option value="" disabled selected>Odaberite lokaciju</option>
+            <option value="Klub Šumica">Klub Šumica</option>
+            <option value="Scatolina">Scatolina</option>
+            <option value="Medvedgrad">Medvedgrad</option>
+            <option value="Klub Kornel">Klub Kornel</option>
+            <option value="Villa Dalmacija">Villa Dalmacija</option>
+            <option value="Foresta">Foresta</option>
+            <option value="Vinarija TRS Ilok">Vinarija TRS Ilok</option>
+            <option value="Ostalo / Vlastita lokacija">Ostalo / Vlastita lokacija</option>
+          </select>
+        </div>
+        <div class="contact-field">
+          <label for="wedding-datum">Datum vjenčanja *</label>
+          <input id="wedding-datum" type="date" name="wedding_datum" required />
+        </div>
+        <div class="contact-field">
+          <label for="wedding-stil">Stil vjenčanja *</label>
+          <select id="wedding-stil" name="wedding_stil" required>
+            <option value="" disabled selected>Odaberite stil vjenčanja</option>
+            <option value="Tradicionalno i elegantno">Tradicionalno i elegantno</option>
+            <option value="Moderno i minimalističko">Moderno i minimalističko</option>
+            <option value="Rustikalno / Boho">Rustikalno / Boho</option>
+            <option value="Vjenčanje na otvorenom / U prirodi">Vjenčanje na otvorenom / U prirodi</option>
+            <option value="Glamour & Premium">Glamour & Premium</option>
+            <option value="Intimno slavlje">Intimno slavlje</option>
+            <option value="Ostalo / Prilagođeno">Ostalo / Prilagođeno</option>
+          </select>
+        </div>
+        <div class="contact-field">
+          <label for="wedding-budzet">Okvirni budžet *</label>
+          <select id="wedding-budzet" name="wedding_budzet" required>
+            <option value="" disabled selected>Odaberite okvirni budžet</option>
+            <option value="Do 2.500 €">Do 2.500 €</option>
+            <option value="2.500 € – 5.000 €">2.500 € – 5.000 €</option>
+            <option value="5.000 € – 10.000 €">5.000 € – 10.000 €</option>
+            <option value="10.000 € – 15.000 €">10.000 € – 15.000 €</option>
+            <option value="Više od 15.000 €">Više od 15.000 €</option>
+            <option value="Fleksibilno / Po dogovoru">Fleksibilno / Po dogovoru</option>
+          </select>
+        </div>
+        <div class="contact-field contact-field-full">
+          <label for="wedding-trajanje">Trajanje cateringa / događaja *</label>
+          <select id="wedding-trajanje" name="wedding_trajanje" required>
+            <option value="" disabled selected>Odaberite trajanje</option>
+            <option value="Cjelodnevno slavlje (10+ sati)">Cjelodnevno slavlje (10+ sati)</option>
+            <option value="Svadbena večera i zabava (6–8 sati)">Svadbena večera i zabava (6–8 sati)</option>
+            <option value="Predsvadbeni domjenak / okupljanje (3–5 sati)">Predsvadbeni domjenak / okupljanje (3–5 sati)</option>
+            <option value="Samo domjenak / koktel party (2–3 sata)">Samo domjenak / koktel party (2–3 sata)</option>
+            <option value="Višednevno slavlje">Višednevno slavlje</option>
+            <option value="Po dogovoru">Po dogovoru</option>
+          </select>
+        </div>
+        <div class="contact-field contact-field-full">
+          <label for="wedding-poruka">Dodatne napomene i posebne želje (opcionalno)</label>
+          <textarea id="wedding-poruka" name="wedding_poruka"></textarea>
+        </div>
+        <div class="contact-field contact-submit">
+          <button type="submit" class="btn-primary">Pošalji upit za vjenčanje</button>
+          <div id="wedding-form-message" class="form-message" style="display:none;"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- GENERAL INQUIRY MODAL ("Zatraži ponudu") -->
+  <div id="inquiry-modal" class="wedding-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="inquiry-modal-title">
+    <div class="wedding-modal-backdrop"></div>
+    <div class="wedding-modal-container">
+      <button type="button" class="wedding-modal-close inquiry-modal-close" aria-label="Zatvori obrazac" data-close-modal="inquiry-modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="wedding-modal-header">
+        <div class="wedding-modal-kicker">KONTAKT</div>
+        <h2 id="inquiry-modal-title" class="wedding-modal-title">Zatražite ponudu</h2>
+        <p class="wedding-modal-subtitle">Na temelju vaših želja pripremit ćemo potpuno personaliziranu ponudu u roku od 24 sata.</p>
+      </div>
+
+      <form id="inquiry-modal-form" class="wedding-form contact-form" novalidate>
+        <div class="contact-field">
+          <label for="inquiry-ime">Ime i prezime *</label>
+          <input id="inquiry-ime" type="text" name="inquiry_ime" placeholder="Vaše ime i prezime" required />
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-email">Email adresa *</label>
+          <input id="inquiry-email" type="email" name="inquiry_email" placeholder="ime@primjer.hr" required />
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-telefon">Broj telefona *</label>
+          <input id="inquiry-telefon" type="tel" name="inquiry_telefon" placeholder="npr. 091 234 5678" required />
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-tip-eventa">Tip događaja *</label>
+          <select id="inquiry-tip-eventa" name="inquiry_tip_eventa" required>
+            <option value="" disabled selected>Odaberite tip događaja</option>
+            <option value="Svadbena večera">Svadbena večera</option>
+            <option value="Predsvadbeno skupljanje">Predsvadbeno skupljanje</option>
+            <option value="Poslovni event">Poslovni event</option>
+            <option value="Privatna zabava">Privatna zabava</option>
+            <option value="Božićni domjenci">Božićni domjenci</option>
+            <option value="Ostalo / Prilagođeno">Ostalo / Prilagođeno</option>
+          </select>
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-datum">Datum događaja *</label>
+          <input id="inquiry-datum" type="date" name="inquiry_datum" required />
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-lokacija">Lokacija *</label>
+          <input id="inquiry-lokacija" type="text" name="inquiry_lokacija" placeholder="Grad / lokacija" required />
+        </div>
+        <div class="contact-field contact-field-full">
+          <label for="inquiry-broj-gostiju">Broj gostiju *</label>
+          <input id="inquiry-broj-gostiju" type="number" name="inquiry_broj_gostiju" min="25" placeholder="Minimalno 25 gostiju" required />
+        </div>
+        <div class="contact-field contact-field-full">
+          <label for="inquiry-poruka">Dodatne napomene i posebne želje (opcionalno)</label>
+          <textarea id="inquiry-poruka" name="inquiry_poruka" placeholder="Napišite nam više o vašim željama i planovima..."></textarea>
+        </div>
+        <div class="contact-field contact-submit">
+          <button type="submit" class="btn-primary">Pošalji upit</button>
+          <div id="inquiry-modal-form-message" class="form-message" style="display:none;"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- External JS -->
+  <script src="/script.js?v=9b17761"></script>
+</body>
+
 </html>

@@ -2846,3 +2846,21 @@
 
 
   
+
+// Language Override for Firebase i18n
+document.addEventListener('DOMContentLoaded', () => {
+    // When a user selects a language, set the firebase-language-override cookie
+    const langLinks = document.querySelectorAll('.lang-switcher .nav-dropdown-item');
+    langLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // The onclick in HTML also sets localStorage, but let's set the cookie here
+            const url = new URL(e.target.href);
+            let lang = 'hr';
+            if (url.pathname.startsWith('/en')) lang = 'en';
+            if (url.pathname.startsWith('/de')) lang = 'de';
+            
+            // Set the cookie for Firebase Hosting to respect
+            document.cookie = `firebase-language-override=${lang}; path=/; max-age=31536000`; // 1 year
+        });
+    });
+});

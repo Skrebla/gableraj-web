@@ -20,6 +20,7 @@ jobs:
         run: |
           chmod +x update-cache-version.sh
           ./update-cache-version.sh
+          python3 build.py
       
       - name: Setup Node.js
         uses: actions/setup-node@v4

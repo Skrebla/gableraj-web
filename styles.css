@@ -5103,3 +5103,24 @@ body {
 .snowflake:nth-child(38) { left: 63.4%; font-size: 38px; animation-duration: 18s; animation-delay: -11s; opacity: 0.83; }
 .snowflake:nth-child(39) { left: 1.0%; font-size: 33px; animation-duration: 13s; animation-delay: -13s; opacity: 0.88; }
 .snowflake:nth-child(40) { left: 25.0%; font-size: 33px; animation-duration: 11s; animation-delay: -10s; opacity: 0.66; }
+
+/* Language Switcher Styles */
+.lang-switcher {
+  margin-left: 1rem;
+}
+
+.lang-switcher .nav-link {
+  font-weight: bold;
+}
+
+.lang-switcher .fa-globe {
+  margin-left: 0.3rem;
+}
+
+@media (max-width: 991px) {
+  .lang-switcher {
+    margin-left: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
