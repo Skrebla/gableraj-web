@@ -791,9 +791,21 @@
           };
           if (typeof gtag === 'function') {
             gtag('event', 'conversion', conversionPayload);
+            gtag('event', 'generate_lead', {
+              'event_category': 'Contact',
+              'event_label': 'Homepage Form',
+              'value': 1.0,
+              'currency': 'EUR'
+            });
           } else {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push(['event', 'conversion', conversionPayload]);
+            window.dataLayer.push(['event', 'generate_lead', {
+              'event_category': 'Contact',
+              'event_label': 'Homepage Form',
+              'value': 1.0,
+              'currency': 'EUR'
+            }]);
             onConversionSent();
           }
           // If gtag’s event_callback never runs (e.g. ad blocker), still show success and re-enable button
@@ -1383,7 +1395,7 @@
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navCenter = document.querySelector('.nav-center');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-    const navDropdown = document.querySelector('.nav-dropdown');
+    const allNavDropdowns = navCenter.querySelectorAll('.nav-dropdown');
     const body = document.body;
 
     if (!mobileMenuToggle || !navCenter) return;
@@ -1402,10 +1414,10 @@
       body.style.overflow = '';
       mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
       mobileMenuToggle.classList.remove('menu-open');
-      // Close dropdown if open
-      if (navDropdown) {
-        navDropdown.classList.remove('is-open');
-      }
+      // Close all dropdowns if open
+      allNavDropdowns.forEach(dropdown => {
+        dropdown.classList.remove('is-open');
+      });
     }
 
     mobileMenuToggle.addEventListener('click', function(e) {
@@ -1419,15 +1431,23 @@
 
     mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-    // Handle dropdown in mobile menu
-    if (navDropdown) {
-      const dropdownLink = navDropdown.querySelector('.nav-link');
-      dropdownLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        navDropdown.classList.toggle('is-open');
-      });
-    }
+    // Handle all dropdowns in mobile menu (Usluge, Language Switcher, etc.)
+    allNavDropdowns.forEach(dropdown => {
+      const dropdownLink = dropdown.querySelector('.nav-link');
+      if (dropdownLink) {
+        dropdownLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Close other open dropdowns inside mobile menu
+          allNavDropdowns.forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+              otherDropdown.classList.remove('is-open');
+            }
+          });
+          dropdown.classList.toggle('is-open');
+        });
+      }
+    });
 
     // Close menu when clicking on a nav link (except dropdown)
     const navLinks = navCenter.querySelectorAll('.nav-link:not(.nav-dropdown .nav-link)');
@@ -2100,9 +2120,21 @@
 
             if (typeof gtag === 'function') {
               gtag('event', 'conversion', conversionPayload);
+              gtag('event', 'generate_lead', {
+                'event_category': 'Inquiry',
+                'event_label': 'Wedding Modal Form',
+                'value': 1.0,
+                'currency': 'EUR'
+              });
             } else {
               window.dataLayer = window.dataLayer || [];
               window.dataLayer.push(['event', 'conversion', conversionPayload]);
+              window.dataLayer.push(['event', 'generate_lead', {
+                'event_category': 'Inquiry',
+                'event_label': 'Wedding Modal Form',
+                'value': 1.0,
+                'currency': 'EUR'
+              }]);
               onConversionSent();
             }
 
@@ -2825,9 +2857,21 @@
 
             if (typeof gtag === 'function') {
               gtag('event', 'conversion', conversionPayload);
+              gtag('event', 'generate_lead', {
+                'event_category': 'Inquiry',
+                'event_label': 'General Inquiry Modal',
+                'value': 1.0,
+                'currency': 'EUR'
+              });
             } else {
               window.dataLayer = window.dataLayer || [];
               window.dataLayer.push(['event', 'conversion', conversionPayload]);
+              window.dataLayer.push(['event', 'generate_lead', {
+                'event_category': 'Inquiry',
+                'event_label': 'General Inquiry Modal',
+                'value': 1.0,
+                'currency': 'EUR'
+              }]);
               onConversionSent();
             }
 
