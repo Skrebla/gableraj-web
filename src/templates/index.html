@@ -178,7 +178,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- External stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=9b17761">
+  <link rel="stylesheet" href="styles.css?v=81615bf">
 </head>
 
 <body>
@@ -225,7 +225,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <video id="hero-video" autoplay muted loop playsinline poster="image/Gableraj-video-2-reverse-compressed-2.webp">
+    <video id="hero-video" aria-hidden="true" autoplay muted loop playsinline poster="image/Gableraj-video-2-reverse-compressed-2.webp">
       <source src="image/Gableraj-video-2-reverse-compressed-2.webm" type="video/webm" />
       <source src="image/Gableraj-video-2-reverse-compressed-3.mp4" type="video/mp4" />
       <!-- Fallback image if video doesn't load -->
@@ -433,7 +433,7 @@
     <section id="onama" class="about">
       <div class="about-grid">
         <div class="about-media">
-          <video class="about-video" autoplay muted loop playsinline poster="image/Gableraj-66.webp">
+          <video class="about-video" aria-hidden="true" autoplay muted loop playsinline poster="image/Gableraj-66.webp">
             <source src="image/reel_compressed.mp4" type="video/mp4" />
           </video>
         </div>
@@ -628,7 +628,7 @@
           </div>
         </div>
 
-        <form id="contact-form" class="contact-form">
+        <form id="contact-form" class="contact-form" toolname="submitContactForm" tooldescription="Submit a general contact inquiry">
           <div class="contact-field">
             <label for="ime">Ime i prezime</label>
             <input id="ime" type="text" name="ime" placeholder="Vaše ime" />
@@ -792,7 +792,7 @@
         <p class="wedding-modal-subtitle">Na temelju vaših želja pripremit ćemo potpuno personaliziranu ponudu u roku od 24 sata.</p>
       </div>
 
-      <form id="wedding-form" class="wedding-form contact-form" novalidate>
+      <form id="wedding-form" class="wedding-form contact-form" novalidate toolname="submitWeddingInquiry" tooldescription="Submit an inquiry specifically for a wedding event">
         <div class="contact-field">
           <label for="wedding-ime">Ime i prezime *</label>
           <input id="wedding-ime" type="text" name="wedding_ime" required />
@@ -889,7 +889,7 @@
         <p class="wedding-modal-subtitle">Na temelju vaših želja pripremit ćemo potpuno personaliziranu ponudu u roku od 24 sata.</p>
       </div>
 
-      <form id="inquiry-modal-form" class="wedding-form contact-form" novalidate>
+      <form id="inquiry-modal-form" class="wedding-form contact-form" novalidate toolname="submitGeneralInquiry" tooldescription="Submit a general event inquiry">
         <div class="contact-field">
           <label for="inquiry-ime">Ime i prezime *</label>
           <input id="inquiry-ime" type="text" name="inquiry_ime" placeholder="Vaše ime i prezime" required />
@@ -942,7 +942,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <!-- External JS -->
-  <script src="script.js?v=9b17761"></script>
+  <script src="script.js?v=81615bf"></script>
 </body>
 
 </html>

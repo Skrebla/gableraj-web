@@ -842,7 +842,11 @@
     // Typewriter Effect for Philosophy Section
     const typewriterElement = document.querySelector('.typewriter-text');
     if (typewriterElement) {
-      const words = ['strasti', 'tradiciji', 'izvrsnosti', 'kreativnosti', 'savršenstvu'];
+      let words = ['strasti', 'tradiciji', 'izvrsnosti', 'kreativnosti', 'savršenstvu'];
+      const dataWords = typewriterElement.getAttribute('data-words');
+      if (dataWords) {
+        words = dataWords.split(",").map(w => w.trim());
+      }
       let currentWordIndex = 0;
       let currentCharIndex = 0;
       let isDeleting = false;
