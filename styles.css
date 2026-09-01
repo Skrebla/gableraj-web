@@ -1049,7 +1049,7 @@ body {
 }
 
 .gallery-img-195 {
-  object-position: center 70%;
+  object-position: center 20%;
   /* Adjust vertical position: 0% = top, 50% = center, 100% = bottom */
 }
 
@@ -1708,6 +1708,7 @@ body {
   margin-top: 8px;
   grid-column: 1 / -1;
   justify-self: flex-start;
+  overflow: visible;
 }
 
 .form-message {
@@ -4679,6 +4680,7 @@ body {
   align-items: flex-start;
   gap: 12px;
   width: 100%;
+  overflow: visible;
 }
 
 .wedding-form .btn-primary {

@@ -202,9 +202,7 @@
       <div class="contact-cta-content">
         <div class="contact-cta-kicker">KONTAKT</div>
         <h2 class="contact-cta-title">Vrhunska usluga, elegantan buffet i personalizirani meni!</h2>
-        <a href="index.html#kontakt">
-          <button class="contact-cta-button">Kontakt</button>
-        </a>
+        <button type="button" class="contact-cta-button open-inquiry-modal" data-open-modal="inquiry-modal">Kontakt</button>
       </div>
     </div>
   </section>
@@ -366,6 +364,68 @@
         <div class="contact-field contact-submit">
           <button type="submit" class="btn-primary">Pošalji upit za vjenčanje</button>
           <div id="wedding-form-message" class="form-message" style="display:none;"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- GENERAL INQUIRY MODAL ("Zatraži ponudu") -->
+  <div id="inquiry-modal" class="wedding-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="inquiry-modal-title">
+    <div class="wedding-modal-backdrop"></div>
+    <div class="wedding-modal-container">
+      <button type="button" class="wedding-modal-close inquiry-modal-close" aria-label="Zatvori obrazac" data-close-modal="inquiry-modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="wedding-modal-header">
+        <div class="wedding-modal-kicker">KONTAKT</div>
+        <h2 id="inquiry-modal-title" class="wedding-modal-title">Zatražite ponudu</h2>
+        <p class="wedding-modal-subtitle">Na temelju vaših želja pripremit ćemo potpuno personaliziranu ponudu u roku od 24 sata.</p>
+      </div>
+
+      <form id="inquiry-modal-form" class="wedding-form contact-form" novalidate>
+        <div class="contact-field">
+          <label for="inquiry-ime">Ime i prezime *</label>
+          <input id="inquiry-ime" type="text" name="inquiry_ime" placeholder="Vaše ime i prezime" required />
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-email">Email adresa *</label>
+          <input id="inquiry-email" type="email" name="inquiry_email" placeholder="ime@primjer.hr" required />
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-telefon">Broj telefona *</label>
+          <input id="inquiry-telefon" type="tel" name="inquiry_telefon" placeholder="npr. 091 234 5678" required />
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-tip-eventa">Tip događaja *</label>
+          <select id="inquiry-tip-eventa" name="inquiry_tip_eventa" required>
+            <option value="" disabled selected>Odaberite tip događaja</option>
+            <option value="Svadbena večera">Svadbena večera</option>
+            <option value="Predsvadbeno skupljanje">Predsvadbeno skupljanje</option>
+            <option value="Poslovni event">Poslovni event</option>
+            <option value="Privatna zabava">Privatna zabava</option>
+            <option value="Božićni domjenci">Božićni domjenci</option>
+            <option value="Ostalo / Prilagođeno">Ostalo / Prilagođeno</option>
+          </select>
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-datum">Datum događaja *</label>
+          <input id="inquiry-datum" type="date" name="inquiry_datum" required />
+        </div>
+        <div class="contact-field">
+          <label for="inquiry-lokacija">Lokacija *</label>
+          <input id="inquiry-lokacija" type="text" name="inquiry_lokacija" placeholder="Grad / lokacija" required />
+        </div>
+        <div class="contact-field contact-field-full">
+          <label for="inquiry-broj-gostiju">Broj gostiju *</label>
+          <input id="inquiry-broj-gostiju" type="number" name="inquiry_broj_gostiju" min="25" placeholder="Minimalno 25 gostiju" required />
+        </div>
+        <div class="contact-field contact-field-full">
+          <label for="inquiry-poruka">Dodatne napomene i posebne želje (opcionalno)</label>
+          <textarea id="inquiry-poruka" name="inquiry_poruka" placeholder="Napišite nam više o vašim željama i planovima..."></textarea>
+        </div>
+        <div class="contact-field contact-submit">
+          <button type="submit" class="btn-primary">Pošalji upit</button>
+          <div id="inquiry-modal-form-message" class="form-message" style="display:none;"></div>
         </div>
       </form>
     </div>
