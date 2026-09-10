@@ -149,7 +149,7 @@
   },
   "Dobrodošli u Catering Gableraj i uronite u fascinantan svijet u kojem su raznolikost i kulinarska izvrsnost u\n          središtu pažnje. Naš cilj je uvijek stvarati profinjena jela koja na svakom tanjuru spajaju svježinu i\n          inovaciju. Zato se oslanjamo isključivo na svježe i posebno kvalitetne sastojke. Bez obzira trebate li\n          catering za svadbu, privatnu zabavu ili poslovni event na području Hrvatske, svako jelo priprema se s pažnjom\n          i strašću, kako bi razveselilo ne samo nepce, već i dušu.": {
     "en": "Welcome to Catering Gableraj and dive into a fascinating world where diversity and culinary excellence are at the center of attention. Our goal is always to create refined dishes that combine freshness and innovation on every plate. That is why we rely exclusively on fresh and exceptionally high-quality ingredients. Whether you need catering for a wedding, private party, or corporate event in Croatia, every dish is prepared with care and passion, to delight not just the palate, but the soul.",
-    "de": "Willkommen bei Catering Gableraj und tauchen Sie ein in eine faszinierende Welt, in der Vielfalt und kulinarische Exzellenz im Mittelpunkt stehen. Unser Ziel ist es stets, raffinierte Gerichte zu kreieren, die Frische und Innovation auf jedem Teller vereinen. Deshalb setzen wir ausschließlich auf frische und besonders hochwertige Zutaten. Egal, ob Sie Catering für eine Hochzeit, eine private Feier oder ein Firmenevent in Kroatien benötigen, jedes Gericht wird mit Sorgfalt und Leidenschaft zubereitet, um nicht nur den Gaumen, sondern auch die Seele zu erfreuen."
+    "de": "Willkommen bei Catering Gableraj tauchen Sie ein in eine faszinierende Welt, in der Vielfalt und kulinarische Exzellenz im Mittelpunkt stehen. Unser Ziel ist es stets, raffinierte Gerichte zu kreieren, die Frische und Innovation auf jedem Teller vereinen. Deshalb setzen wir ausschließlich auf frische und besonders hochwertige Zutaten. Egal, ob Sie Catering für eine Hochzeit, eine private Feier oder ein Firmenevent in Kroatien benötigen, jedes Gericht wird mit Sorgfalt und Leidenschaft zubereitet, um nicht nur den Gaumen, sondern auch die Seele zu erfreuen."
   },
   "Naša priča": {
     "en": "Our story",
@@ -233,7 +233,7 @@
   },
   "Fleksibilni meni": {
     "en": "Flexible menu",
-    "de": "Flexibles Menü"
+    "de": "Individuelle Menükonzepte"
   },
   "PROFESIONALNI CATERING ZA FIRME": {
     "en": "PROFESSIONAL CATERING FOR COMPANIES",
@@ -313,7 +313,7 @@
   },
   "Organizacija događaja može djelovati zahtjevno, ali uz nas sve ide glatko. Ispunite\n            obrazac i javit ćemo vam se u najkraćem roku.": {
     "en": "Organizing an event can seem demanding, but with us, everything goes smoothly. Fill out the form and we will get back to you as soon as possible.",
-    "de": "Die Organisation eines Events kann anspruchsvoll erscheinen, aber mit uns läuft alles reibungslos. Füllen Sie das Formular aus und wir melden uns so schnell wie möglich bei Ihnen."
+    "de": "Stressfrei zum perfekten Genuss. Senden Sie uns Ihre Anfrage – wir melden uns in Kürze."
   },
   "Years": {
     "en": "Years",
@@ -699,9 +699,9 @@
     "en": "Finger Food & Cocktail Party",
     "de": "Fingerfood & Cocktailparty"
   },
-  "ažu da slika govori tisuću riječi, ali naše fotografije govore o tisućama\n            sretnih trenutaka i savršenih zalogaja. Dopustite da Vas inspiriraju prizori naših kulinarskih kreacija gdje\n            svaki detalj priča priču o posvećenosti i estetici. Naš cilj je oživjeti Vaše želje, bilo da se radi o\n            elegantnom vjenčanju, svečanoj proslavi ili poslovnom domjenku.": {
-    "en": "They say a picture is worth a thousand words, but our photos speak of thousands of happy moments and perfect bites. Let the scenes of our culinary creations inspire you, where every detail tells a story of dedication and aesthetics. Our goal is to bring your wishes to life, whether it's an elegant wedding, a festive celebration, or a corporate reception.",
-    "de": "Man sagt, ein Bild sagt mehr als tausend Worte, aber unsere Fotos sprechen von Tausenden glücklicher Momente und perfekten Bissen. Lassen Sie sich von den Szenen unserer kulinarischen Kreationen inspirieren, in denen jedes Detail eine Geschichte von Hingabe und Ästhetik erzählt. Unser Ziel ist es, Ihre Wünsche zum Leben zu erwecken, sei es eine elegante Hochzeit, eine festliche Feier oder ein Firmenempfang."
+  "<span class=\"drop-cap\">K</span>ažu da slika govori tisuću riječi, ali naše fotografije govore o tisućama\n            sretnih trenutaka i savršenih zalogaja. Dopustite da Vas inspiriraju prizori naših kulinarskih kreacija gdje\n            svaki detalj priča priču o posvećenosti i estetici. Naš cilj je oživjeti Vaše želje, bilo da se radi o\n            elegantnom vjenčanju, svečanoj proslavi ili poslovnom domjenku.": {
+    "en": "<span class=\"drop-cap\">T</span>hey say a picture is worth a thousand words, but our photos speak of thousands of happy moments and perfect bites. Let the scenes of our culinary creations inspire you, where every detail tells a story of dedication and aesthetics. Our goal is to bring your wishes to life, whether it's an elegant wedding, a festive celebration, or a corporate reception.",
+    "de": "<span class=\"drop-cap\">M</span>an sagt, ein Bild sagt mehr als tausend Worte, aber unsere Fotos sprechen von Tausenden glücklicher Momente und perfekten Bissen. Lassen Sie sich von den Szenen unserer kulinarischen Kreationen inspirieren, in denen jedes Detail eine Geschichte von Hingabe und Ästhetik erzählt. Unser Ziel ist es, Ihre Wünsche zum Leben zu erwecken, sei es eine elegante Hochzeit, eine festliche Feier oder ein Firmenempfang."
   },
   "FAQ": {
     "en": "FAQ",
@@ -785,7 +785,7 @@
   },
   "Započnimo zajedno vašu priču": {
     "en": "Let's start your story together",
-    "de": "Lassen Sie uns Ihre Geschichte gemeinsam beginnen"
+    "de": "Gemeinsam zu Ihrem perfekten Event"
   },
   "Pošalji upit za vjenčanje": {
     "en": "Send an inquiry for a wedding",
@@ -807,9 +807,13 @@
     "en": "Private party",
     "de": "Private Feier"
   },
-  "Dobrodošli u svijet Gableraja": {
-    "en": "Welcome to the world of Gableraj",
-    "de": "Willkommen in der Welt von Gableraj"
+  "Više od cateringa": {
+    "en": "More than catering",
+    "de": "Mehr als Catering"
+  },
+  "Doživljaj koji ostaje u sjećanju.<br><br>Od elegantnog dočeka gostiju, ekskluzivnog live cookinga i posebnih food stationa pa sve do savršeno osmišljene večere – Catering Gableraj spaja vrhunsku gastronomiju, profinjen dizajn i osobnu uslugu u jedinstven doživljaj.<br><br>Za događanja koja se ne samo slave, već i doživljavaju.": {
+    "en": "An experience that stays in memory.<br><br>From an elegant guest welcome, exclusive live cooking, and special food stations to a perfectly designed dinner – Catering Gableraj combines top-tier gastronomy, refined design, and personal service into a unique experience.<br><br>For events that are not just celebrated, but truly experienced.",
+    "de": "Ein Erlebnis, das in Erinnerung bleibt.<br><br>Vom stilvollen Empfang über exklusives Live-Cooking und außergewöhnliche Food Stations bis hin zum perfekt inszenierten Dinner - Gableraj verbindet außergewöhnliche Kulinarik, stilvolles Design und persönlichen Service zu einem einzigartigen Gesamterlebnis.<br><br>Für Events, die nicht nur gefeiert, sondern erlebt werden."
   },
   "Usluge za privatne zabave": {
     "en": "Services for private parties",
@@ -1654,5 +1658,53 @@
   "strasti,tradiciji,izvrsnosti,kreativnosti,savršenstvu": {
     "en": "passion,tradition,excellence,creativity,perfection",
     "de": "Leidenschaft,Tradition,Exzellenz,Kreativität,Perfektion"
+  },
+  "Vaše ime": {
+    "en": "Your full name",
+    "de": "Ihr Vor- und Nachname"
+  },
+  "Vaše ime i prezime": {
+    "en": "Your full name",
+    "de": "Ihr Vor- und Nachname"
+  },
+  "ime@primjer.hr": {
+    "en": "name@email.com",
+    "de": "name@email.de"
+  },
+  "Broj telefona": {
+    "en": "Phone number",
+    "de": "Telefonnummer"
+  },
+  "npr. 091 234 5678": {
+    "en": "e.g. +385 91 234 5678",
+    "de": "z. B. +385 91 234 5678"
+  },
+  "Grad / lokacija": {
+    "en": "City / location",
+    "de": "Stadt / Ort"
+  },
+  "min. 25": {
+    "en": "min. 25",
+    "de": "mind. 25"
+  },
+  "Minimalno 25 gostiju": {
+    "en": "Minimum 25 guests",
+    "de": "Mindestens 25 Gäste"
+  },
+  "Napišite nam više o vašim željama i planovima...": {
+    "en": "Tell us more about your wishes and plans...",
+    "de": "Erzählen Sie uns mehr über Ihre Wünsche und Pläne..."
+  },
+  "Naziv vaše tvrtke": {
+    "en": "Your company name",
+    "de": "Name Ihres Unternehmens"
+  },
+  "ime@tvrtka.hr": {
+    "en": "name@company.com",
+    "de": "name@unternehmen.de"
+  },
+  "Napišite nam više o željama, rasporedu, posebnoj prehrani djelatnika...": {
+    "en": "Tell us more about your wishes, schedule, special diets...",
+    "de": "Erzählen Sie uns mehr über Ihre Wünsche, den Ablauf, besondere Ernährungsweisen..."
   }
 }
