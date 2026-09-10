@@ -811,9 +811,13 @@
     "en": "More than catering",
     "de": "Mehr als Catering"
   },
-  "Doživljaj koji ostaje u sjećanju.<br><br>Od elegantnog dočeka gostiju, ekskluzivnog live cookinga i posebnih food stationa pa sve do savršeno osmišljene večere – Catering Gableraj spaja vrhunsku gastronomiju, profinjen dizajn i osobnu uslugu u jedinstven doživljaj.<br><br>Za događanja koja se ne samo slave, već i doživljavaju.": {
-    "en": "An experience that stays in memory.<br><br>From an elegant guest welcome, exclusive live cooking, and special food stations to a perfectly designed dinner – Catering Gableraj combines top-tier gastronomy, refined design, and personal service into a unique experience.<br><br>For events that are not just celebrated, but truly experienced.",
-    "de": "Ein Erlebnis, das in Erinnerung bleibt.<br><br>Vom stilvollen Empfang über exklusives Live-Cooking und außergewöhnliche Food Stations bis hin zum perfekt inszenierten Dinner - Gableraj verbindet außergewöhnliche Kulinarik, stilvolles Design und persönlichen Service zu einem einzigartigen Gesamterlebnis.<br><br>Für Events, die nicht nur gefeiert, sondern erlebt werden."
+  "Doživljaj koji ostaje u sjećanju.": {
+    "en": "An experience that stays in memory.",
+    "de": "Ein Erlebnis, das in Erinnerung bleibt."
+  },
+  "Od elegantnog dočeka gostiju, ekskluzivnog live cookinga i posebnih food stationa pa sve do savršeno osmišljene večere – Catering Gableraj spaja vrhunsku gastronomiju, profinjen dizajn i osobnu uslugu u jedinstven doživljaj.<br><br>Za događanja koja se ne samo slave, već i doživljavaju.": {
+    "en": "From an elegant guest welcome, exclusive live cooking, and special food stations to a perfectly designed dinner – Catering Gableraj combines top-tier gastronomy, refined design, and personal service into a unique experience.<br><br>For events that are not just celebrated, but truly experienced.",
+    "de": "Vom stilvollen Empfang über exklusives Live-Cooking und außergewöhnliche Food Stations bis hin zum perfekt inszenierten Dinner - Gableraj verbindet außergewöhnliche Kulinarik, stilvolles Design und persönlichen Service zu einem einzigartigen Gesamterlebnis.<br><br>Für Events, die nicht nur gefeiert, sondern erlebt werden."
   },
   "Usluge za privatne zabave": {
     "en": "Services for private parties",
@@ -1706,5 +1710,41 @@
   "Napišite nam više o željama, rasporedu, posebnoj prehrani djelatnika...": {
     "en": "Tell us more about your wishes, schedule, special diets...",
     "de": "Erzählen Sie uns mehr über Ihre Wünsche, den Ablauf, besondere Ernährungsweisen..."
+  },
+  "Recenzije": {
+    "en": "Reviews",
+    "de": "Bewertungen"
+  },
+  "Što zadovoljni klijenti misle o nama": {
+    "en": "What satisfied clients say about us",
+    "de": "Was zufriedene Kunden über uns sagen"
+  },
+  "Google Ocjena": {
+    "en": "Google Rating",
+    "de": "Google Bewertung"
+  },
+  "na temelju Google recenzija": {
+    "en": "based on Google reviews",
+    "de": "basierend auf Google-Bewertungen"
+  },
+  "Google recenzija": {
+    "en": "Google review",
+    "de": "Google-Bewertung"
+  },
+  "Pogledaj sve recenzije na Googleu": {
+    "en": "View all reviews on Google",
+    "de": "Alle Bewertungen auf Google ansehen"
+  },
+  "Hrana za našu svadbu bila je apsolutno savršena! Gosti su još danima pričali o kulinarskim specijalitetima i prezentaciji. Osoblje je bilo neopisivo ljubazno i profesionalno. Sve preporuke za Catering Gableraj!": {
+    "en": "The food for our wedding was absolutely perfect! Guests were talking about the culinary specialties and presentation for days. The staff was indescribably friendly and professional. Highly recommended Catering Gableraj!",
+    "de": "Das Essen für unsere Hochzeit war absolut perfekt! Die Gäste sprachen noch Tage später über die kulinarischen Spezialitäten und die Präsentation. Das Personal war unglaublich freundlich und professionell. Sehr zu empfehlen Catering Gableraj!"
+  },
+  "Organizirali smo godišnji korporativni domjenak za 150 uzvanika. Finger food i topli buffet bili su svježi, ukusni i estetski posluženi na najvišoj razini. Suradnja za svaku pohvalu!": {
+    "en": "We organized an annual corporate event for 150 guests. Finger food and warm buffet were fresh, delicious and aesthetically served at the highest level. Excellent cooperation!",
+    "de": "Wir haben einen jährlichen Firmenempfang für 150 Gäste organisiert. Fingerfood und warmes Buffet waren frisch, lecker und ästhetisch auf höchstem Niveau serviert. Hervorragende Zusammenarbeit!"
+  },
+  "Vrhunska usluga i nevjerojatna pažnja posvećena detaljima! Od uvodnog dogovora do realizacije sve je prošlo besprijekorno. Hvala Tomislavu i cijelom timu što su našu proslavu učinili posebnom.": {
+    "en": "Top quality service and incredible attention to detail! From the initial agreement to realization, everything went flawlessly. Thanks to Tomislav and the entire team for making our celebration special.",
+    "de": "Erstklassiger Service und unglaubliche Liebe zum Detail! Vom ersten Gespräch bis zur Umsetzung verlief alles einwandfrei. Vielen Dank an Tomislav und das gesamte Team, die unsere Feier zu etwas Besonderem gemacht haben."
   }
 }

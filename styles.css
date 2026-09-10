@@ -1314,7 +1314,7 @@ body {
   text-transform: uppercase;
   font-family: var(--font-marcellus);
   color: #221f1e;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .about-title {
@@ -1322,8 +1322,15 @@ body {
   font-size: 38px;
   font-weight: 400;
   line-height: 1.1;
-  margin-bottom: 16px;
+  letter-spacing: -1.8px;
+  margin-bottom: 10px;
   color: #221f1e;
+}
+
+.about-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 16px;
 }
 
 .about-text {
@@ -1875,6 +1882,209 @@ body {
   .clients-logo-item img {
     height: 48px;
     max-width: 100px;
+  }
+}
+
+/* REVIEWS SECTION (Google Reviews) */
+.reviews-section {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding: 56px 40px;
+  background: #fafafa;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0f0;
+}
+
+.reviews-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.reviews-kicker {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-family: var(--font-marcellus);
+  color: #221f1e;
+  margin-bottom: 12px;
+}
+
+.reviews-title {
+  font-family: var(--font-marcellus);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 20px 0;
+  color: #221f1e;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.google-rating-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  padding: 10px 24px;
+  border-radius: 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eaeeef;
+}
+
+.google-badge-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.google-stars-score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.google-stars-score .score-num {
+  font-weight: 700;
+  font-size: 16px;
+  color: #221f1e;
+}
+
+.stars-gold {
+  color: #fbbc05;
+  display: flex;
+  gap: 2px;
+  font-size: 14px;
+}
+
+.google-stars-score .review-count {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.review-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eaeaea;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.review-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.reviewer-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #111111 0%, #333333 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reviewer-info {
+  flex: 1;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #221f1e;
+}
+
+.reviewer-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.google-icon-small {
+  color: #4285f4;
+  font-size: 18px;
+}
+
+.review-stars {
+  color: #fbbc05;
+  font-size: 14px;
+  display: flex;
+  gap: 3px;
+  margin-bottom: 16px;
+}
+
+.review-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #4a4a4a;
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.reviews-footer-action {
+  text-align: center;
+}
+
+.btn-google-reviews {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+@media (max-width: 991px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .reviews-section {
+    padding: 40px 24px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+  .reviews-title {
+    font-size: 28px;
+  }
+  .google-rating-summary {
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 16px;
+    padding: 12px 16px;
+  }
+  .reviews-section {
+    padding: 32px 16px;
   }
 }
 
