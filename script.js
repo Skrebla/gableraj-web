@@ -2909,6 +2909,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Set the cookie for Firebase Hosting to respect
             document.cookie = `firebase-language-override=${lang}; path=/; max-age=31536000`; // 1 year
+            
+            // If the user clicks a language link that points to the exact same path they are currently on
+            // (e.g. they are on '/' viewing English due to Firebase i18n, and click HR which points to '/')
+            // the browser won't reload. We must force a reload so Firebase can serve the new language.
+            if (window.location.pathname === url.pathname) {
+                e.preventDefault();
+                window.location.reload();
+            }
         });
     });
 });
