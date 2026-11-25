@@ -1746,5 +1746,17 @@
   "Vrhunska usluga i nevjerojatna pažnja posvećena detaljima! Od uvodnog dogovora do realizacije sve je prošlo besprijekorno. Hvala Tomislavu i cijelom timu što su našu proslavu učinili posebnom.": {
     "en": "Top quality service and incredible attention to detail! From the initial agreement to realization, everything went flawlessly. Thanks to Tomislav and the entire team for making our celebration special.",
     "de": "Erstklassiger Service und unglaubliche Liebe zum Detail! Vom ersten Gespräch bis zur Umsetzung verlief alles einwandfrei. Vielen Dank an Tomislav und das gesamte Team, die unsere Feier zu etwas Besonderem gemacht haben."
+  },
+  "Vrijeme eventa *": {
+    "en": "Event time *",
+    "de": "Veranstaltungszeit *"
+  },
+  "Vrijeme eventa": {
+    "en": "Event time",
+    "de": "Veranstaltungszeit"
+  },
+  "Odaberite vrijeme": {
+    "en": "Select time",
+    "de": "Uhrzeit wählen"
   }
 }

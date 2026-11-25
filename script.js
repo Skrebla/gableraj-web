@@ -543,7 +543,7 @@
       
       // Clear all field errors
       function clearAllFieldErrors() {
-        const fieldIds = ['ime', 'email', 'telefon', 'tip-eventa', 'datum', 'lokacija', 'broj-gostiju'];
+        const fieldIds = ['ime', 'email', 'telefon', 'tip-eventa', 'datum', 'vrijeme', 'lokacija', 'broj-gostiju'];
         fieldIds.forEach(function(fieldId) {
           removeFieldError(fieldId);
         });
@@ -562,6 +562,7 @@
         const telefon = document.getElementById('telefon').value.trim();
         const tipEventa = document.getElementById('tip-eventa').value;
         const datum = document.getElementById('datum').value;
+        const vrijeme = document.getElementById('vrijeme').value;
         const lokacija = document.getElementById('lokacija').value.trim();
         const brojGostiju = document.getElementById('broj-gostiju').value.trim();
         
@@ -613,6 +614,12 @@
           }
         }
         
+        // Validate Vrijeme (Time) - required
+        if (!vrijeme) {
+          showFieldError('vrijeme', 'Vrijeme eventa je obavezno polje.');
+          isValid = false;
+        }
+        
         // Validate Lokacija (Location) - required, at least 2 characters
         if (!lokacija) {
           showFieldError('lokacija', 'Lokacija je obavezno polje.');
@@ -638,7 +645,7 @@
       }
       
       // Add real-time validation on blur (when user leaves a field)
-      const formFields = ['ime', 'email', 'telefon', 'datum', 'lokacija', 'broj-gostiju'];
+      const formFields = ['ime', 'email', 'telefon', 'datum', 'vrijeme', 'lokacija', 'broj-gostiju'];
       formFields.forEach(function(fieldId) {
         const field = document.getElementById(fieldId);
         if (field) {
@@ -687,6 +694,12 @@
                   removeFieldError(fieldId);
                 }
               }
+            } else if (fieldId === 'vrijeme') {
+              if (!value) {
+                showFieldError(fieldId, 'Vrijeme eventa je obavezno polje.');
+              } else {
+                removeFieldError(fieldId);
+              }
             } else if (fieldId === 'lokacija') {
               if (!value) {
                 showFieldError(fieldId, 'Lokacija je obavezno polje.');
@@ -711,6 +724,9 @@
           
           // Clear error on input (real-time feedback)
           field.addEventListener('input', function() {
+            if (field.type === 'date' || field.type === 'time') {
+              field.classList.toggle('has-value', Boolean(field.value));
+            }
             if (field.style.borderColor === 'rgb(220, 53, 69)' || field.style.borderColor === '#dc3545') {
               // Only clear if there was an error
               const errorElement = document.getElementById(fieldId + '-error');
@@ -720,6 +736,20 @@
               }
             }
           });
+
+          if (field.type === 'date' || field.type === 'time') {
+            field.classList.toggle('has-value', Boolean(field.value));
+            field.addEventListener('change', function() {
+              field.classList.toggle('has-value', Boolean(field.value));
+              field.dispatchEvent(new Event('blur'));
+            });
+          } else if (field.tagName === 'SELECT') {
+            field.classList.toggle('is-placeholder', !field.value);
+            field.addEventListener('change', function() {
+              field.classList.toggle('is-placeholder', !field.value);
+              field.dispatchEvent(new Event('blur'));
+            });
+          }
         }
       });
       
@@ -743,6 +773,7 @@
           telefon: document.getElementById('telefon').value.trim(),
           tip_eventa: document.getElementById('tip-eventa').value,
           datum: document.getElementById('datum').value,
+          vrijeme: document.getElementById('vrijeme').value,
           lokacija: document.getElementById('lokacija').value.trim(),
           broj_gostiju: document.getElementById('broj-gostiju').value.trim()
         };
@@ -770,6 +801,7 @@
           phone: formData.telefon,
           event_type: formData.tip_eventa,
           event_date: formattedDate,
+          event_time: formData.vrijeme,
           location: formData.lokacija,
           guest_count: formData.broj_gostiju,
           to_email: 'info@catering-gableraj.hr' // Your email address
@@ -1834,6 +1866,7 @@
       'wedding-broj-gostiju',
       'wedding-lokacija',
       'wedding-datum',
+      'wedding-vrijeme',
       'wedding-stil',
       'wedding-budzet',
       'wedding-trajanje'
@@ -1917,6 +1950,13 @@
             return false;
           }
         }
+      } else if (fieldId === 'wedding-vrijeme') {
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Vrijeme eventa je obavezno polje.');
+            return false;
+          }
+        }
       } else if (fieldId === 'wedding-stil') {
         if (!value) {
           if (checkRequired) {
@@ -1969,7 +2009,7 @@
           field.style.color = '#111111';
           field.classList.remove('is-placeholder');
         }
-      } else if (field.type === 'date') {
+      } else if (field.type === 'date' || field.type === 'time') {
         if (!field.value) {
           field.style.color = '#9e9e9e';
           field.classList.remove('has-value');
@@ -2005,7 +2045,7 @@
         updateFieldColor(field);
       });
 
-      if (field.tagName === 'SELECT' || field.type === 'date') {
+      if (field.tagName === 'SELECT' || field.type === 'date' || field.type === 'time') {
         field.addEventListener('change', function() {
           validateWeddingField(fieldId, false);
           updateFieldColor(field);
@@ -2057,6 +2097,7 @@
         const brojGostiju = document.getElementById('wedding-broj-gostiju').value.trim();
         const lokacija = document.getElementById('wedding-lokacija').value.trim();
         const datum = document.getElementById('wedding-datum').value;
+        const vrijeme = document.getElementById('wedding-vrijeme').value;
         const stil = document.getElementById('wedding-stil').value;
         const budzet = document.getElementById('wedding-budzet').value;
         const trajanje = document.getElementById('wedding-trajanje').value;
@@ -2084,6 +2125,7 @@
           event_type: 'Vjenčanje (' + stil + ')',
           wedding_style: stil,
           event_date: formattedDate,
+          event_time: vrijeme,
           location: lokacija,
           guest_count: brojGostiju,
           budget: budzet,
@@ -2343,7 +2385,7 @@
           }
         });
 
-        if (field.tagName === 'SELECT') {
+        if (field.tagName === 'SELECT' || field.type === 'date' || field.type === 'time') {
           field.addEventListener('change', function() {
             removeFieldError(field);
           });
@@ -2368,6 +2410,7 @@
         const telefon = (form.querySelector('#' + prefix + 'telefon') || {}).value || '';
         const brojGostiju = (form.querySelector('#' + prefix + 'broj-gostiju') || {}).value || '';
         const datum = (form.querySelector('#' + prefix + 'datum') || {}).value || '';
+        const vrijeme = (form.querySelector('#' + prefix + 'vrijeme') || {}).value || '';
         const lokacija = (form.querySelector('#' + prefix + 'lokacija') || {}).value || '';
         const format = (form.querySelector('#' + prefix + 'format') || {}).value || '';
         const budzet = (form.querySelector('#' + prefix + 'budzet') || {}).value || 'Po dogovoru';
@@ -2386,11 +2429,12 @@
           event_type: 'Božićni domjenak - ' + (tvrtka || 'Tvrtka') + ' [' + format + ']',
           wedding_style: 'Božićni domjenak / ' + format,
           event_date: datum,
+          event_time: vrijeme,
           location: lokacija,
           guest_count: brojGostiju,
           budget: budzet,
           duration: 'Božićni event / domjenak',
-          message: 'Tvrtka: ' + tvrtka + '\nFormat domjenka: ' + format + '\nLokacija: ' + lokacija + '\nOkvirni budžet: ' + budzet + '\nPoruka: ' + (poruka || 'Nema dodatne poruke'),
+          message: 'Tvrtka: ' + tvrtka + '\nFormat domjenka: ' + format + '\nVrijeme eventa: ' + vrijeme + '\nLokacija: ' + lokacija + '\nOkvirni budžet: ' + budzet + '\nPoruka: ' + (poruka || 'Nema dodatne poruke'),
           to_email: 'info@catering-gableraj.hr'
         };
 
@@ -2585,6 +2629,7 @@
       'inquiry-telefon',
       'inquiry-tip-eventa',
       'inquiry-datum',
+      'inquiry-vrijeme',
       'inquiry-lokacija',
       'inquiry-broj-gostiju'
     ];
@@ -2654,6 +2699,13 @@
             return false;
           }
         }
+      } else if (fieldId === 'inquiry-vrijeme') {
+        if (!value) {
+          if (checkRequired) {
+            showFieldError(fieldId, 'Vrijeme eventa je obavezno polje.');
+            return false;
+          }
+        }
       } else if (fieldId === 'inquiry-lokacija') {
         if (!value) {
           if (checkRequired) {
@@ -2707,7 +2759,7 @@
           field.style.color = '#111111';
           field.classList.remove('is-placeholder');
         }
-      } else if (field.type === 'date') {
+      } else if (field.type === 'date' || field.type === 'time') {
         if (!field.value) {
           field.style.color = '#9e9e9e';
           field.classList.remove('has-value');
@@ -2742,7 +2794,7 @@
         updateFieldColor(field);
       });
 
-      if (field.tagName === 'SELECT' || field.type === 'date') {
+      if (field.tagName === 'SELECT' || field.type === 'date' || field.type === 'time') {
         field.addEventListener('change', function() {
           validateInquiryField(fieldId, false);
           updateFieldColor(field);
@@ -2793,6 +2845,7 @@
         const telefon = document.getElementById('inquiry-telefon').value.trim();
         const tipEventa = document.getElementById('inquiry-tip-eventa').value;
         const datum = document.getElementById('inquiry-datum').value;
+        const vrijeme = document.getElementById('inquiry-vrijeme').value;
         const lokacija = document.getElementById('inquiry-lokacija').value.trim();
         const brojGostiju = document.getElementById('inquiry-broj-gostiju').value.trim();
         const porukaElem = document.getElementById('inquiry-poruka');
@@ -2818,6 +2871,7 @@
           phone: telefon,
           event_type: tipEventa,
           event_date: formattedDate,
+          event_time: vrijeme,
           location: lokacija,
           guest_count: brojGostiju,
           message: poruka ? poruka : 'Nema dodatne poruke',
@@ -2891,6 +2945,21 @@
       });
     }
   })();
+
+  // Open native date picker on click anywhere in date inputs across all forms
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('input[type="date"]').forEach(function(dateInput) {
+      dateInput.addEventListener('click', function() {
+        try {
+          if (typeof dateInput.showPicker === 'function') {
+            dateInput.showPicker();
+          }
+        } catch (err) {
+          // Ignore if browser blocks or picker is already open
+        }
+      });
+    });
+  });
 
 
   

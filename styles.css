@@ -1699,11 +1699,17 @@ body {
   color: #757575;
 }
 
-.contact-field input[type="date"]:not(.has-value) {
+.contact-field input[type="date"] {
+  cursor: pointer;
+}
+
+.contact-field input[type="date"]:not(.has-value),
+.contact-field input[type="time"]:not(.has-value) {
   color: #757575;
 }
 
-.contact-field input[type="date"].has-value {
+.contact-field input[type="date"].has-value,
+.contact-field input[type="time"].has-value {
   color: #111111;
 }
 
